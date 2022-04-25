@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!--1. db.properties 위치 설정하기  -->
+	<context:property-placeholder location="classpath:META-INF/mybatis/db.properties"/>
+	<!--2. dataSource 빈 생성정의하기  -->
+	<bean id="datasource" 
+	class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="${db.driver}"/>
+		<property name="url" value="${db.url}"/>
+		<property name="username" value="${db.username}"/>
+		<property name="password" value="${db.password}"/>
+	</bean>
+	<!--3. spring-mybatis 설정 :  sqlSessionTemplate 빈 생성정의하기 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="datasource"/>
+		<property name="mapperLocations">
+			<list> <!-- ArrayList 와 같은 컬렉션이 프로퍼티 값으로 참조됩니다. -->
+				<value>classpath:META-INF/mybatis/member.xml</value>
+				<value>classpath:META-INF/mybatis/freeboard.xml</value>
+				<value>classpath:META-INF/mybatis/comment.xml</value>
+			</list>
+		</property>
+		<property name="configLocation" 
+					value="classpath:META-INF/mybatis/mybatis-config.xml"/>
+	</bean>
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean"/>
+	</bean>
+	<!-- 4. mybatis-spring는 xml매퍼파일과 연결되는 인터페이스를 사용합니다.
+			그 인터페이스의 패키지를 알려줘야 합니다. -->	
+	<!-- 인터페이스들에 대해서 빈(객체)으로 생성해줍니다. -->
+	<mybatis-spring:scan base-package="com.withidle.idle.mapper"/>
+	
+	<!-- 5. 스프링 트랜잭션 제어 사용하기 위한 설정 -->
+	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		id="transactionManager"	>
+		<property name="dataSource" ref="datasource"/>	
+	</bean>
+	<!-- 트랜잭션 적용을 어노테이션으로 하기 위한 설정 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>	
+</beans>
