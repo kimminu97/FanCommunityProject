@@ -54,6 +54,14 @@ public class HomeController {
 		return "home";
 	}
 	
+	@GetMapping("albumList")
+	public void albumList() {
+	}
+	
+	@GetMapping("home")
+	public void home() {
+	}
+	
 	@GetMapping("/login.do")
 	public String login(@ModelAttribute("success") String success) { 
 		

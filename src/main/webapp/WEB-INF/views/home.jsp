@@ -1,56 +1,73 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>아이들과 함께해조</title>
-<style type="text/css">
-div{
-	width:200px;height: 200px;
-	border: 1px solid gray;
-	padding:50px;
-	margin: 100px auto;
+<style>
+html, body {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+}
+.bg {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+		url('./resources/image/gidle.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: black;
+	min-height: 100%;
+}
+a {
+	color: white;
+	text-decoration: none;
+	font-size: 50px;
+	line-height: 100px;
+}
+a:hover {
+	color: gray;
+}
+.menus {
+	position: absolute;
+	top: 25%;
+	left: 40%;
+	list-style-type: none;
+}
+img {
+	height: 100px;
+	padding: 30px 0px 0px 30px;
+}
+#wel{
+	right: 10%;
 }
 </style>
 </head>
 <body>
-<c:if test="${success=='y' }">
-	<script>
-		alert("로그인 하셨습니다.!");
-		location.href="./";	//상대결로 -> http://localhost:8085/idev/
-	</script>
-</c:if>
-
-<c:if test="${update==1}">
-	<script>
-		alert("회원정보를 수정하였습니다.!");
-		location.href="./";	//상대결로 -> http://localhost:8085/idev/
-	</script>
-</c:if>
-<div>
-<!-- 객체가 null 인지 비교 : 같다(==)는 eq , 같지않다(!=)  ne  -->
-<!-- member 애트리뷰는 로그인 성공하면 session 에 저장했다. -->
-<c:choose>  
-	<c:when test="${users == null}">  
-	<!-- 로그인 안했을 때 메뉴 -->
-		<a href="login.do">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="./member/join.do">회원가입</a><br>
-		<a href="./member/list.do">회원목록</a>
-	</c:when>
-	<c:otherwise>  
-	<!-- 로그인했을 때 메뉴 -->
-		<h5 style="color:orange;">${users.user_name}&nbsp;님 환영합니다.</h5>
-		<a href="./member/update.do">내 정보 수정</a>
-		<a href="logout.do">로그아웃</a>
-	</c:otherwise>
-</c:choose>
-</div>
-
+	<div class="bg">
+		<a href="home"><img alt="logo" src="./resources/image/logo.png"/></a>
+		<c:if test="${users != null}">
+		<a href="" id="wel">${users.user_name}&nbsp;님 어서오세요</a>
+		</c:if>
+		<ul class="menus">
+			<li><a href="profile"><b>Profile</b></a></li>
+			<li><a href="albumList"><b>Album</b></a></li>
+			<li><a href="community"><b>Community</b></a></li>
+			<c:choose>
+				<c:when test="${users == null}">
+					<!-- 로그인 안했을 때 메뉴 -->
+					<li><a href="login.do">Login</a></li>
+				</c:when>
+				<c:otherwise>
+					<!-- 로그인했을 때 메뉴 -->
+					<li><a href="logout.do">Logout</a></li>
+				</c:otherwise>
+			</c:choose>
+		</ul>
+	</div>
 </body>
 </html>
-
 
 
 
