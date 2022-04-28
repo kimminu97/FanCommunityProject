@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>memberV3</title>
+<title>아이들과 함께해조</title>
 <style type="text/css">
 div{
 	width:200px;height: 200px;
@@ -43,9 +43,7 @@ div{
 	<!-- 로그인했을 때 메뉴 -->
 		<h5 style="color:orange;">${users.user_name}&nbsp;님 환영합니다.</h5>
 		<a href="./member/update.do">내 정보 수정</a>
-		<a href="./schedule/new.do">스케쥴</a>
 		<a href="logout.do">로그아웃</a>
-		<a href="logout">로그아웃2</a>
 	</c:otherwise>
 </c:choose>
 </div>
