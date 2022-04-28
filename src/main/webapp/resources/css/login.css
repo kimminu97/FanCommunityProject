@@ -1,19 +1,25 @@
 /* √‚√≥: https://homnay.tistory.com/19  */
 
 @charset "EUC-KR";
+#logo{
+	height: 160px;
+	padding: 30px;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Noto Sans KR", sans-serif;
 }
-html,body{
+.bg {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
 		url('../image/gidle.png');
-		background-repeat: no-repeat;
+	background-repeat: no-repeat;
 	background-size: cover;
 	background-color: black;
+	min-height: 100%;
 }
+
 a {
   text-decoration: none;
   color: black;
