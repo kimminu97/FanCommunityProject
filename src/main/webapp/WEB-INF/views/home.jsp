@@ -15,7 +15,6 @@ html, body {
 .bg {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
 		url('./resources/image/gidle.png');
-	background-repeat: no-repeat;
 	background-size: cover;
 	background-color: black;
 	min-height: 100%;
@@ -39,15 +38,16 @@ a:hover {
 	list-style-type: none;
 }
 
-img {
+.logo {
 	height: 100px;
 	padding: 30px 0px 0px 30px;
 }
+
 </style>
 </head>
 <body>
 	<div class="bg">
-		<a href="home"><img alt="logo" src="./resources/image/logo.png"/></a>
+		<a href="home"><img class="logo" alt="logo" src="./resources/image/logo.png"/></a>
 		<ul class="menus">
 			<li><a href="profile"><b>Profile</b></a></li>
 			<li><a href="albumList"><b>Album</b></a></li>
