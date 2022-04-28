@@ -39,7 +39,7 @@
 	<!-- 4. mybatis-spring는 xml매퍼파일과 연결되는 인터페이스를 사용합니다.
 			그 인터페이스의 패키지를 알려줘야 합니다. -->	
 	<!-- 인터페이스들에 대해서 빈(객체)으로 생성해줍니다. -->
-	<mybatis-spring:scan base-package="com.withidle.idle.mapper"/>
+	<mybatis-spring:scan base-package="com.withidle.gidle.mapper"/>
 	
 	<!-- 5. 스프링 트랜잭션 제어 사용하기 위한 설정 -->
 	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager"

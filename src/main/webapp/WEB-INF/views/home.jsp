@@ -13,7 +13,8 @@ html, body {
 }
 
 .bg {
-	background-image: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./resources/image/gidle.png');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+		url('./resources/image/gidle.png');
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-color: black;
@@ -25,32 +26,34 @@ a {
 	text-decoration: none;
 	font-size: 50px;
 	line-height: 100px;
-	
 }
 
-a:hover{
+a:hover {
 	color: gray;
 }
 
 .menus {
-	text-align: center;
-	margin: 100px;
+	position: absolute;
+	top: 25%;
+	left: 40%;
+	list-style-type: none;
 }
 
 img {
 	height: 100px;
-	padding: 30px 0px 100px 30px;
+	padding: 30px 0px 0px 30px;
 }
 </style>
 </head>
 <body>
 	<div class="bg">
-		<a href="home"><img alt="logo" src="./resources/image/logo.png" /></a>
-
-		<div class="menus">
-			<a href="profile"><b>Profile</b></a><br> <a href="albumList"><b>Album</b></a><br>
-			<a href="community"><b>Community</b></a><br> <a href="login.do"><b>Login</b></a>
-		</div>
+		<a href="home"><img alt="logo" src="./resources/image/logo.png"/></a>
+		<ul class="menus">
+			<li><a href="profile"><b>Profile</b></a></li>
+			<li><a href="albumList"><b>Album</b></a></li>
+			<li><a href="community"><b>Community</b></a></li>
+			<li><a href="login.do"><b>Login</b></a></li>
+		</ul>
 	</div>
 </body>
 </html>
