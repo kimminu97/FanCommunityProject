@@ -1,4 +1,4 @@
-package com.withidle.gidle;
+package com.withidle.gidle.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -39,6 +39,10 @@ public class HomeController {
 	
 	@GetMapping("albumList")
 	public void albumList() {
+	}
+	
+	@GetMapping("home")
+	public void home() {
 	}
 	
 }
