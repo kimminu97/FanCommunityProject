@@ -54,6 +54,10 @@ public class HomeController {
 		return "home";
 	}
 	
+	@GetMapping("profile")
+	public void profile() {
+		
+	}
 	@GetMapping("albumList")
 	public void albumList() {
 	}

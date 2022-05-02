@@ -125,7 +125,8 @@ h2 {
   border: 0;
   outline: none;
   border-radius: 40px;
-  background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+ /*  background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47)); */
+   background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
   color: white;
   font-size: 1.2em;
   letter-spacing: 2px;

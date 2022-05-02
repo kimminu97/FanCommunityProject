@@ -57,11 +57,11 @@ img {
 			<c:choose>
 				<c:when test="${users == null}">
 					<!-- 로그인 안했을 때 메뉴 -->
-					<li><a href="login.do">Login</a></li>
+					<li><a href="login.do"><b>Login</b></a></li>
 				</c:when>
 				<c:otherwise>
 					<!-- 로그인했을 때 메뉴 -->
-					<li><a href="logout.do">Logout</a></li>
+					<li><a href="logout.do"><b>Logout</b></a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
