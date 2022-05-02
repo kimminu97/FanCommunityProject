@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withidle.gidle.mapper.UsersMapper"> 
+<!-- namespace :mybatis-spring에서는 매퍼 인터페이스로 지정합니다. -->
+
+	<select id="login" resultType="Users" parameterType="java.util.HashMap">
+		select * from users_idle where user_id=#{user_id} and USER_PASSWORD=#{USER_PASSWORD}
+	</select>
+	
+	<!-- <select id="getCount" resultType="int"> id : 식별역할의 변수
+	select count(*) from member
+	</select> 
+	
+	<select id="selectAll" resultType="Member">
+	select * from member	
+	</select>
+	
+	parameterType : 실행에 필요한 데이터의 타입 , resultType : 실행결과 데이터의 타입
+	<select id="selectByMno" parameterType="int" resultType="Member">
+	select * from member where mno=#{mno}
+	</select> 
+
+	
+	<update id="changePassw" parameterType="java.util.HashMap">
+		UPDATE MEMBER SET PASSWORD=#{password} WHERE email=#{email}
+	</update>
+	
+	<select id="checkEmail" resultType="int" parameterType="String">
+		SELECT count(*) FROM MEMBER WHERE email=#{email}	
+	</select>
+	email은 기본키는 아니지만 userid로 사용하는 unique(제약조건)
+	<insert id="addMember" parameterType="Member" > parameterType : 쿼리실행에 필요한 데이터 타입
+			insert into member(mno,name,password,email,gender,hobby,addr,age) 
+			values (MEMBER_IDX_SEQ.NEXTVAL,#{name},#{password},#{email},#{gender},#{hobby},#{addr},#{age})
+	</insert>
+	
+	<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER SET email=#{email},GENDER=#{gender},addr=#{addr},hobby=#{hobby},age=#{age} WHERE mno=#{mno}
+	</update> -->
+</mapper>
+
+
+
+
+
+
+

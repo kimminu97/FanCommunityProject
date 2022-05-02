@@ -21,13 +21,11 @@
 		<property name="password" value="${db.password}"/>
 	</bean>
 	<!--3. spring-mybatis 설정 :  sqlSessionTemplate 빈 생성정의하기 -->
-<!-- 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="datasource"/>
 		<property name="mapperLocations">
-			<list> ArrayList 와 같은 컬렉션이 프로퍼티 값으로 참조됩니다.
-				<value>classpath:META-INF/mybatis/member.xml</value>
-				<value>classpath:META-INF/mybatis/freeboard.xml</value>
-				<value>classpath:META-INF/mybatis/comment.xml</value>
+			<list> <!-- ArrayList 와 같은 컬렉션이 프로퍼티 값으로 참조됩니다. -->
+				<value>classpath:META-INF/mybatis/users.xml</value>
 			</list>
 		</property>
 		<property name="configLocation" 
@@ -35,7 +33,7 @@
 	</bean>
 	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactoryBean"/>
-	</bean> -->
+	</bean>
 	<!-- 4. mybatis-spring는 xml매퍼파일과 연결되는 인터페이스를 사용합니다.
 			그 인터페이스의 패키지를 알려줘야 합니다. -->	
 	<!-- 인터페이스들에 대해서 빈(객체)으로 생성해줍니다. -->

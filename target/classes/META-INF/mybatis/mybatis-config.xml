@@ -6,6 +6,7 @@
 <configuration>
 	<typeAliases>
 		<!--  <typeAlias type="com.mycompany.idev.dto.Member" alias="Member"/> 예시로 살려둔것-->
+		<typeAlias type="com.withidle.gidle.vo.Users" alias="Users"/>
 	</typeAliases>
 
 </configuration>
