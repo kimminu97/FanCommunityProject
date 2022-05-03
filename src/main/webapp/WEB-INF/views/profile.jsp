@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
 	function fnTab(num){
@@ -63,7 +63,7 @@
 				<div class="profile_txt">
 					<div class="name_tt">MIYEON</div>
 					<div class="birth">
-						捞抚 : 固楷 <br>积老 : 1997.1.31.
+						鞚措 : 氙胳棸 <br>靸濎澕 : 1997.1.31.
 					</div>
 				</div>
 			</div>
@@ -78,7 +78,7 @@
 				<div class="profile_txt">
 					<div class="name_tt">MINNIE</div>
 					<div class="birth">
-						捞抚 : 刮聪<br>积老 : 1997.10.23.
+						鞚措 : 氙茧媹<br>靸濎澕 : 1997.10.23.
 					</div>
 				</div>
 			</div>
@@ -93,7 +93,7 @@
 				<div class="profile_txt">
 					<div class="name_tt">SOYEON</div>
 					<div class="birth">
-						捞抚 : 家楷<br>积老 : 1998.8.26.
+						鞚措 : 靻岇棸<br>靸濎澕 : 1998.8.26.
 					</div>
 				</div>
 			</div>
@@ -108,7 +108,7 @@
 				<div class="profile_txt">
 					<div class="name_tt">YUQI</div>
 					<div class="birth">
-						捞抚 : 快扁<br>积老 : 1999.09.23.
+						鞚措 : 鞖瓣赴<br>靸濎澕 : 1999.09.23.
 					</div>
 				</div>
 			</div>
@@ -123,7 +123,7 @@
 				<div class="profile_txt">
 					<div class="name_tt">SHUHUA</div>
 					<div class="birth">
-						捞抚 : 酱拳 <br>积老 : 2000.01.06
+						鞚措 : 鞀堩檾 <br>靸濎澕 : 2000.01.06
 					</div>
 				</div>
 			</div>
