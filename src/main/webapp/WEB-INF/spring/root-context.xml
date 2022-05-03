@@ -24,14 +24,12 @@
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="datasource"/>
 		<property name="mapperLocations">
-			<list> <!-- ArrayList 와 같은 컬렉션이 프로퍼티 값으로 참조됩니다. -->
-				<value>classpath:META-INF/mybatis/member.xml</value>
-				<value>classpath:META-INF/mybatis/freeboard.xml</value>
-				<value>classpath:META-INF/mybatis/comment.xml</value>
+			<list> 
+				<value>classpath:META-INF/mybatis/Users.xml</value>
 			</list>
 		</property>
 		<property name="configLocation" 
-					value="classpath:META-INF/mybatis/mybatis-config.xml"/>
+					value="classpath:META-INF/mybatis/mybatis-config.xml"/>                 
 	</bean>
 	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactoryBean"/>
@@ -39,7 +37,7 @@
 	<!-- 4. mybatis-spring는 xml매퍼파일과 연결되는 인터페이스를 사용합니다.
 			그 인터페이스의 패키지를 알려줘야 합니다. -->	
 	<!-- 인터페이스들에 대해서 빈(객체)으로 생성해줍니다. -->
-	<mybatis-spring:scan base-package="com.withidle.idle.mapper"/>
+	<mybatis-spring:scan base-package="com.withidle.gidle.mapper"/>
 	
 	<!-- 5. 스프링 트랜잭션 제어 사용하기 위한 설정 -->
 	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
