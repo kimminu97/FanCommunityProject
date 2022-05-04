@@ -1,0 +1,104 @@
+@charset "EUC-KR";
+
+body, button, input, select, textarea {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    color: #0c0c0c;
+    background-color: #000000;
+}
+#logo{
+	height: 100px;
+	padding: 30px;
+}
+.cont {
+    position: relative;
+    width: 1100px;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto;
+    z-index: 111;
+    padding: 0 50px;
+}
+.cont.profile > div {
+    float: left;
+}
+
+.member_name {
+    position: relative;
+    width: 160px;
+    margin-right: 40px;
+    font-size: 12px;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-align: right;
+}
+a {
+    color: #808080;
+    text-decoration: none;
+}
+.pf_inner {
+    position: relative;
+    width: 80%;
+    height: auto;
+}
+.profile_img {
+    position: relative;
+    width: 530px;
+    height: 675px;
+}
+.color_bg {
+    position: absolute;
+    width: 450px;
+    height: 590px;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+}
+.artist_crbg {
+    background-color: #a4bde4 !important;
+}
+.artist_img {
+    position: relative;
+    width: 86%;
+    margin: 0 auto;
+    top: 40px;
+    left: 0;
+    box-shadow: 15px 15px 20px 0 #bdbcbc;
+}
+.artist_img img {
+    width: 100%;
+    object-fit: fill;
+    vertical-align: bottom;
+}
+fieldset, img {
+    border: 0 none;
+}
+.profile_txt {
+    position: absolute;
+    width: 275px;
+    bottom: 50px;
+    right: 0;
+}
+.profile_txt .name_tt {
+    position: relative;
+    width: 275px;
+    font-size: 25pt;
+    font-family: 'Montserrat';
+    font-weight: 100;
+    letter-spacing: 0.05em;
+    margin-bottom: 15px;
+    word-wrap: break-word;
+    word-break: keep-all;
+    color: #808080;
+}
+.birth{
+	color : #808080;
+}
+.profile_txt div {
+    position: relative;
+    font-size: 12pt;
+    font-weight: 400;
+    margin-top: 10px;
+}

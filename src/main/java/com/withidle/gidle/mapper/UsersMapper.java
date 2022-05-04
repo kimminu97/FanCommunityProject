@@ -6,4 +6,6 @@ import com.withidle.gidle.vo.Users;
 
 public interface UsersMapper {
 	Users login(Map<String, String> map);
+	String addUsers(Users users);
+	int updateUsers(Users users);
 }

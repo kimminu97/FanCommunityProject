@@ -62,6 +62,15 @@ public class HomeController {
 		
 	}
 	
+	@GetMapping("goods")
+	public void goods() {
+		
+	}
+	
+	@GetMapping("community")
+	public String community() {
+		return "community/community";
+	}
 	@GetMapping("/login.do")
 	public String login(@ModelAttribute("success") String success) { 
 		
@@ -98,4 +107,17 @@ public class HomeController {
 		//서버가 JSESSIONID는 새로 부여해주지만 @SessionAttributes로 설정된 값은 남아있다.
 		return "redirect:/";
 	}
+	
+	@GetMapping("/join.do")
+	public String join() {
+		return "Users/signup";
+	}
+	
+	@PostMapping("/join.do")
+	public String insert(Users users) { 
+		logger.info("[My]"+users);
+		mapper.addUsers(users);
+		return "redirect:../";
+	}  //회원가입 
+
 }
