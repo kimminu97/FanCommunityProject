@@ -74,7 +74,7 @@
 			</table>
 		</div>
 		<hr style="margin: 0 100px;">
-		<div style="padding-top: 1rem !important;">
+		<div>
 			<table>
 				<tr>
 					<td><img class="userIcon" src="./resources/image/vapp.svg"></td>
@@ -87,7 +87,7 @@
 			</table>
 		</div>
 		<hr style="margin: 0 100px;">
-		<div style="padding-top: 1rem !important;">
+		<div>
 			<table>
 				<tr>
 					<td><img class="userIcon" src="./resources/image/vapp.svg"></td>
