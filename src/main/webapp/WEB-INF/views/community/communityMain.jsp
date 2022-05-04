@@ -8,149 +8,25 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
 	rel="stylesheet">
-<!-- <link rel="stylesheet" href="resources/css/communityMain.css"/> -->
-<style>
-html, body {
-	margin: 0;
-	text-align: center;
-	background-color: #E4E3E3;
-}
+<link rel="stylesheet" href="resources/css/communityMain.css"/>
 
-ul {
-	margin: 0;
-	display: flex;
-}
-
-li {
-	list-style: none;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
-
-p {
-	text-align: left;
-}
-
-.shadow {
-	box-shadow: 0 .15rem .35rem rgba(0, 0, 0, .1) !important;
-}
-
-.mainMenu {
-	background-color: #343a40;;
-}
-
-.mainMenu>li:first-child {
-	font-size: 30px;
-}
-
-.mainMenu>li {
-	margin: 10px;
-	padding: 5px 10px;
-	list-style: none;
-	text-align: center;
-	line-height: 40px;
-}
-
-.mainMenu>li:hover {
-	background-color: #5E6975;
-	border-radius: 5px;
-}
-
-.mainMenu>li>a {
-	color: white;
-}
-
-.menu {
-	padding: 0;
-	background-color: white;
-	height: 50px;
-}
-
-.menu>li {
-	margin: auto;
-	padding: 10px 20px;
-}
-
-.menu>li:hover {
-	background-color: #E9E9E9;
-	border-radius: 10px;
-}
-
-.menu>li>a {
-	font-size: 18px;
-}
-
-.community {
-	text-align: center;
-}
-
-#logo {
-	height: 300px;
-	padding: 30px;
-}
-
-.container {
-	padding: 10px 200px 10px 200px;
-}
-
-.container>ul {
-	padding: 0;
-}
-
-.container>ul>li {
-	margin: auto;
-}
-
-.container>ul>li:hover {
-	filter: brightness(50%);
-}
-
-.announcement, .feed {
-	margin: 10px 180px;
-	background-color: white;
-	padding: 5px;
-	border-radius: 10px;
-}
-
-.userIcon {
-	width: 32px;
-	height: 32px;
-	margin: 10px;
-}
-
-.seeAllLink {
-	margin-top: 1rem!important;
-	margin-bottom: 1rem!important;
-	display: block;
-	text-align: right;
-}
-
-.seeAllLink > a {
-	padding-right: 10px;
-	padding-bottom: 10px;
-}
-</style>
 </head>
 <body>
 	<nav>
 		<ul class="mainMenu">
-			<li><a href="#">G-IDLE</a></li>
-			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Profile</a></li>
-			<li><a href="#">Album</a></li>
+			<li><a href="home">G-IDLE</a></li>
+			<li><a href="community">Dashboard</a></li>
+			<li><a href="profile">Profile</a></li>
+			<li><a href="albumList">Album</a></li>
 			<li><a href="#">My Info</a></li>
 		</ul>
 	</nav>
 	<nav class="shadow">
 		<ul class="menu">
-			<li><a href="#">공지사항</a></li>
-			<li><a href="#">자유게시판</a></li>
-			<li><a href="#">질문답변</a></li>
-			<li><a href="#">공식사진</a></li>
+			<li><a href="announcement">공지사항</a></li>
+			<li><a href="freeboard">자유게시판</a></li>
+			<li><a href="letter">아이들에게 편지</a></li>
+			<li><a href="levelrequest">등업요청</a></li>
 		</ul>
 	</nav>
 	<div class="community">
@@ -225,7 +101,7 @@ p {
 		</div>
 		<hr style="margin: 0 100px;">
 
-		<small class="seeAllLink"><a href="#">모든 게시물 보기</a>
+		<small class="seeAllLink"><a href="announcement">모든 게시물 보기</a>
 		</small>
 	</div>
 
@@ -272,7 +148,7 @@ p {
 		</div>
 		<hr style="margin: 0 100px;">
 
-		<small class="seeAllLink"><a href="#">모든 게시물 보기</a>
+		<small class="seeAllLink"><a href="freeboard">모든 게시물 보기</a>
 		</small>
 	</div>
 </body>

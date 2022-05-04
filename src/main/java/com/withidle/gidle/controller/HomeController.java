@@ -1,4 +1,4 @@
-package com.withidle.gidle;
+package com.withidle.gidle.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -54,7 +54,8 @@ public class HomeController {
 	}
 	
 	@GetMapping("home")
-	public void home() {
+	public String home() {
+		return "redirect:/";
 	}
 	
 	@GetMapping("profile")
@@ -69,7 +70,7 @@ public class HomeController {
 	
 	@GetMapping("community")
 	public String community() {
-		return "community/community";
+		return "community/communityMain";
 	}
 	@GetMapping("/login.do")
 	public String login(@ModelAttribute("success") String success) { 
