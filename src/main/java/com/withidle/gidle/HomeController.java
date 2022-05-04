@@ -4,6 +4,7 @@ import java.lang.ProcessBuilder.Redirect;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -37,7 +38,7 @@ import com.withidle.gidle.vo.Users;
  * Handles requests for the application home page.
  */
 @Controller
-@SessionAttributes("users")	//Model ÀúÀå¼Ò¿¡ ÀúÀåµÈ ¾ÖÆ®¸®ºäÆ® Áß¿¡ member´Â ¼¼¼Ç scope °ªÀÌ¶ó´Â ¼³Á¤
+@SessionAttributes("users")	//Model ì €ì¥ì†Œì— ì €ì¥ëœ ì• íŠ¸ë¦¬ë·°íŠ¸ ì¤‘ì— memberëŠ” ì„¸ì…˜ scope ê°’ì´ë¼ëŠ” ì„¤ì •
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -59,9 +60,21 @@ public class HomeController {
 		
 		return "home";
 	}
+	
+
 	@GetMapping("profile")
 	public void profile() {
 		
+	}
+	
+	@GetMapping("goods")
+	public void goods() {
+		
+	}
+	
+	@GetMapping("community")
+	public String community() {
+		return "community";
 	}
 	
 	@GetMapping("albumList")
@@ -81,23 +94,23 @@ public class HomeController {
 	@PostMapping("login.do")
 	public String loginProc(@RequestParam  Map<String,String> map, Model model) {
 		logger.info("[my]"+map);
-		Users users= mapper.login(map);	//·Î±×ÀÎ ¼º°øÇÏ¸é null ¾Æ´Ñ°ª ¹İÈ¯
+		Users users= mapper.login(map);	//ë¡œê·¸ì¸ ì„±ê³µí•˜ë©´ null ì•„ë‹Œê°’ ë°˜í™˜
 		String url;
 		if(users !=null) {
-			//¼º°ø : ¸ŞÀÎ È­¸éÀ¸·Î, session °´Ã¼¿¡ ·Î±×ÀÎ Á¤º¸¸¦ ÀúÀåÇß½À´Ï´Ù.(¼¼¼Ç ¾ÖÆ®¸®ºäÆ®·Î ÀúÀå)
-			model.addAttribute("users",users);	//@SessionAttributes·Î ¼³Á¤ÇÏ±â
-			url = "/?success=y";	//·Î±×ÀÎ ¼º°ø¸Ş½ÃÁö alert¶ç¿ì±â
-		}else {	//½ÇÆĞ : ´Ù½Ã ·Î±×ÀÎ ÇÏ·¯°¡±â. ((¹Ì¼Ç))alert ¸Ş½ÃÁö ¶ç¿ì±â "·Î±×ÀÎ Á¤º¸°¡ ¿Ç¹Ù¸£Áö ¾Ê½À´Ï´Ù."
+			//ì„±ê³µ : ë©”ì¸ í™”ë©´ìœ¼ë¡œ, session ê°ì²´ì— ë¡œê·¸ì¸ ì •ë³´ë¥¼ ì €ì¥í–ˆìŠµë‹ˆë‹¤.(ì„¸ì…˜ ì• íŠ¸ë¦¬ë·°íŠ¸ë¡œ ì €ì¥)
+			model.addAttribute("users",users);	//@SessionAttributesë¡œ ì„¤ì •í•˜ê¸°
+			url = "/?success=y";	//ë¡œê·¸ì¸ ì„±ê³µë©”ì‹œì§€ alertë„ìš°ê¸°
+		}else {	//ì‹¤íŒ¨ : ë‹¤ì‹œ ë¡œê·¸ì¸ í•˜ëŸ¬ê°€ê¸°. ((ë¯¸ì…˜))alert ë©”ì‹œì§€ ë„ìš°ê¸° "ë¡œê·¸ì¸ ì •ë³´ê°€ ì˜³ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤."
 			url="login.do?success=n";
-			//¿äÃ»¹æ½ÄÀÌ postÀÏ´ë¸¸ RedirectAttributes °´Ã¼¿¡ url¿¡ Ç¥½ÃµÇÁö ¾Êµµ·Ï ÆÄ¶ó¹ÌÅÍ
-			//°ªÀ» Àü´ŞÇÒ ¼ö ÀÖ½À´Ï´Ù -> ¿©±â¼­´Â »ç¿ëÀ» ¸øÇÕ´Ï´Ù.
+			//ìš”ì²­ë°©ì‹ì´ postì¼ëŒ€ë§Œ RedirectAttributes ê°ì²´ì— urlì— í‘œì‹œë˜ì§€ ì•Šë„ë¡ íŒŒë¼ë¯¸í„°
+			//ê°’ì„ ì „ë‹¬í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤ -> ì—¬ê¸°ì„œëŠ” ì‚¬ìš©ì„ ëª»í•©ë‹ˆë‹¤.
 		}
 		return "redirect:"+url;
 	}
 	
 	@GetMapping("/logout.do")
-	public String logout(SessionStatus status) {	//ÇöÀç¼¼¼Ç»óÅÂ °´Ã¼
-		status.setComplete();	// @SessionAttributes ·Î ¼³Á¤µÈ ¾ÖÆ®¸®ºäÆ® °ªÀ» clear ÇÑ´Ù.
+	public String logout(SessionStatus status) {	//í˜„ì¬ì„¸ì…˜ìƒíƒœ ê°ì²´
+		status.setComplete();	// @SessionAttributes ë¡œ ì„¤ì •ëœ ì• íŠ¸ë¦¬ë·°íŠ¸ ê°’ì„ clear í•œë‹¤.
 		return "redirect:/";
 	}
 	
@@ -105,7 +118,7 @@ public class HomeController {
 	public String logout2(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		//¼­¹ö°¡ JSESSIONID´Â »õ·Î ºÎ¿©ÇØÁÖÁö¸¸ @SessionAttributes·Î ¼³Á¤µÈ °ªÀº ³²¾ÆÀÖ´Ù.
+		//ì„œë²„ê°€ JSESSIONIDëŠ” ìƒˆë¡œ ë¶€ì—¬í•´ì£¼ì§€ë§Œ @SessionAttributesë¡œ ì„¤ì •ëœ ê°’ì€ ë‚¨ì•„ìˆë‹¤.
 		return "redirect:/";
 	}
 	
@@ -119,7 +132,7 @@ public class HomeController {
 		logger.info("[My]"+users);
 		mapper.addUsers(users);
 		return "redirect:/";
-	}  //È¸¿ø°¡ÀÔ 
+	}  //íšŒì›ê°€ì… 
 	
 	@ResponseBody
 	@RequestMapping(value="/asyncUser_id/{user_id}",method=RequestMethod.GET
