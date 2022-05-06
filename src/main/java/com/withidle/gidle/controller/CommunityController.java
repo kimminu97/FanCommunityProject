@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.withidle.gidle.mapper.BoardMapper;
 import com.withidle.gidle.mapper.CommentMapper;
+import com.withidle.gidle.mapper.UsersMapper;
 import com.withidle.gidle.vo.Board;
 import com.withidle.gidle.vo.Comment;
 import com.withidle.gidle.vo.PageDto;
@@ -31,6 +32,8 @@ import com.withidle.gidle.vo.PageDto;
 public class CommunityController {
 	private static final Logger logger =
 			LoggerFactory.getLogger(CommunityController.class);
+	@Autowired
+	UsersMapper user_mapper;
 	
 	@Autowired
 	BoardMapper mapper;
@@ -75,6 +78,7 @@ public class CommunityController {
 		mapper.insert(dto);
 		rda.addFlashAttribute("message","글 쓰기가 완료되었습니다.");
 		// ->list.jsp로 바로 전달 됩니다. 특징: url에 표시되지 않습니다.(model은 보임)
+		user_mapper.boardCountUp(dto.getBoard_name());
 		return "redirect:list?action=1";	//1페이지로 이동
 	}
 	@RequestMapping(value = "/detail",params = "action=1",method=RequestMethod.GET)
@@ -118,12 +122,14 @@ public class CommunityController {
 //	@GetMapping("delete")	//글 삭제 처리 -> 완료 alert
 	@PostMapping("delete")
 //	public String deleteFreeboard(int idx,int pageNo,Model model) {
-	public String deleteFreeboard(int idx,int board_cat,int pageNo,RedirectAttributes rda) {
+	public String deleteFreeboard(int idx,int board_cat,int pageNo,
+			String user_name,RedirectAttributes rda) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("board_idx", idx);
 		map.put("board_cat", board_cat);
 		mapper.delete(map);
 //		model.addAttribute("pageNo",pageNo);
+		user_mapper.boardCountDown(user_name);
 		rda.addAttribute("pageNo",pageNo);
 		rda.addFlashAttribute("message","글이 삭제 되었습니다.");
 		return "redirect:list?action=1";
@@ -136,15 +142,17 @@ public class CommunityController {
 		//댓글 입력요소 값들 db에 저장 -> detail(글 상세보기)
 		cmt_mapper.insert(dto);
 		cmt_mapper.commentCountUp(dto.getComment_board());
+		user_mapper.cmtCountUp(dto.getComment_mname());
 		model.addAttribute("board_idx",dto.getComment_board());
 		model.addAttribute("pageNo",pageNo);
 		return "redirect:detail?action=1";
 	}
 	@Transactional
 	@GetMapping("comment")	//idx: 댓글 , mref: 메인글 idx
-	public String delete(int idx,int pageNo,int mref, Model model) {
+	public String delete(int idx,int pageNo,int mref,String user_name, Model model) {
 		cmt_mapper.delete(idx);
 		cmt_mapper.commentCountDown(mref);
+		user_mapper.cmtCountDown(user_name);
 		model.addAttribute("board_idx",mref);
 		model.addAttribute("pageNo",pageNo);
 		return "redirect:detail?action=1";

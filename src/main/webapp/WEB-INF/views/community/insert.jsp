@@ -19,8 +19,9 @@
  			required="required"></td>
  	</tr>
  	<tr><td class="td1">작성자</td>
- 		<td class="left"><input type="text" name="board_name" size="70" class="input1" 
- 			required="required"></td>
+ 		<td class="left">${users.user_name }
+ 		<input type="hidden" name="board_name" size="70" class="input1" value="${users.user_name}" >
+ 		</td>
  	</tr>
  	
  	

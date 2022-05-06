@@ -27,6 +27,26 @@
 	<select id="namecheck" parameterType="String" resultType="Int">
 		select count(*) from users_idle where user_name=#{user_name}
 	</select>
+	<!-- 쓴글 수 추가 -->
+	<update id="boardCountUp">
+		update users_idle set USER_ARTICLENUM=USER_ARTICLENUM+1 
+		where USER_NAME=#{user_name}
+	</update>
+	<!-- 쓴 댓글 추가 -->
+	<update id="cmtCountUp">
+		update users_idle set USER_REPLYNUM=USER_REPLYNUM+1 
+		where USER_NAME=#{user_name}
+	</update>
+	<!-- 쓴글 수 삭제 -->
+	<update id="boardCountDown">
+		update users_idle set USER_ARTICLENUM=USER_ARTICLENUM-1 
+		where USER_NAME=#{user_name}
+	</update>
+	<!-- 쓴 댓글 삭제 -->
+	<update id="cmtCountDown">
+		update users_idle set USER_REPLYNUM=USER_REPLYNUM-1 
+		where USER_NAME=#{user_name}
+	</update>
 </mapper>
 
 

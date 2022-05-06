@@ -95,6 +95,7 @@
 			<form action="" method="post">
 				 <input type="hidden" name="idx" value="${bean.board_idx}">
 	             <input type="hidden" name="pageNo" value="${page}">
+	             <input type="hidden" name="user_name" value="${users.user_name}">
 	             <input type="hidden" name="board_cat" value="${bean.board_cat}">
 
 			</form>
@@ -121,8 +122,10 @@
 			</tr>
 			<!-- 댓글 입력 -->
 			<tr>
-				<td width="25%">작성자</td>
-				<td width="25%"><input type="text" name="comment_mname" class="input1"></td>
+				<td width="25%">${users.user_name }</td>
+				<td width="25%">
+				<input type="hidden" name="comment_mname" class="input1" value="${users.user_name}">
+				</td>
 			</tr>
 			<tr>
 				<td colspan="3">
@@ -167,7 +170,8 @@
 	 	<script type="text/javascript">
 			function delete_cmt(idx){
 				if(confirm(idx+'번 선택한 댓글 삭제하시겠습니까?') == true)
-					location.href=`comment?idx=`+idx+`&pageNo=${page}&mref=${bean.board_idx}`;
+					location.href=`comment?idx=`+idx+`&pageNo=${page}&mref=${bean.board_idx}
+					&user_name=${users.user_name}`;
 			}
 </script>
 <script type="text/javascript">
