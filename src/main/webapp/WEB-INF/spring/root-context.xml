@@ -26,6 +26,8 @@
 		<property name="mapperLocations">
 			<list> <!-- ArrayList 와 같은 컬렉션이 프로퍼티 값으로 참조됩니다. -->
 				<value>classpath:META-INF/mybatis/users.xml</value>
+				<value>classpath:META-INF/mybatis/comment.xml</value>
+				<value>classpath:META-INF/mybatis/freeboard.xml</value>
 			</list>
 		</property>
 		<property name="configLocation" 

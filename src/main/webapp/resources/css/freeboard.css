@@ -1,0 +1,147 @@
+.border_opt{
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+}
+.button {
+    background-color: green;
+    color:white;
+    padding: 5px 10px;
+    margin: 5px 10px;
+    text-decoration: none;  /*  밑줄제거  */
+    cursor: pointer;
+    display: inline-block;
+	text-align:center;
+}
+.pagenum {
+    border: 1px solid gray;
+    color: #0178b6;
+    padding: 3px 5px;
+    text-decoration: none;  /*  밑줄제거  */
+    cursor: pointer;
+    display: inline-block;
+	text-align:center;
+	font-size: 9pt;
+}
+.pagenum:hover{
+	  background-color:gray;
+	  color:white;
+} 
+table { width: 70%; margin: 20px auto;}
+
+tr,th,td{
+		/* border: 1px solid #cccccc; */
+		padding: 4px;
+		text-align: center;
+}
+th {
+		background-color: #4080bf;
+		font-size:90%;
+		color: white;
+}
+.title {
+	color: #1a1aff;
+	text-decoration: none;  /*  밑줄제거  */
+	font: bold;
+	text-align: center;
+}
+.input1{
+	padding: 7px 15px;
+	border: 1px solid #4080bf;
+	border-radius: 9px;
+}
+.button {
+    background-color: green;
+    color:white;
+    padding: 5px 10px;
+    text-decoration: none;  /*  밑줄제거  */
+    cursor: pointer;
+    display: inline-block;
+	text-align:center;
+	border-radius: 4px;
+	width:100px;height:20px;
+	border:none;
+}
+
+input[type=submit],input[type=reset],input[type=button]{
+    color:white;
+    padding: 5px 10px;
+	text-align:center;
+	display: inline-block;
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+} 
+.btnGreen {
+	 background-color: green;width:100px;height:30px;
+}
+
+.btn-small{width:70px;height:30px;background-color: skyblue; color:white;border: none}
+
+.btn{width:100px;height:30px;background-color: green;}
+
+.pagenum {
+    border: 1px solid gray;
+    color: #0178b6;
+    padding: 3px 5px;
+    text-decoration: none;  /*  밑줄제거  */
+    cursor: pointer;
+    display: inline-block;
+	text-align:center;
+	font-size: 9pt;
+}
+.pagenum:hover{
+	  background-color:gray;
+	  color:white;
+} 
+.td1{
+	background-color: #4080bf;
+    color:white;
+    padding: 5px 10px;
+    text-align: center;
+    border-collapse:separate;
+    border-radius: 6px;
+   
+}
+.title {
+	color: #1a1aff;
+	text-decoration: none;  /*  밑줄제거  */
+	font: bold;
+	text-align: center;
+}
+.comment {
+	border: 1px solid #dddddd;
+	padding : 8px 30px;
+	margin-bottom: 6px;
+}
+.comment_title {
+	font: bold;
+	font-size: 130%;
+	padding: 20px 0x;
+	display: block;
+}
+.content {
+	padding : 8px 4px;
+	margin-bottom: 8px;
+ }
+
+.name {
+	width:40%;
+	display: inline-block;
+	color:  #4080bf;
+}
+
+.now {
+	color : gray;
+	width:50%;
+	display: inline-block;
+	
+}
+
+.left{
+	text-align: left;
+	padding-left: 10px;
+}
+
+.none {
+	display: none;
+}

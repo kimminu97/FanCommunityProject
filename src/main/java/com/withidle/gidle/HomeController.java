@@ -1,8 +1,8 @@
 package com.withidle.gidle;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -16,14 +16,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.withidle.gidle.mapper.UsersMapper;
 import com.withidle.gidle.vo.Users;
 
@@ -53,6 +56,7 @@ public class HomeController {
 		
 		return "home";
 	}
+	
 	
 	@GetMapping("profile")
 	public void profile() {
@@ -102,12 +106,55 @@ public class HomeController {
 		//서버가 JSESSIONID는 새로 부여해주지만 @SessionAttributes로 설정된 값은 남아있다.
 		return "redirect:/";
 	}
-//@SessionAttributes로 설정된것은 SessionStatus 로 지운다.	
-//status.setComplete();   
-//	- JSESSIONID 는 변하지 않고 @SessionAttributes 로 설정된 애트리뷰트 값을 clear 한다.
-//  - HttpSession의 removeAttribute() 메소드 동작과 유사
-
-//jsp에서 로그아웃 : session.invalidate();	- JSESSIONID값을 새로운 값으로 합니다.
-//				session.removeAttribute("member");	- JSESSIONID는 변하지않고 값 삭제
+	@GetMapping("/join.do")
+	public String join() {
+		return "signup";
+	}
+	
+	@PostMapping("/join.do")
+	public String insert(Users users) { 
+		logger.info("[My]"+users);
+		mapper.addUsers(users);
+		return "redirect:/";
+	}  //회원가입 
+	
+	@ResponseBody
+	@RequestMapping(value="/asyncUser_id/{user_id}",method=RequestMethod.GET
+			,produces = "application/json;charset=utf-8")
+	public String getOne(@PathVariable String user_id) {
+		int cnt = mapper.idcheck(user_id); 
+		
+		Map<String,Object> map = new HashMap<>();
+		map.put("cnt",cnt);
+		ObjectMapper objmapper = new ObjectMapper();
+		String json_result=null;
+		try {
+			json_result = objmapper.writeValueAsString(map);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		return json_result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/asyncUser_name/{user_name}",method=RequestMethod.GET
+			,produces = "application/json;charset=utf-8")
+	public String getOne1(@PathVariable String user_name) {
+		int cnt = mapper.namecheck(user_name); 
+		
+		Map<String,Object> map = new HashMap<>();
+		map.put("cnt",cnt);
+		ObjectMapper objmapper = new ObjectMapper();
+		String json_result=null;
+		try {
+			json_result = objmapper.writeValueAsString(map);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		return json_result;
+	}
+ 
 	
 }
