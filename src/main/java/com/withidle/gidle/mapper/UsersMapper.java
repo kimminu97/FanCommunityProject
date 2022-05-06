@@ -17,5 +17,9 @@ public interface UsersMapper {
 	void allupdate(Users users);
 	String checkid(String user_id);
 	void delete(String user_id);
+	void boardCountUp(String user_name);
+	void cmtCountUp(String user_name);
+	void boardCountDown(String user_name);
+	void cmtCountDown(String user_name);
 	
 }

@@ -1,5 +1,6 @@
+/* √‚√≥: https://homnay.tistory.com/19  */
 
-@charset "EUC-KR";
+@charset "UTF-8";
 #logo{
 	height: 160px;
 	padding: 30px;
@@ -49,8 +50,8 @@ li {
 }
 
 h2 {
+  color: tomato;
   font-size: 2em;
-  color: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
 }
 .login_sns {
   padding: 20px;
@@ -124,7 +125,8 @@ h2 {
   border: 0;
   outline: none;
   border-radius: 40px;
-  background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
+ /*  background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47)); */
+   background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
   color: white;
   font-size: 1.2em;
   letter-spacing: 2px;

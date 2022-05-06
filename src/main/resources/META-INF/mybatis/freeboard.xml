@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withidle.gidle.mapper.BoardMapper">
+	<!-- 새글 쓰기 -->
+	<insert id="insert">
+		INSERT INTO BOARD_IDLE
+		(BOARD_IDX, BOARD_CAT, BOARD_SUB, BOARD_CON,BOARD_NAME)
+		VALUES(board_idx_seq1.nextval, #{board_cat},
+		#{board_sub},#{board_con}, #{board_name})
+
+	</insert>
+	<!-- 글 수정 -->
+	<update id="update" parameterType="Board">
+		update board_idle set
+		board_con=#{board_con},board_sub =CONCAT('(수정)',board_sub )
+		,
+		wdate=sysdate
+		where BOARD_IDX=#{board_idx} and BOARD_CAT=#{board_cat}
+	</update>
+	<!-- 글 상세보기 -->
+	<select id="getOne" parameterType="Map" resultType="Board">
+		select * from
+		Board_IDLE where BOARD_IDX=#{board_idx} and BOARD_CAT=#{board_cat}
+	</select>
+	<!-- 조회수 증가 -->
+	<update id="readCount" parameterType="Map">
+		update Board_IDLE set
+		VIEW_CNT=VIEW_CNT+1 where BOARD_IDX=#{board_idx} and
+		BOARD_CAT=#{board_cat}
+	</update>
+	<select id="getPageList" parameterType="Map" resultType="Board">
+		SELECT *
+		FROM (
+		SELECT rownum AS R ,T.* FROM
+		(SELECT * FROM board_idle WHERE BOARD_CAT = #{board_cat} ORDER BY BOARD_IDX DESC ) T)
+		WHERE R BETWEEN #{startNo} AND #{endNo}
+	</select>
+
+	<select id="getCount" resultType="int">
+		select count(*) from Board_IDLE
+	</select>
+
+	<delete id="delete" parameterType="Map">
+		DELETE FROM Board_IDLE
+		WHERE
+		BOARD_IDX=#{board_idx} and BOARD_CAT=#{board_cat}
+	</delete>
+</mapper>

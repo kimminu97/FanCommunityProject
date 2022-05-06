@@ -54,7 +54,7 @@ img {
 		<ul class="menus">
 			<li><a href="profile"><b>Profile</b></a></li>
 			<li><a href="albumList"><b>Album</b></a></li>
-			<li><a href="community"><b>Community</b></a></li>
+			<li><a href="community/community"><b>Community</b></a></li>
 			<c:choose>
 				<c:when test="${users == null}">
 					<!-- 로그인 안했을 때 메뉴 -->

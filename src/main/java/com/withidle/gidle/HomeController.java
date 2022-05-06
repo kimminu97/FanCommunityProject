@@ -130,10 +130,7 @@ public class HomeController {
 		
 	}
 	
-	@GetMapping("community")
-	public String community() {
-		return "community";
-	}
+	
 	
 	@GetMapping("albumList")
 	public void albumList() {

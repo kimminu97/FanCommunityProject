@@ -1,0 +1,178 @@
+@charset "UTF-8";
+
+html, body {
+	margin: 0;
+	text-align: center;
+	background-color: #E4E3E3;
+}
+
+ul {
+	margin: 0;
+	display: flex;
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+p {
+	text-align: left;
+}
+
+.shadow {
+	box-shadow: 0 .15rem .35rem rgba(0, 0, 0, .1) !important;
+}
+
+.mainMenu {
+	background-color: #343a40;
+}
+
+.mainMenu>li:first-child {
+	font-size: 30px;
+}
+
+.mainMenu>li {
+	margin: 10px;
+	padding: 5px 10px;
+	list-style: none;
+	text-align: center;
+	line-height: 40px;
+}
+
+.mainMenu>li:hover {
+	background-color: #5E6975;
+	border-radius: 5px;
+}
+
+.mainMenu>li>a {
+	color: white;
+}
+
+.menu {
+	padding: 0;
+	background-color: white;
+	height: 50px;
+}
+
+.menu>li {
+	margin: auto;
+	padding: 10px 20px;
+}
+
+.menu>li:hover {
+	background-color: #E9E9E9;
+	border-radius: 10px;
+}
+
+.menu>li>a {
+	font-size: 18px;
+}
+
+.container {
+	width: 60%;
+	display: inline-block;
+	padding-top: 1rem;
+	padding-bottom: 4rem;
+}
+
+.subHeader {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+		url('../image/subHeaderImg.jpg');
+	background-size: cover;
+	padding: 150px 0 150px 0;
+	width: 100%;
+	text-align: center;
+}
+
+.subHeader>h1 {
+	color: white;
+}
+
+.srchArea {
+	text-align: left;
+	padding: 40px 0 15px 0;
+	width: 50%;
+}
+
+.srchArea>select {
+	width: 80px;
+	height: 30px;
+	box-sizing: border-box;
+	border: 1px solid #9a9a9a;
+}
+
+.srchArea>input {
+	margin-left: -5px;
+	padding: 0 10px;
+	width: 220px;
+	height: 30px;
+	box-sizing: border-box;
+	border: 1px solid #9a9a9a;
+	padding: 0 10px;
+}
+
+.srchArea>button {
+	margin-left: -5px;
+	width: 40px;
+	height: 30px;
+	border-radius: 5px;
+	box-sizing: border-box;
+	background: #343a40;
+	color: #fff;
+	border: none;
+	box-sizing: border-box;
+}
+
+.writeBtn {
+	text-align: right;
+	padding: 40px 0 15px 0;
+	width: 50%;
+}
+
+.writeBtn>a {
+	background-color: #343a40;
+	border-radius: 5px;
+	color: white;
+	padding: 5px 10px;
+}
+
+.list {
+	border-collapse: collapse;
+	border-top: 1px solid #343a40;
+	width: 100%;
+}
+
+.list tr:not(:first-child):hover {
+	background: #D0D0D0;
+}
+
+.list th, td {
+	border-bottom: 1px solid #C7C7C7;
+	padding: 10px;
+}
+
+/* .list th {
+	background-color: #7e00bf;
+	color: white;
+} */
+.pageNum {
+	padding: 20px 0 25px 0;
+}
+
+.pageNum>a {
+	padding: 3px 15px;
+	color: #696969;
+}
+
+#homebtn {
+	background-color: #343a40;
+	border-radius: 5px;
+	color: white;
+	padding: 5px 10px;
+	margin: auto;
+}
