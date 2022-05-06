@@ -14,7 +14,8 @@
 </head>
 <body>
 <div class="bg">
-		
+<a href="home"><img class="logo" alt="logo"
+			src="./resources/image/logo.png" /></a> <br>
 	<form name="frmUser" method="post" action="./join.do">
 	<div class="wrap">
 			<!-- 아이디 -->
@@ -29,17 +30,24 @@
 							<div class="idcheck" style="display: inline-block">
 								<input type="button" name="id_check" id="idcheck" value="중복확인" class="button btnBorder btnLightBlue">
 							</div>
-								&nbsp;&nbsp;&nbsp;<span id="checkmsg" style="color:green" class="text-left"></span>
+								&nbsp;&nbsp;&nbsp;<span id="checkmsg" style="color:red" class="text-left"></span>
 						</div>
+						
 						<div class="signup_pw">
 							<h3> 비밀번호 </h3>
-							<input type="password" name="user_password" id="userpw" class="pw">
+							<div>
+								<input type="password" name="user_password" id="userpw" class="pw">
+							</div>
 						</div>
+						
 						<div class="signup_pw1">
 							<h3> 비밀번호 재확인 </h3>
-							<input type="password" name="user_password1" id="userpw1" class="pw">
-						</div>
+							<div>
+								<input type="password" name="user_password1" id="userpw1" class="pw">
+							</div>
 							&nbsp;&nbsp;&nbsp;<span id="checkpw" style="color:red" class="text-left"></span>
+						</div>
+						
 						<div class="signup_name">
 							<h3>팬닉</h3>
 							<div style="display: inline-block">
@@ -48,12 +56,16 @@
 							<div class="namecheck" style="display: inline-block">
 								<input type="button" name="name_check" id="namecheck" value="중복확인" class="button btnBorder btnLightBlue">
 							</div>
+							&nbsp;&nbsp;&nbsp;<span id="checkmsg1" style="color:red" class="text-left"></span>
 						</div>
-							&nbsp;&nbsp;&nbsp;<span id="checkmsg1" style="color:green" class="text-left"></span>
+						
 						<div class="signup_email">
 							<h3>이메일</h3>
-							<input type="text" name="user_email" id="usereamil" placeholder="예)....@naver.com">
+							<div>
+								<input type="text" name="user_email" id="usereamil" placeholder="예)....@naver.com">
+							</div>
 	                	</div>
+						
 						<div class="signup_submit">
 							<input type="button" value="가입하기" onclick="valid_check()">
 	 					</div>
@@ -129,7 +141,7 @@
     	 isValid=false;
      }
      if(isValid){
-         alert('님 환영합니다!!!')
+         alert(${users.user_name} + '님 환영합니다!!!')
          frm.submit();
      }
     
@@ -157,6 +169,7 @@
                  if (cnt==0) {
                  	document.querySelector('#checkmsg').innerHTML='사용 가능한 아이디입니다.';
                  	id_check=true;
+                 	document.querySelector('#checkmsg').style.color='green';
                  }	
                  else
                  	document.querySelector('#checkmsg').innerHTML='중복된 아이디입니다.';
@@ -186,6 +199,7 @@
                   if (cnt==0) {
                   	document.querySelector('#checkmsg1').innerHTML='사용 가능한 닉네임입니다.';
                   	name_check=true;
+                  	document.querySelector('#checkmsg1').style.color='green';
                   }	
                   else
                   	document.querySelector('#checkmsg1').innerHTML='중복된 닉네임입니다.';

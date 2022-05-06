@@ -10,7 +10,7 @@
 	</insert>
 	
 	<select id="login" resultType="Users" parameterType="Users">
-		select * from users_idle where user_id=#{user_id} and USER_PASSWORD=#{USER_PASSWORD}
+		select * from users_idle where user_id=#{user_id} and user_password=#{user_password}
 	</select>
 	
 	<select id="idcheck" parameterType="String" resultType="Int">
@@ -20,5 +20,32 @@
 	<select id="namecheck" parameterType="String" resultType="Int">
 		select count(*) from users_idle where user_name=#{user_name}
 	</select>
+	
+	<select id="selectAll" resultType="Users">
+	select * from users_idle
+	</select>
+	
+	<update id="update" parameterType="Users">
+		update users_idle set 
+		user_password=#{user_password}, user_name=#{user_name}
+		,user_email=#{user_email} where user_id=#{user_id}
+	</update>
+	
+	<update id="allupdate" parameterType="Users">
+		update users_idle set
+		user_id=#{user_id},user_password=#{user_password},user_name=#{user_name},
+		joindate=#{joindate},user_email=#{user_email},user_grade=#{user_grade},
+		user_replynum=#{user_replynum},user_articlenum=#{user_articlenum} where user_id=#{user_id}
+	</update>
+	
+	<select id="checkid" resultType="String" parameterType="String">
+		select * from users_idle where user_id=#{user_id}
+	</select>
+	
+	<delete id="delete">
+		delete from users_idle where user_id=#{user_id}
+	</delete>
+	
+	
 </mapper>
 

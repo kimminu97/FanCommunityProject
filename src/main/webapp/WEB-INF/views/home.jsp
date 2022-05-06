@@ -45,8 +45,9 @@ img {
 </style>
 </head>
 <body>
-	<div class="bg">
-		<a href="home"><img alt="logo" src="./resources/image/logo.png"/></a>
+<div class="bg">
+<a href="home"><img class="logo" alt="logo"
+			src="./resources/image/logo.png" /></a> <br>
 		<c:if test="${users != null}">
 		<a href="" id="wel">${users.user_name}&nbsp;님 어서오세요</a>
 		</c:if>
@@ -65,6 +66,8 @@ img {
 				</c:otherwise>
 			</c:choose>
 			<li><a href="join.do"><b>Sign up</b></a>
+			<li><a href="list.do"><b>Users List</b></a>
+			<li><a href="update.do"><b>Users update</b></a>
 		</ul>
 	</div>
 </body>

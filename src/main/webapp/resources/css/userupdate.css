@@ -57,7 +57,7 @@ h2{
 }
 
 .signup_id input{
-   width: 320px;
+  width: 320px;
   height: 50px;
   border-radius: 30px;
   margin-top: 10px;
@@ -160,12 +160,12 @@ h2{
   outline: none;
 }
 
-.signup_submit {
+.update_submit {
   margin-top: 50px;
   width: 80%;
   
 }
-.signup_submit input{
+.update_submit input{
   width: 200px;
   height: 50px;
   border: 0;

@@ -1,0 +1,27 @@
+
+table, th, td{
+	border: 1px solid;	
+}
+
+
+.logo {
+	height: 100px;
+	padding: 30px;
+}
+
+table {
+	width: 80%;
+	margin: auto;
+}
+
+th{
+	height: 70px;
+}
+
+td {
+	
+}
+
+.align-center{
+	text-align: center;
+}

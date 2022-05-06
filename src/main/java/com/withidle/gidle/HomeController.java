@@ -1,5 +1,7 @@
 package com.withidle.gidle;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.ProcessBuilder.Redirect;
 import java.text.DateFormat;
 import java.util.Date;
@@ -9,11 +11,13 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -61,7 +66,60 @@ public class HomeController {
 		return "home";
 	}
 	
+	@GetMapping("list.do")
+	public String list(Model model) {
+		List<Users> list = mapper.selectAll();
+		model.addAttribute("list", list);
+		return "userlist";
+	}
 
+	@GetMapping("update.do")
+	public String update() {
+		return "update" ;
+	}
+	
+	@GetMapping("allupdate.do")
+	public String allupdate() {
+		return "userlist";
+	}
+	
+	@PostMapping("allsave.do")
+	public void allupdate(Users users, Model model,HttpServletResponse response) throws IOException {
+		mapper.allupdate(users);
+		model.addAttribute("users", users);
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		String url = "home"; String message="회원정보 수정되었습니다.";
+		out.print("<script>alert('" +message +"');location.href='"+url+"'");
+		out.print("</script>");
+	}	
+		
+	@PostMapping("/save.do")
+	public void update(Users users, Model model,HttpServletResponse response) throws IOException {
+		mapper.update(users);
+		model.addAttribute("users", users);
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		String url = "home"; String message="회원정보 수정되었습니다.";
+		out.print("<script>alert('" +message +"');location.href='"+url+"'");
+		out.print("</script>");
+		
+	}
+
+	@GetMapping("/delete.do")
+	public void delete(String user_id, 
+			Users users, HttpServletResponse response) throws IOException {
+		String message;
+		mapper.delete(user_id);
+		message = "삭제 완료하였습니다.";
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		String url = "./list.do";
+		out.print("<script>alert('" + message +"');location.href='"+url+"'");
+		out.print("</script>");
+	}
+	
 	@GetMapping("profile")
 	public void profile() {
 		

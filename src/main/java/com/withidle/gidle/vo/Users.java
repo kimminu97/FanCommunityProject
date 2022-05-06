@@ -14,7 +14,10 @@ public class Users {
 	private String user_id;
 	private String user_password;
 	private String user_name;
+	private Date joindate;
 	private String user_email;
-	
+	private String user_grade;
+	private int user_replynum;
+	private int user_articlenum;
 	
 }
