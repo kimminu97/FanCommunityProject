@@ -10,9 +10,9 @@ public class CommunityMainController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	
-	@GetMapping("announcement")
+	@GetMapping("announce")
 	public String announcement() {
-		return "community/announcement";
+		return "community/announce";
 	}
 	
 	@GetMapping("freeboard")

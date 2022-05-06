@@ -23,7 +23,7 @@
 	</nav>
 	<nav class="shadow">
 		<ul class="menu">
-			<li><a href="announcement">공지사항</a></li>
+			<li><a href="announce">공지사항</a></li>
 			<li><a href="freeboard">자유게시판</a></li>
 			<li><a href="letter">아이들에게 편지</a></li>
 			<li><a href="levelrequest">등업요청</a></li>

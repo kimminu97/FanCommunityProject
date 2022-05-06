@@ -29,7 +29,7 @@
 		</ul>
 	</nav>
 	<div class="subHeader">
-		<h1>등업요청</h1>
+		<h1>공지사항</h1>
 		<!-- js사용해서 카테고리 이름 가져오기 가능? -->
 	</div>
 	<div class="container">
