@@ -82,14 +82,14 @@ p {
 
 .subHeader {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-		url('../image/subHeaderImg.jpg'); 
+		url('../image/subHeaderImg.jpg');
 	background-size: cover;
 	padding: 150px 0 150px 0;
 	width: 100%;
 	text-align: center;
 }
 
-.subHeader > h1 {
+.subHeader>h1 {
 	color: white;
 }
 
@@ -160,12 +160,19 @@ p {
 	background-color: #7e00bf;
 	color: white;
 } */
-
 .pageNum {
-	padding: 15px;
+	padding: 20px 0 25px 0;
 }
 
 .pageNum>a {
 	padding: 3px 15px;
 	color: #696969;
+}
+
+#homebtn {
+	background-color: #343a40;
+	border-radius: 5px;
+	color: white;
+	padding: 5px 10px;
+	margin: auto;
 }

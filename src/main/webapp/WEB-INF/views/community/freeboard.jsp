@@ -43,6 +43,7 @@
 				<button type="button">검색</button>
 			</div>
 			<div class="writeBtn">
+				<!-- 등급에 따라 숨김 -->
 				<a href="">글쓰기</a>
 			</div>
 		</div>
@@ -136,8 +137,9 @@
 
 			<!-- c:forEach -->
 			<a href="#">pageNum</a> <a href="#">&gt;</a> <a href="#">&gt;&gt;</a>
-
 		</div>
+		<a href="community" id="homebtn">메인으로</a>
+
 	</div>
 </body>
 </html>
