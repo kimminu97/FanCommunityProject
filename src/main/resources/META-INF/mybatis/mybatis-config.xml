@@ -7,6 +7,10 @@
 	<typeAliases>
 		<!--  <typeAlias type="com.mycompany.idev.dto.Member" alias="Member"/> 예시로 살려둔것-->
 		<typeAlias type="com.withidle.gidle.vo.Users" alias="Users"/>
+		<typeAlias type="com.withidle.gidle.vo.Board" alias="Board"/>
+		<typeAlias type="com.withidle.gidle.vo.Comment" alias="Comment"/>
+		<typeAlias type="java.util.Map" alias="Map"/>
+		
 	</typeAliases>
 
 </configuration>

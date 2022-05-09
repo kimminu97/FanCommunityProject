@@ -2,6 +2,7 @@ package com.withidle.gidle.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -15,12 +16,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.withidle.gidle.mapper.UsersMapper;
 import com.withidle.gidle.vo.Users;
 
@@ -36,7 +41,7 @@ public class HomeController {
 	UsersMapper mapper;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, String success) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -45,6 +50,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("success",success);
 		
 		return "home";
 	}
@@ -60,21 +66,14 @@ public class HomeController {
 	
 	@GetMapping("profile")
 	public void profile() {
-		
 	}
 	
-	@GetMapping("goods")
-	public void goods() {
-		
-	}
+	/*
+	 * @GetMapping("goods") public void goods() { }
+	 */
 	
-	@GetMapping("community")
-	public String community() {
-		return "community/communityMain";
-	}
 	@GetMapping("/login.do")
 	public String login(@ModelAttribute("success") String success) { 
-		
 		return "login";	
 	}
 	
@@ -118,7 +117,45 @@ public class HomeController {
 	public String insert(Users users) { 
 		logger.info("[My]"+users);
 		mapper.addUsers(users);
-		return "redirect:../";
+		return "redirect:/";
 	}  //회원가입 
+	
+	@ResponseBody
+	@RequestMapping(value="/asyncUser_id/{user_id}",method=RequestMethod.GET
+			,produces = "application/json;charset=utf-8")
+	public String getOne(@PathVariable String user_id) {
+		int cnt = mapper.idcheck(user_id); 
+		
+		Map<String,Object> map = new HashMap<>();
+		map.put("cnt",cnt);
+		ObjectMapper objmapper = new ObjectMapper();
+		String json_result=null;
+		try {
+			json_result = objmapper.writeValueAsString(map);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		return json_result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/asyncUser_name/{user_name}",method=RequestMethod.GET
+			,produces = "application/json;charset=utf-8")
+	public String getOne1(@PathVariable String user_name) {
+		int cnt = mapper.namecheck(user_name); 
+		
+		Map<String,Object> map = new HashMap<>();
+		map.put("cnt",cnt);
+		ObjectMapper objmapper = new ObjectMapper();
+		String json_result=null;
+		try {
+			json_result = objmapper.writeValueAsString(map);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		return json_result;
+	}
 
 }

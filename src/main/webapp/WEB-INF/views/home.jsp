@@ -15,13 +15,14 @@ html, body {
 .bg {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
 		url('./resources/image/gidle.png');
-	background-repeat: no-repeat; 
-	background-attachment : fixed;
-	background-size : cover; 
-	background-color : black;
+	background-repeat: no-repeat;
+	background-attachment: fixed; background-size : cover; background-color
+	: black;
 	min-height: 100%;
 	overflow: auto;
 	background-attachment: fixed;
+	background-size: cover;
+	background-color: black;
 	background-size: cover;
 	background-color: black;
 }
@@ -54,12 +55,25 @@ a:hover {
 	<div class="bg">
 		<a href="home"><img class="logo" alt="logo"
 			src="./resources/image/logo.png" /></a>
+		<c:if test="${users != null }">
+			<a href="" id="wel">${users.user_name }&nbsp;님 어서오세요</a>
+		</c:if>
 		<ul class="menus">
 			<li><a href="profile"><b>Profile</b></a></li>
 			<li><a href="albumList"><b>Album</b></a></li>
-			<li><a href="community"><b>Community</b></a></li>
-			<li><a href="goods"><b>Goods</b></a></li>
-			<li><a href="login.do"><b>Login</b></a></li>
+			<li><a href="community/community"><b>Community</b></a></li>
+			<c:choose>
+				<c:when test="${users==null }">
+					<!-- 로그인 안했을 때 메뉴 -->
+					<li><a href="login.do"><b>Login</b></a></li>
+				</c:when>
+				<c:otherwise>
+					<!-- 로그인 했을 때 메뉴 -->
+					<li><a href="logout.do"><b>Logout</b></a></li>
+				</c:otherwise>
+			</c:choose>
+			<li><a href="join.do"><b>Sign up</b></a></li>
+			<!-- <li><a href="goods"><b>Goods</b></a></li> -->
 		</ul>
 	</div>
 </body>
