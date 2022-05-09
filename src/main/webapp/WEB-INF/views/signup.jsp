@@ -105,7 +105,7 @@
      }
      
      if(isValid){
-         alert(user_name+'님 환영합니다!!!')
+         alert(${users.user_name}+'님 환영합니다!!!')
          frm.submit();
      }
  }  //fucn 끝

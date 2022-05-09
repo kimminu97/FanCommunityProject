@@ -24,6 +24,22 @@
 	<context:component-scan base-package="com.withidle.gidle" />
 	
 	<!-- 인터셉터 필요할때 구현하는걸로 하겠습니다. -->
+	<!-- 인터셉터 구현체를 빈으로 등록 -->
 	
+	<beans:bean id="loginInterceptor" class="com.withidle.gidle.interceptor.LoginInterceptor"/>
+
+	<!-- 인터셉터의 동작 범위를 설정 -->
+	<interceptors>
+						
+		<interceptor>
+			<mapping path="/**"/>
+			<!-- 매핑에 제외될 url -->
+			<exclude-mapping path="/login.do"/>
+			<exclude-mapping path="/join.do"/>
+			<exclude-mapping path="/"/>
+			<exclude-mapping path="/home"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

@@ -11,6 +11,13 @@
 		#{board_sub},#{board_con}, #{board_name})
 
 	</insert>
+	<insert id="insert2">
+		INSERT INTO BOARD_IDLE
+		(BOARD_IDX, BOARD_CAT, BOARD_SUB, BOARD_CON,BOARD_NAME)
+		VALUES(board_idx_seq2.nextval, #{board_cat},
+		#{board_sub},#{board_con}, #{board_name})
+
+	</insert>
 	<!-- 글 수정 -->
 	<update id="update" parameterType="Board">
 		update board_idle set
@@ -38,8 +45,8 @@
 		WHERE R BETWEEN #{startNo} AND #{endNo}
 	</select>
 
-	<select id="getCount" resultType="int">
-		select count(*) from Board_IDLE
+	<select id="getCount" parameterType="int" resultType="int">
+		select count(*) from Board_IDLE where board_cat=#{board_cat}
 	</select>
 
 	<delete id="delete" parameterType="Map">

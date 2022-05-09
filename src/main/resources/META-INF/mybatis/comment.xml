@@ -9,7 +9,6 @@
 (COMMENT_IDX, COMMENT_BOARD, COMMENT_BOARDCAT, COMMENT_CONTENT, COMMENT_MNAME, COMMENT_PARENT)
 VALUES(cmt_idx_seq.nextval, #{comment_board}, #{comment_boardcat},
  #{comment_content}, #{comment_mname}, #{comment_parent})
-  		
   	</insert>
   	<select id="list" parameterType="Map" resultType="Comment"> <!-- 메인글에 대한 댓글 목록 가져오기 -->
   	select * from comment_idle where COMMENT_BOARD=#{comment_board}

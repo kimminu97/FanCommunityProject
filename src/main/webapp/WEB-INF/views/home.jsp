@@ -65,6 +65,7 @@ img {
 				</c:otherwise>
 			</c:choose>
 			<li><a href="join.do"><b>Sign up</b></a>
+			<li><a href="join.do"><b>Sign up</b></a>
 		</ul>
 	</div>
 </body>

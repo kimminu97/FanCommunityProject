@@ -16,15 +16,15 @@
 		<ul class="mainMenu">
 			<li><a href="../home">G-IDLE</a></li>
 			<li><a href="community">Dashboard</a></li>
-			<li><a href="profile">Profile</a></li>
-			<li><a href="albumList">Album</a></li>
+			<li><a href="../profile">Profile</a></li>
+			<li><a href="../albumList">Album</a></li>
 			<li><a href="#">My Info</a></li>
 		</ul>
 	</nav>
 	<nav class="shadow">
 		<ul class="menu">
 			<li><a href="list?action=1">공지사항</a></li>
-			<li><a href="freeboard">자유게시판</a></li>
+			<li><a href="list?action=2">자유게시판</a></li>
 			<li><a href="letter">아이들에게 편지</a></li>
 			<li><a href="levelrequest">등업요청</a></li>
 		</ul>
