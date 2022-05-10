@@ -65,9 +65,9 @@ img {
 					<li><a href="logout.do">Logout</a></li>
 				</c:otherwise>
 			</c:choose>
-			<li><a href="join.do"><b>Sign up</b></a>
-			<li><a href="list.do"><b>Users List</b></a>
-			<li><a href="update.do"><b>Users update</b></a>
+			<li><a href="list.do">관리자 회원관리목록</a></li>
+			<li><a href="update.do">회원정보 수정</a></li>
+			
 		</ul>
 	</div>
 </body>

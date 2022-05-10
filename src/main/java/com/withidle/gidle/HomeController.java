@@ -66,52 +66,62 @@ public class HomeController {
 		return "home";
 	}
 	
-	@GetMapping("list.do")
+	@GetMapping("/list.do")
 	public String list(Model model) {
 		List<Users> list = mapper.selectAll();
 		model.addAttribute("list", list);
-		return "userlist";
+		return "admin/adminlist";
 	}
-
+	
+	//회원이 하는 회원정보수정
 	@GetMapping("update.do")
 	public String update() {
 		return "update" ;
 	}
 	
-	@GetMapping("allupdate.do")
-	public String allupdate() {
-		return "userlist";
+	@GetMapping("/adminupdate.do")
+	public String adminupdate(String user_id,Model model) {
+		Users u = mapper.selectByUserid(user_id);
+		model.addAttribute("users", u);
+		return "admin/adminupdate" ;
 	}
 	
-	@PostMapping("allsave.do")
+	//관리자가 하는 회원정보수정
+	@PostMapping("/adminsave.do")
 	public void allupdate(Users users, Model model,HttpServletResponse response) throws IOException {
 		mapper.allupdate(users);
 		model.addAttribute("users", users);
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		String url = "home"; String message="회원정보 수정되었습니다.";
+		String url = "list.do"; 
+		String message="회원정보 수정되었습니다.";
 		out.print("<script>alert('" +message +"');location.href='"+url+"'");
 		out.print("</script>");
-	}	
-		
+	}
+	
+	
 	@PostMapping("/save.do")
 	public void update(Users users, Model model,HttpServletResponse response) throws IOException {
 		mapper.update(users);
 		model.addAttribute("users", users);
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		String url = "home"; String message="회원정보 수정되었습니다.";
+		String url = "home"; 
+		String message="회원정보 수정되었습니다.";
 		out.print("<script>alert('" +message +"');location.href='"+url+"'");
 		out.print("</script>");
-		
 	}
-
+	
 	@GetMapping("/delete.do")
 	public void delete(String user_id, 
-			Users users, HttpServletResponse response) throws IOException {
+		Users users, HttpServletResponse response) throws IOException {
 		String message;
-		mapper.delete(user_id);
-		message = "삭제 완료하였습니다.";
+		if(users != null) {
+			message="삭제 완료되었습니다.";
+			mapper.delete(user_id);
+		}else {
+			message="삭제 오류입니다.";
+		}
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -125,12 +135,10 @@ public class HomeController {
 		
 	}
 	
-	@GetMapping("goods")
-	public void goods() {
+	@GetMapping("NewFile")
+	public void NewFile() {
 		
 	}
-	
-	
 	
 	@GetMapping("albumList")
 	public void albumList() {
@@ -227,6 +235,5 @@ public class HomeController {
 		return json_result;
 	}
  
-	
 
 }

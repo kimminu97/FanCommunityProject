@@ -14,8 +14,7 @@
 </head>
 <body>
 <div class="bg">
-<a href="home"><img class="logo" alt="logo"
-			src="./resources/image/logo.png" /></a> <br>
+		
 	<form name="frmUser" method="post" action="./join.do">
 	<div class="wrap">
 			<!-- 아이디 -->
@@ -28,25 +27,19 @@
 								<input type="text" name="user_id" id="userid">
 							</div>
 							<div class="idcheck" style="display: inline-block">
-								<input type="button" name="id_check" id="idcheck" value="중복확인" class="button btnBorder btnLightBlue">
+								<input type="button" name="id_check" id="idcheck" value="중복확인">
 							</div>
-								&nbsp;&nbsp;&nbsp;<span id="checkmsg" style="color:red" class="text-left"></span>
+								&nbsp;&nbsp;&nbsp;<span id="checkmsg" style="color:red"></span>
 						</div>
-						
 						<div class="signup_pw">
 							<h3> 비밀번호 </h3>
-							<div>
-								<input type="password" name="user_password" id="userpw" class="pw">
-							</div>
+							<input type="password" name="user_password" id="userpw">
 						</div>
-						
 						<div class="signup_pw1">
 							<h3> 비밀번호 재확인 </h3>
-							<div>
-								<input type="password" name="user_password1" id="userpw1" class="pw">
-							</div>
-							&nbsp;&nbsp;&nbsp;<span id="checkpw" style="color:red" class="text-left"></span>
+							<input type="password" name="user_password1" id="userpw1" class="test">
 						</div>
+						&nbsp;&nbsp;&nbsp;<span id="checkpw" style="color:red"></span>
 						
 						<div class="signup_name">
 							<h3>팬닉</h3>
@@ -54,20 +47,16 @@
 								<input type="text" name="user_name" id="username" placeholder="예)여자아이들짱">
 							</div>
 							<div class="namecheck" style="display: inline-block">
-								<input type="button" name="name_check" id="namecheck" value="중복확인" class="button btnBorder btnLightBlue">
+								<input type="button" name="name_check" id="namecheck" value="중복확인">
 							</div>
-							&nbsp;&nbsp;&nbsp;<span id="checkmsg1" style="color:red" class="text-left"></span>
 						</div>
-						
+						&nbsp;&nbsp;&nbsp;<span id="checkmsg1" style="color:red"></span>
 						<div class="signup_email">
 							<h3>이메일</h3>
-							<div>
-								<input type="text" name="user_email" id="usereamil" placeholder="예)....@naver.com">
-							</div>
+							<input type="text" name="user_email" id="usereamil" placeholder="예)....@naver.com">
 	                	</div>
-						
 						<div class="signup_submit">
-							<input type="button" value="가입하기" onclick="valid_check()">
+							<input type="submit" value="가입하기" onclick="valid_check()">
 	 					</div>
  				</div>
  			</div>

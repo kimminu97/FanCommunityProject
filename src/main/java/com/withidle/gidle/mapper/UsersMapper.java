@@ -14,12 +14,13 @@ public interface UsersMapper {
 	int namecheck(String user_name);
 	List<Users> selectAll();
 	void update(Users users);
-	void allupdate(Users users);
+	void allupdate(Users user_id);
 	String checkid(String user_id);
 	void delete(String user_id);
 	void boardCountUp(String user_name);
 	void cmtCountUp(String user_name);
 	void boardCountDown(String user_name);
 	void cmtCountDown(String user_name);
+	Users selectByUserid(String user_id);
 	
 }

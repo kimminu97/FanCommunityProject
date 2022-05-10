@@ -21,15 +21,16 @@
   background: rgba(0, 0, 0, 0.1); 
 }
 
-.signup {
-  width: 550px;
-  height: 850px;
+.adminupdate {
+  width: 650px;
+  height: 950px;
   background: white;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 100px;
   
 }
 .logo {
@@ -46,24 +47,25 @@
 }
 
 h2{
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   color: tomato;
   font-size: 35px;
 }
 
-.signup_id {
-  margin-top: 20px;
+.update_id {
+  margin-top: 10px;
   width: 80%;
 }
 
-.signup_id input{
-  width: 320px;
-  height: 50px;
+.update_id input{
+  width: 300px;
+  height: 30px;
   border-radius: 30px;
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 0px 20px;
   border: 1px solid lightgray;
   outline: none;
+  color: red;
 }
 
 .idcheck{
@@ -83,54 +85,54 @@ h2{
 	color: white;
 }
 
-.signup_pw {
+.update_pw {
   margin-top: 20px;
   width: 80%;
 }
 
-.signup_pw input{
-  width: 320px;
-  height: 50px;
+.update_pw input{
+ width: 300px;
+  height: 30px;
   border-radius: 30px;
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 0px 20px;
   border: 1px solid lightgray;
   outline: none;
 }
 
-.signup_pw1 {
+.update_pw1 {
   margin-top: 20px;
   width: 80%;
 }
 
-.signup_pw1 input{
-  width: 320px;
-  height: 50px;
+.update_pw1 input{
+ width: 300px;
+  height: 30px;
   border-radius: 30px;
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 0px 20px;
   border: 1px solid lightgray;
   outline: none;
 }
 
-.signup_name {
+.update_name {
   margin-top: 20px;
   width: 80%;
 }
 
-.signup_name input{
-  width: 320px;
-  height: 50px;
+.update_name input{
+  width: 300px;
+  height: 30px;
   border-radius: 30px;
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 0px 20px;
   border: 1px solid lightgray;
   outline: none;
 }
 
 .namecheck{
-	width: 100px;
-	height: 50px;
+	width: 80px;
+	height: 30px;
 	margin-left: 5px;
 }
 .namecheck input{
@@ -145,19 +147,85 @@ h2{
 	color: white;
 }
 
-.signup_email {
+.update_email {
   margin-top: 20px;
   width: 80%;
 }
 
-.signup_email input{
-  width: 430px;
-  height: 50px;
+.update_email input{
+ width: 300px;
+  height: 30px;
   border-radius: 30px;
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 0px 20px;
   border: 1px solid lightgray;
   outline: none;
+}
+
+.update_joindate {
+  margin-top: 20px;
+  width: 80%;
+}
+
+.update_joindate input{
+ width: 300px;
+  height: 30px;
+  border-radius: 30px;
+  margin-top: 5px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
+  color: red;
+}
+
+.update_grade {
+  margin-top: 20px;
+  width: 80%;
+}
+
+.grade{
+  width: 300px;
+  height: 30px;
+  margin-top: 5px;
+  padding: 0px 10px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+
+.grade1{
+	color: red;
+}
+
+.update_replynum {
+  margin-top: 20px;
+  width: 80%;
+}
+
+.update_replynum input{
+ width: 300px;
+  height: 30px;
+  border-radius: 30px;
+  margin-top: 5px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
+  color: red;
+}
+
+.update_articlenum {
+  margin-top: 20px;
+  width: 80%;
+}
+
+.update_articlenum input{
+  width: 300px;
+  height: 30px;
+  border-radius: 30px;
+  margin-top: 5px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
+  color: red;
 }
 
 .update_submit {
@@ -176,4 +244,5 @@ h2{
   font-size: 1.2em;
   letter-spacing: 2px;
   margin-left: 135px;
+  margin-bottom: 30px;
 }

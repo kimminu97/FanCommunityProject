@@ -6,37 +6,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여자아이들 회원 정보 수정 </title>
+<title>여자아이들 회원 정보 수정(관리자) </title>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/update.css">
+	href="${pageContext.request.contextPath}/resources/css/userupdate.css">
 	
 </head>
 <body>
 <div class="bg">
 <a href="home"><img class="logo" alt="logo"
 			src="./resources/image/logo.png" /></a> <br>
-	<form name="frmUser" method="post" action="./save.do">
+	<form name="frmUser" method="post" action="./adminsave.do">
 	<div class="wrap">
 			<div> 
-				<div class="signup">
-					<h2>회원 정보 수정</h2>
-						<div class="signup_id">
+				<div class="adminupdate">
+					<h2>회원 정보 수정(관리자)</h2>
+						<div class="update_id">
 							<h3>아이디</h3>
 							<div style="display: inline-block">
 								<input type="text" name="user_id" id="userid" value="${users.user_id }">
 							</div>
 						</div>
-						<div class="signup_pw">
+						<div class="update_pw">
 							<h3> 비밀번호 </h3>
-							<input type="password" name="user_password" id="userpw" class="pw" value="${users.user_password }">
+							<input type="text" name="user_password" id="userpw" class="pw" value="${users.user_password }">
 						</div>
-						<div class="signup_pw1">
+						<div class="update_pw1">
 							<h3> 비밀번호 재확인 </h3>
-							<input type="password" name="user_password1" id="userpw1" class="pw" value="${users.user_password }">
+							<input type="text" name="user_password1" id="userpw1" class="pw" value="${users.user_password }">
 						</div>
 							&nbsp;&nbsp;&nbsp;<span id="checkpw" style="color:red" class="text-left"></span>
-						<div class="signup_name">
+						<div class="update_name">
 							<h3>팬닉</h3>
 							<div style="display: inline-block">
 								<input type="text" name="user_name" id="username" placeholder="예)여자아이들짱" 
@@ -47,14 +47,39 @@
 							</div>
 						</div>
 							&nbsp;&nbsp;&nbsp;<span id="checkmsg1" style="color:red" class="text-left"></span>
-						<div class="signup_email">
+						<div class="update_email">
 							<h3>이메일</h3>
 							<input type="text" name="user_email" id="usereamil" placeholder="예)....@naver.com"
 							value="${users.user_email }">
 	                	</div>
+						<div class="update_joindate">
+							<h3>가입날짜</h3>
+								<input type="text" readonly name="user_joindate" id="userjoindate" value="${users.joindate }">
+						</div>
+						<div class="update_grade">
+							<h3>등급</h3>
+							<select name="user_grade" id="usergrade" class="grade">
+								<!-- value 속성은 서버에 전달시킬 값 -->
+								<option value="user_grade" class="grade1">${users.user_grade }</option>
+								<option value="후크선장">후크선장</option>
+								<option value="웬디" >웬디</option>
+								<option value="팅커벨">팅커벨</option>
+								<option value="피터팬">피터팬</option>
+							</select>
+						</div>
+						<div class="update_replynum">
+							<h3>댓글 개수</h3>
+								<input type="text" readonly name="user_replynum" id="userreplynum" value="${users.user_replynum }">
+						</div>
+						<div class="update_articlenum">
+							<h3>게시글 개수</h3>
+								<input type="text" readonly name="user_articlenum" id="userarticlenum" value="${users.user_articlenum }">
+						</div>
+						
 						<div class="update_submit">
 							<input type="button" value="수정하기" onclick="valid_check()">
 	 					</div>
+	 					
  				</div>
  			</div>
  		</div>

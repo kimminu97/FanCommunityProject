@@ -17,7 +17,7 @@
 			<li><a href="community">Dashboard</a></li>
 			<li><a href="profile">Profile</a></li>
 			<li><a href="albumList">Album</a></li>
-			<li><a href="#">My Info</a></li>
+			<li><a href="update.do">My Info</a></li>
 		</ul>
 	</nav>
 	<nav class="shadow">

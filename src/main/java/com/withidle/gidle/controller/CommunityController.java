@@ -56,10 +56,10 @@ public class CommunityController {
 		logger.info("map:",map);
 		model.addAttribute("page",page);
 		model.addAttribute("list",list);
-		//Àú°Ç SQL ¿À·ù 
+		//ì €ê±´ SQL ì˜¤ë¥˜ 
 
 		return "community/list";
-//		return "community/list2";	//pageNo ¸¦ form data·Î Àü´ŞÇÏ´Â ¿¹½Ã
+//		return "community/list2";	//pageNo ë¥¼ form dataë¡œ ì „ë‹¬í•˜ëŠ” ì˜ˆì‹œ
 	}
 	
 	@GetMapping("community")
@@ -76,10 +76,10 @@ public class CommunityController {
 	@PostMapping("/insert")
 	public String save(Board dto, RedirectAttributes rda) {	
 		mapper.insert(dto);
-		rda.addFlashAttribute("message","±Û ¾²±â°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
-		// ->list.jsp·Î ¹Ù·Î Àü´Ş µË´Ï´Ù. Æ¯Â¡: url¿¡ Ç¥½ÃµÇÁö ¾Ê½À´Ï´Ù.(modelÀº º¸ÀÓ)
+		rda.addFlashAttribute("message","ê¸€ ì“°ê¸°ê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+		// ->list.jspë¡œ ë°”ë¡œ ì „ë‹¬ ë©ë‹ˆë‹¤. íŠ¹ì§•: urlì— í‘œì‹œë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.(modelì€ ë³´ì„)
 		user_mapper.boardCountUp(dto.getBoard_name());
-		return "redirect:list?action=1";	//1ÆäÀÌÁö·Î ÀÌµ¿
+		return "redirect:list?action=1";	//1í˜ì´ì§€ë¡œ ì´ë™
 	}
 	@RequestMapping(value = "/detail",params = "action=1",method=RequestMethod.GET)
 	public String detail(int board_idx,int pageNo, Model model) {
@@ -88,21 +88,21 @@ public class CommunityController {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("board_idx", board_idx);
 		map.put("board_cat", board_cat);
-		//Á¶È¸¼ö Áõ°¡ ¸ÕÀú
+		//ì¡°íšŒìˆ˜ ì¦ê°€ ë¨¼ì €
 		mapper.readCount(map);
 		Board dto =  mapper.getOne(map);
 		model.addAttribute("page",pageNo);
 		model.addAttribute("bean",dto);
 		model.addAttribute("board_cat", board_cat);
 		logger.info("bean:",dto);
-		//´ñ±Û ¸ñ·ÏÀ» detail.jsp¿¡ Ãâ·ÂÇØ¾ßÇÕ´Ï´Ù.
+		//ëŒ“ê¸€ ëª©ë¡ì„ detail.jspì— ì¶œë ¥í•´ì•¼í•©ë‹ˆë‹¤.
 		map.put("comment_board", board_idx);
 		map.put("comment_boardcat", board_cat);
 		List<Comment> cmtlist= cmt_mapper.list(map);
 		model.addAttribute("cmtlist",cmtlist);
 		return "community/detail";
 	}
-	@PostMapping("update")	//±Û¼öÁ¤ Ã³¸® -> ¿Ï·á alert
+	@PostMapping("update")	//ê¸€ìˆ˜ì • ì²˜ë¦¬ -> ì™„ë£Œ alert
 //	public String update(Freeboard vo,int pageNo, Model model) {
 	public String update(Board vo,int pageNo, RedirectAttributes rda) {
 		logger.info("vo:",vo);
@@ -111,15 +111,15 @@ public class CommunityController {
 //		model.addAttribute("pageNo",pageNo);
 		rda.addAttribute("board_idx",vo.getBoard_idx());
 		rda.addAttribute("pageNo",pageNo);
-//		model.addAttribute("message","±Û¼öÁ¤ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
-//		->´ë½Å¿¡ »ç¿ëÇÏ´Â RedirectAttributes addFlashAttribute()¸Ş¼Òµå·Î °ªÀ» ÀúÀå
-		rda.addFlashAttribute("message","±Û¼öÁ¤ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+//		model.addAttribute("message","ê¸€ìˆ˜ì • ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+//		->ëŒ€ì‹ ì— ì‚¬ìš©í•˜ëŠ” RedirectAttributes addFlashAttribute()ë©”ì†Œë“œë¡œ ê°’ì„ ì €ì¥
+		rda.addFlashAttribute("message","ê¸€ìˆ˜ì • ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 		return "redirect:detail?action=1";	
-		//-> rda ¾ÖÆ®¸®ºäÆ®´Â ¸®´ÙÀÌ·ºÆ® urlÀÇ view(detail.jsp)±îÁö ¹Ù·Î Àü´Ş
-		//Áß¿ä: RedirectAttributes´Â model°ú´Â Ãæµ¿ÇÕ´Ï´Ù.
-		//		@postMappingÀÌ°í redirect ÇÒ¶§¸¸ »ç¿ëÇÕ´Ï´Ù.
+		//-> rda ì• íŠ¸ë¦¬ë·°íŠ¸ëŠ” ë¦¬ë‹¤ì´ë ‰íŠ¸ urlì˜ view(detail.jsp)ê¹Œì§€ ë°”ë¡œ ì „ë‹¬
+		//ì¤‘ìš”: RedirectAttributesëŠ” modelê³¼ëŠ” ì¶©ë™í•©ë‹ˆë‹¤.
+		//		@postMappingì´ê³  redirect í• ë•Œë§Œ ì‚¬ìš©í•©ë‹ˆë‹¤.
 	}
-//	@GetMapping("delete")	//±Û »èÁ¦ Ã³¸® -> ¿Ï·á alert
+//	@GetMapping("delete")	//ê¸€ ì‚­ì œ ì²˜ë¦¬ -> ì™„ë£Œ alert
 	@PostMapping("delete")
 //	public String deleteFreeboard(int idx,int pageNo,Model model) {
 	public String deleteFreeboard(int idx,int board_cat,int pageNo,
@@ -131,15 +131,15 @@ public class CommunityController {
 //		model.addAttribute("pageNo",pageNo);
 		user_mapper.boardCountDown(user_name);
 		rda.addAttribute("pageNo",pageNo);
-		rda.addFlashAttribute("message","±ÛÀÌ »èÁ¦ µÇ¾ú½À´Ï´Ù.");
+		rda.addFlashAttribute("message","ê¸€ì´ ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		return "redirect:list?action=1";
 	}
 	
-	//¿©±â¼­ºÎÅÍ´Â ´ñ±Û Ã³¸®
+	//ì—¬ê¸°ì„œë¶€í„°ëŠ” ëŒ“ê¸€ ì²˜ë¦¬
 	@Transactional
 	@PostMapping("comment")
 	public String comment_save(Comment dto,int pageNo, Model model) {
-		//´ñ±Û ÀÔ·Â¿ä¼Ò °ªµé db¿¡ ÀúÀå -> detail(±Û »ó¼¼º¸±â)
+		//ëŒ“ê¸€ ì…ë ¥ìš”ì†Œ ê°’ë“¤ dbì— ì €ì¥ -> detail(ê¸€ ìƒì„¸ë³´ê¸°)
 		cmt_mapper.insert(dto);
 		cmt_mapper.commentCountUp(dto.getComment_board());
 		user_mapper.cmtCountUp(dto.getComment_mname());
@@ -148,7 +148,7 @@ public class CommunityController {
 		return "redirect:detail?action=1";
 	}
 	@Transactional
-	@GetMapping("comment")	//idx: ´ñ±Û , mref: ¸ŞÀÎ±Û idx
+	@GetMapping("comment")	//idx: ëŒ“ê¸€ , mref: ë©”ì¸ê¸€ idx
 	public String delete(int idx,int pageNo,int mref,String user_name, Model model) {
 		cmt_mapper.delete(idx);
 		cmt_mapper.commentCountDown(mref);
