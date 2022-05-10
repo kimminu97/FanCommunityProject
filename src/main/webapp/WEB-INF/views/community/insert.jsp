@@ -34,7 +34,7 @@
  	<!-- <a class="button" href="javascript:post_data();">저장</a> -->
  	<input type="reset"  value="다시쓰기" class="btn">
  	<input type="button" value="목록" 
- 			onclick="location.href='list?pageNo=${page}&action=1'" class="btn">
+ 			onclick="location.href='list?pageNo=${page}&action=${board_cat }'" class="btn">
  			<!-- 글쓰기 오기전에 보고있던 페이지 번호로 돌아가기 -->
  <!-- 	<a class="button" href="#">목록</a>  -->
  	</td></tr>
