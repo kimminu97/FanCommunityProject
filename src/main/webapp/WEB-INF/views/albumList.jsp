@@ -14,8 +14,8 @@
 	<div class="bg">
 		<a href="home"><img class="logo" alt="logo"
 			src="./resources/image/logo.png" /></a> <br>
-			
-	<h1>ALBUM</h1>
+
+		<h1>ALBUM</h1>
 		<ul>
 			<li><a
 				href="https://www.melon.com/album/detail.htm?albumId=10163578"><img

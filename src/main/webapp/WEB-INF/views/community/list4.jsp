@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시판</title>
+<title>등업요청</title>
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
 	rel="stylesheet">
@@ -31,7 +31,7 @@
 		</ul>
 	</nav>
 	<div class="subHeader">
-		<h1>자유게시판</h1>
+		<h1>등업요청</h1>
 		<!-- js사용해서 카테고리 이름 가져오기 가능? -->
 	</div>
 	<div class="container">
@@ -46,7 +46,7 @@
 			</div>
 			<div class="writeBtn">
 				<!-- 등급에 따라 숨김 -->
-				<a href="insert?pageNo=${page.pageNo }&action=2">글쓰기</a>
+				<a href="insert?pageNo=${page.pageNo }&action=4">글쓰기</a>
 			</div>
 		</div>
 
@@ -64,7 +64,7 @@
 				<tr>
 					<td>${vo.board_idx }</td>
 					<td><a
-						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=2"
+						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=4"
 						class="title">${vo.board_sub }</a> ...<span
 						style="color: orange; font-size: 80%;">(${vo.com_cnt}) </span></td>
 					<td>${vo.board_name }</td>
@@ -79,14 +79,14 @@
 		</table>
 
 		<div class="pageNum">
-			<a href="?pageNo=1&action=2">&lt;&lt;</a> <a
-				href="?pageNo=${page.startPage-1 }&action=2">&lt;</a>
+			<a href="?pageNo=1&action=4">&lt;&lt;</a> <a
+				href="?pageNo=${page.startPage-1 }&action=4">&lt;</a>
 
 			<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
-				<a href="?pageNo=${i }&action=2">${i }</a>
+				<a href="?pageNo=${i }&action=4">${i }</a>
 			</c:forEach>
-			<a href="?pageNo=${page.endPage+1 }&action=2">&gt;</a> 
-			<a href="?pageNo=${page.totalPage }&action=2">&gt;&gt;</a>
+			<a href="?pageNo=${page.endPage+1 }&action=4">&gt;</a> 
+			<a href="?pageNo=${page.totalPage }&action=4">&gt;&gt;</a>
 		</div>
 		<a href="${pageContext.request.contextPath }/community/community"
 			id="homebtn">메인으로</a>

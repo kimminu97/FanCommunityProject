@@ -12,7 +12,8 @@
 <h3>우리동네 커뮤니티</h3>
 <hr>
 <form name="frm1" method="post" action="insert">
- <input type="hidden" name="board_cat" value="${board_cat}">  <!-- 클라이언트 ip -->
+ <input type="hidden" name="board_cat" value="${board_cat}"> 
+ <input type="hidden" name="user_id" value="${users.user_id}"> 
  <table style="width:80%;">
  	<tr><td width="30%" class="td1">제목</td>
  		<td class="left"><input type="text" name="board_sub" size="70" class="input1" 
@@ -34,7 +35,7 @@
  	<!-- <a class="button" href="javascript:post_data();">저장</a> -->
  	<input type="reset"  value="다시쓰기" class="btn">
  	<input type="button" value="목록" 
- 			onclick="location.href='list?pageNo=${page}&action=1'" class="btn">
+ 			onclick="location.href='list?pageNo=${page}&action=${board_cat }'" class="btn">
  			<!-- 글쓰기 오기전에 보고있던 페이지 번호로 돌아가기 -->
  <!-- 	<a class="button" href="#">목록</a>  -->
  	</td></tr>

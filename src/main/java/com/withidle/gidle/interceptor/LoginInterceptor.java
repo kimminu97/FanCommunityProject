@@ -26,22 +26,20 @@ public class LoginInterceptor implements HandlerInterceptor {
 		// /member/list.do 는 admin 세션애트리뷰트가 null이 아닐때만 요청 실행하기
 		// ㄴ 그렇지 않으면 alert 띄우기
 
-		if (request.getRequestURI().equals(url + "/member/list.do") && admin == null) {
-			String msg = "관리자 로그인 하세요.";
-			// String url=request.getContextPath();
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter out = response.getWriter();
-			StringBuilder alerts = new StringBuilder("<script>alert('").append(msg).append("');")
-					.append("location.href='").append(url).append("';").append("</script>");
-			out.print(alerts.toString());
-			// out.flush(); //출력버퍼 비우기
+		/*
+		 * if (admin == null) { String msg = "관리자 로그인 하세요."; // String
+		 * url=request.getContextPath();
+		 * response.setContentType("text/html;charset=utf-8"); PrintWriter out =
+		 * response.getWriter(); StringBuilder alerts = new
+		 * StringBuilder("<script>alert('").append(msg).append("');")
+		 * .append("location.href='").append(url).append("';").append("</script>");
+		 * out.print(alerts.toString()); // out.flush(); //출력버퍼 비우기
+		 * 
+		 * return false; } else if (request.getRequestURI().equals(url +
+		 * "/member/list.do") && admin != null) { return true; }
+		 */
 
-			return false;
-		} else if (request.getRequestURI().equals(url + "/member/list.do") && admin != null) {
-			return true;
-		}
-
-		if (users == null) { // 로그인 정보 유무 검사
+		if (users == null && admin ==null) { // 로그인 정보 유무 검사
 			String msg = "로그인 하세요.";
 //			String url=request.getContextPath();
 			response.setContentType("text/html;charset=utf-8");

@@ -57,7 +57,7 @@
 	</script>
 </head>
 <body>
-	<h3>우리동네 커뮤니티</h3>
+	<h3>글쓰기</h3>
 	<hr>
 	<table style="width: 750px; margin: auto;">
 		<tr>
@@ -170,7 +170,7 @@
 	 	<script type="text/javascript">
 			function delete_cmt(idx){
 				if(confirm(idx+'번 선택한 댓글 삭제하시겠습니까?') == true)
-					location.href=`comment?idx=`+idx+`&pageNo=${page}&mref=${bean.board_idx}
+					location.href=`comment?idx=`+idx+`&pageNo=${page}&mref=${bean.board_idx}&action=${bean.board_cat}
 					&user_name=${users.user_name}`;
 			}
 </script>

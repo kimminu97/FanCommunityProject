@@ -19,6 +19,9 @@
 	 <select id="login" resultType="Users" parameterType="Users">
 		select * from users_idle where user_id=#{user_id} and USER_PASSWORD=#{USER_PASSWORD}
 	</select>
+	 <select id="adminlogin" resultType="Admin" parameterType="Admin">
+		select * from admin_idle where adm_id=#{adm_id} and adm_PASSWORD=#{adm_password}
+	</select>
 	 
 	<select id="idcheck" parameterType="String" resultType="Int">
 		select count(*) from users_idle where user_id=#{user_id}
@@ -47,6 +50,30 @@
 		update users_idle set USER_REPLYNUM=USER_REPLYNUM-1 
 		where USER_NAME=#{user_name}
 	</update>
+	
+	<select id="selectAll" resultType="Users">
+	select * from users_idle
+	</select>
+	
+	<select id="selectByUserid" parameterType="String" resultType="Users">
+	select * from users_idle where user_id=#{user_id}
+	</select>
+	
+	<update id="update" parameterType="Users">
+		update users_idle set 
+		user_password=#{user_password}, user_name=#{user_name}
+		,user_email=#{user_email} where user_id=#{user_id}
+	</update>
+	
+	<update id="allupdate" parameterType="Users">
+		update users_idle set user_password=#{user_password},user_name=#{user_name},user_email=#{user_email},user_grade=#{user_grade} where user_id=#{user_id}
+	</update>
+	<update id="board_name_update" parameterType="Users">
+		update board_idle set board_name=#{user_name} where user_id=#{user_id}
+	</update>
+	<delete id="delete">
+		delete from users_idle where user_id=#{user_id}
+	</delete>
 </mapper>
 
 

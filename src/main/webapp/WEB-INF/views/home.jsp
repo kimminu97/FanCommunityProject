@@ -50,12 +50,13 @@ img {
 		<c:if test="${users != null}">
 		<a href="" id="wel">${users.user_name}&nbsp;님 어서오세요</a>
 		</c:if>
+		${admin.adm_name}&nbsp;님 어서오세요
 		<ul class="menus">
 			<li><a href="profile"><b>Profile</b></a></li>
 			<li><a href="albumList"><b>Album</b></a></li>
 			<li><a href="community/community"><b>Community</b></a></li>
 			<c:choose>
-				<c:when test="${users == null}">
+				<c:when test="${users == null && admin==null}">
 					<!-- 로그인 안했을 때 메뉴 -->
 					<li><a href="login.do"><b>Login</b></a></li>
 				</c:when>
@@ -64,7 +65,6 @@ img {
 					<li><a href="logout.do"><b>Logout</b></a></li>
 				</c:otherwise>
 			</c:choose>
-			<li><a href="join.do"><b>Sign up</b></a>
 			<li><a href="join.do"><b>Sign up</b></a>
 		</ul>
 	</div>
