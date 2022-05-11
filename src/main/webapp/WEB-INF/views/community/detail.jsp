@@ -53,6 +53,10 @@
 		    document.forms[0].submit();
 		}
 	}
+	
+	
+
+
 
 	</script>
 </head>
@@ -85,18 +89,18 @@
 			<!-- 엔터,탭,기호 등 텍스트 그대로 출력할 때 사용 -->
 		</tr>
 		<tr>
-			<td colspan="4"><span id="func"> 
-			<!-- freeboard 테이블에 작성자 또는 다른 컬럼이 member테이블의 유니크 컬럼값중 하나를
+			<td colspan="4"><span id="func"> <!-- freeboard 테이블에 작성자 또는 다른 컬럼이 member테이블의 유니크 컬럼값중 하나를
 			참조하는 외래키가 잇어야 합니다. 작성자와 로그인 사용자가 같을 때만
-			수정,삭제 버튼이 view에 보이게 합니다. -->
-			<a class="button" href="javascript:update()">수정</a> 
-					<a class="button" href="javascript:deleteOk()">삭제</a>
-			</span> <a class="button" href="list?pageNo=${page }&action=${bean.board_cat}">목록</a></td>
+			수정,삭제 버튼이 view에 보이게 합니다. --> <a class="button"
+					href="javascript:update()">수정</a> <a class="button"
+					href="javascript:deleteOk()">삭제</a>
+			</span> <a class="button"
+				href="list?pageNo=${page }&action=${bean.board_cat}">목록</a></td>
 			<form action="" method="post">
-				 <input type="hidden" name="idx" value="${bean.board_idx}">
-	             <input type="hidden" name="pageNo" value="${page}">
-	             <input type="hidden" name="user_name" value="${users.user_name}">
-	             <input type="hidden" name="board_cat" value="${bean.board_cat}">
+				<input type="hidden" name="idx" value="${bean.board_idx}"> <input
+					type="hidden" name="pageNo" value="${page}"> <input
+					type="hidden" name="user_name" value="${users.user_name}">
+				<input type="hidden" name="board_cat" value="${bean.board_cat}">
 
 			</form>
 		</tr>
@@ -108,13 +112,21 @@
 		<input type="hidden" name="comment_board" value="${bean.board_idx}">
 		<input type="hidden" name="comment_boardcat" value="${bean.board_cat}">
 		<!-- 메인글의 idx -->
-		 <input
-			type="hidden" name="pageNo" value="${page }">
+		<input type="hidden" name="pageNo" value="${page }">
 		<table style="width: 60%; margin: auto;">
 			<tr>
-				<td colspan="4">댓글 갯수 : ${bean.com_cnt } <input
-					type="button" onclick="window.location.reload()" value="새로고침"
-					class="btn-small">
+				<td>
+					<!-- 좋아요 버튼 -->
+					<div class="feeling_div">
+						<div class="button-container like-container">
+							<button class="feeling_a">
+								<i class="fa fa-heart-o"> Like</i>
+								</button>
+						</div>
+					</div>
+				</td>
+				<td colspan="4">댓글 갯수 : ${bean.com_cnt } <input type="button"
+					onclick="window.location.reload()" value="새로고침" class="btn-small">
 				</td>
 			</tr>
 			<tr>
@@ -123,9 +135,8 @@
 			<!-- 댓글 입력 -->
 			<tr>
 				<td width="25%">${users.user_name }</td>
-				<td width="25%">
-				<input type="hidden" name="comment_mname" class="input1" value="${users.user_name}">
-				</td>
+				<td width="25%"><input type="hidden" name="comment_mname"
+					class="input1" value="${users.user_name}"></td>
 			</tr>
 			<tr>
 				<td colspan="3">
@@ -133,48 +144,47 @@
 						cols="80" name="comment_content" style="resize: none;"
 						placeholder="댓글을 작성하세요." class="input1"></textarea>
 				</td>
-				<td width="15%" style="text-align: left;">
-				<input type="submit" value="저장" class="btn-small">
-				<input type="reset" value="취소" class="btn-small"></td>
+				<td width="15%" style="text-align: left;"><input type="submit"
+					value="저장" class="btn-small"> <input type="reset"
+					value="취소" class="btn-small"></td>
 			</tr>
 			<tr>
 				<td colspan="4"><hr></td>
 			</tr>
 			<!-- 댓글 목록 -->
-			<c:set var="image" value="${pageContext.request.contextPath}/resources/image"/>
-	 <c:forEach var="cmt"  items="${cmtlist }">
-	 	<tr>
-	 		<td colspan="4">
-	 			<div id="comment">
-		 			<div>
-			 			<span class="name">${cmt.comment_mname }</span>
-			 			<span class="now">
-			 				<fmt:formatDate value="${cmt.comment_wdate }" 
-			 				pattern="yyyy-MM-dd a hh:mm"/>
-			 			</span>
-			 			<span style="float: right;">
-			 			<a href="javascript:delete_cmt('${cmt.comment_idx }')">
-			 			<img alt="삭제" src="${image }/delete.png" style="width:20px;">
-			 			</a>
-			 			</span>
-		 			</div>
-		 			<div style="padding-top: 10px">
-		 				<pre style="text-align: left">${cmt.comment_content }</pre>
-		 			</div>
-	 			</div>
-	 		</td>
-	 	</tr>
-	 </c:forEach>	
+			<c:set var="image"
+				value="${pageContext.request.contextPath}/resources/image" />
+			<c:forEach var="cmt" items="${cmtlist }">
+				<tr>
+					<td colspan="4">
+						<div id="comment">
+							<div>
+								<span class="name">${cmt.comment_mname }</span> <span
+									class="now"> <fmt:formatDate
+										value="${cmt.comment_wdate }" pattern="yyyy-MM-dd a hh:mm" />
+								</span> <span style="float: right;"> <a
+									href="javascript:delete_cmt('${cmt.comment_idx }')"> <img
+										alt="삭제" src="${image }/delete.png" style="width: 20px;">
+								</a>
+								</span>
+							</div>
+							<div style="padding-top: 10px">
+								<pre style="text-align: left">${cmt.comment_content }</pre>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</c:forEach>
 
 		</table>
-	 	<script type="text/javascript">
+		<script type="text/javascript">
 			function delete_cmt(idx){
 				if(confirm(idx+'번 선택한 댓글 삭제하시겠습니까?') == true)
 					location.href=`comment?idx=`+idx+`&pageNo=${page}&mref=${bean.board_idx}&action=${bean.board_cat}
 					&user_name=${users.user_name}`;
 			}
 </script>
-<script type="text/javascript">
+		<script type="text/javascript">
 	if(${message!=null}) alert('${message}');
 </script>
 	</form>

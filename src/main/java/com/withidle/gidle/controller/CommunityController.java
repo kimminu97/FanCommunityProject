@@ -84,7 +84,15 @@ public class CommunityController {
 
 	@PostMapping("/insert")
 	public String save(Board dto, RedirectAttributes rda) {
-		mapper.insert(dto);
+		if (dto.getBoard_cat() == 1)
+			mapper.insert(dto);
+		else if (dto.getBoard_cat() == 2)
+			mapper.insert2(dto);
+		else if (dto.getBoard_cat() == 3)
+			mapper.insert3(dto);
+		else
+			mapper.insert4(dto);
+		
 		rda.addFlashAttribute("message", "글 쓰기가 완료되었습니다.");
 		// ->list.jsp로 바로 전달 됩니다. 특징: url에 표시되지 않습니다.(model은 보임)
 		user_mapper.boardCountUp(dto.getBoard_name());

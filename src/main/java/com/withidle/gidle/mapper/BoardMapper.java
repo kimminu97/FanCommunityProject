@@ -9,6 +9,9 @@ public interface BoardMapper {
 	List<Board> getPageList(Map<String, Integer> map);
 	int getCount(int board_cat);
 	void insert(Board dto);
+	void insert2(Board dto);
+	void insert3(Board dto);
+	void insert4(Board dto);
 	void update(Board dto);
 	Board getOne(Map<String, Integer> map);
 	void readCount(Map<String, Integer> map);

@@ -9,6 +9,7 @@
 		<typeAlias type="com.withidle.gidle.vo.Users" alias="Users"/>
 		<typeAlias type="com.withidle.gidle.vo.Board" alias="Board"/>
 		<typeAlias type="com.withidle.gidle.vo.Comment" alias="Comment"/>
+		<typeAlias type="com.withidle.gidle.vo.Heart" alias="Heart"/>
 		<typeAlias type="java.util.Map" alias="Map"/>
 		
 	</typeAliases>
