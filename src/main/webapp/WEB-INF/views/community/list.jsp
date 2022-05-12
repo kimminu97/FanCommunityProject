@@ -7,6 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항</title>
+<script type="text/javascript">
+function insert(){
+    if(${admin == null}){
+    	alert('공지사항은 관리자만 등록할 수 있습니다.')
+    }else{
+    	location.href='insert?pageNo=${page.pageNo }&action=1';
+    }
+    	
+
+}
+</script>
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
 	rel="stylesheet">
@@ -19,7 +30,16 @@
 			<li><a href="community">Dashboard</a></li>
 			<li><a href="profile">Profile</a></li>
 			<li><a href="albumList">Album</a></li>
-			<li><a href="${pageContext.request.contextPath}/update.do">My Info</a></li>
+			<li>
+			  <c:choose>
+                  <c:when test="${admin==null }">
+                     <a href="update.do">My Info</a>
+                  </c:when>
+                  <c:when test="${users==null }">
+                   <a href="list.do">Admin</a>
+                  </c:when>
+               </c:choose>
+			</li>
 		</ul>
 	</nav>
 	<nav class="shadow">
@@ -46,7 +66,7 @@
 			</div>
 			<div class="writeBtn">
 				<!-- 등급에 따라 숨김 -->
-				<a href="insert?pageNo=${page.pageNo }&action=1">글쓰기</a>
+				<a class="button" href="javascript:insert()">글쓰기</a>
 			</div>
 		</div>
 

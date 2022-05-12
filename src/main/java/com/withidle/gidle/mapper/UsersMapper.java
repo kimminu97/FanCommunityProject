@@ -24,5 +24,6 @@ public interface UsersMapper {
 	void cmtCountDown(String user_name);
 	Users selectByUserid(String user_id);
 	void board_name_update(Users users);
+	void comment_name_update(Users users);
 	
 }

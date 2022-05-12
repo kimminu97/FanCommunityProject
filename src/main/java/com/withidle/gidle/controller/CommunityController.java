@@ -210,6 +210,7 @@ public class CommunityController {
 	public void allupdate(Users users, Model model,HttpServletResponse response) throws IOException {
 		user_mapper.allupdate(users);
 		user_mapper.board_name_update(users);
+		user_mapper.comment_name_update(users);
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		String url = "list.do"; 
@@ -223,6 +224,8 @@ public class CommunityController {
 	public void update(Users users, Model model,HttpServletResponse response) throws IOException {
 		user_mapper.board_name_update(users);
 		user_mapper.update(users);
+		user_mapper.comment_name_update(users);
+
 		model.addAttribute("users", users);
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();

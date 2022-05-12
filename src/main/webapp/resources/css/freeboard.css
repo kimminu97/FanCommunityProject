@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+
+
 html, body {
 	margin: 0;
 	text-align: center;
@@ -160,6 +162,7 @@ p {
 	background-color: #7e00bf;
 	color: white;
 } */
+
 .pageNum {
 	padding: 20px 0 25px 0;
 }

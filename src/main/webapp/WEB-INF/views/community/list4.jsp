@@ -19,7 +19,16 @@
 			<li><a href="community">Dashboard</a></li>
 			<li><a href="profile">Profile</a></li>
 			<li><a href="albumList">Album</a></li>
-			<li><a href="${pageContext.request.contextPath}/update.do">My Info</a></li>
+			<li>
+			  <c:choose>
+                  <c:when test="${admin==null }">
+                     <a href="update.do">My Info</a>
+                  </c:when>
+                  <c:when test="${users==null }">
+                   <a href="list.do">Admin</a>
+                  </c:when>
+               </c:choose>
+			</li>
 		</ul>
 	</nav>
 	<nav class="shadow">

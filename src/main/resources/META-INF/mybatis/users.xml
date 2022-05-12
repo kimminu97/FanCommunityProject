@@ -71,6 +71,9 @@
 	<update id="board_name_update" parameterType="Users">
 		update board_idle set board_name=#{user_name} where user_id=#{user_id}
 	</update>
+	<update id="comment_name_update" parameterType="Users">
+		update comment_idle set comment_mname=#{user_name} where user_id=#{user_id}
+	</update>
 	<delete id="delete">
 		delete from users_idle where user_id=#{user_id}
 	</delete>

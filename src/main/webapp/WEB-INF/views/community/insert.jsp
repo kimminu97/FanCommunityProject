@@ -20,7 +20,7 @@
  			required="required"></td>
  	</tr>
  	<tr><td class="td1">작성자</td>
- 		<td class="left">${users.user_name }
+ 		<td class="left">${users.user_name }${admin.adm_name }
  		<input type="hidden" name="board_name" size="70" class="input1" value="${users.user_name}" >
  		</td>
  	</tr>
