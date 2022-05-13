@@ -37,6 +37,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.withidle.gidle.mapper.UsersMapper;
+import com.withidle.gidle.vo.Admin;
 import com.withidle.gidle.vo.Users;
 
 /**
@@ -183,6 +184,29 @@ public class HomeController {
 		session.invalidate();
 		//서버가 JSESSIONID는 새로 부여해주지만 @SessionAttributes로 설정된 값은 남아있다.
 		return "redirect:/";
+	}
+	
+	@GetMapping("/adminlogin.do")
+	public String adminlogin(@ModelAttribute("success") String success) { 
+		
+		return "adminlogin";	
+	}
+	
+	@PostMapping("adminlogin.do")
+	public String AdminloginProc(@RequestParam  Map<String,String> map, Model model) {
+		logger.info("[my]"+map);
+		Admin admin= mapper.adminlogin(map);	//로그인 성공하면 null 아닌값 반환
+		String url;
+		if(admin !=null) {
+			//성공 : 메인 화면으로, session 객체에 로그인 정보를 저장했습니다.(세션 애트리뷰트로 저장)
+			model.addAttribute("admin",admin);	//@SessionAttributes로 설정하기
+			url = "/?success=y";	//로그인 성공메시지 alert띄우기
+		}else {	//실패 : 다시 로그인 하러가기. ((미션))alert 메시지 띄우기 "로그인 정보가 옳바르지 않습니다."
+			url="adminlogin.do?success=n";
+			//요청방식이 post일대만 RedirectAttributes 객체에 url에 표시되지 않도록 파라미터
+			//값을 전달할 수 있습니다 -> 여기서는 사용을 못합니다.
+		}
+		return "redirect:"+url;
 	}
 	
 	@GetMapping("/join.do")

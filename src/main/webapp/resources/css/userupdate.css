@@ -1,5 +1,5 @@
   @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-#logo{
+.logo{
 	height: 160px;
 	padding: 30px;
 }
@@ -22,7 +22,7 @@
 }
 
 .adminupdate {
-  width: 650px;
+  width: 600px;
   height: 950px;
   background: white;
   border-radius: 20px;
@@ -31,8 +31,8 @@
   align-items: center;
   flex-direction: column;
   margin-bottom: 100px;
-  
 }
+
 .logo {
 	height: 160px;
 	padding: 30px;
@@ -47,6 +47,7 @@
 }
 
 h2{
+  margin-top: 0.5em;
   margin-bottom: 0.5em;
   color: tomato;
   font-size: 35px;
@@ -83,6 +84,7 @@ h2{
 	font-size: 1em;
 	 background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
 	color: white;
+	cursor: pointer
 }
 
 .update_pw {
@@ -145,6 +147,7 @@ h2{
 	font-size: 1em;
 	 background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
 	color: white;
+	cursor: pointer
 }
 
 .update_email {
@@ -245,4 +248,5 @@ h2{
   letter-spacing: 2px;
   margin-left: 135px;
   margin-bottom: 30px;
+  cursor: pointer
 }

@@ -1,0 +1,66 @@
+ @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+.logo {
+	height: 100px;
+	padding: 30px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Jua', sans-serif;
+}
+
+.bg {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+		url('../image/gidle.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: black;
+	min-height: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  margin: auto;
+  width: 80%;
+  color: white;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){
+	background-color: #ffffff;
+	color: black;
+}
+
+th{
+  height: 50px;
+  background-color: black; 
+}
+
+.delete{		/* 삭제버튼 css */
+  display: inline-block;
+  padding: 8px 8px;
+  border: 0;
+  outline: none;
+  background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
+  color: white;
+  cursor: pointer
+}
+
+.update{
+  outline: none;
+  background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 8px;
+  font-size: 13px
+}
+
+
+

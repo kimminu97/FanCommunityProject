@@ -48,6 +48,14 @@ p {
 	background-color: #5E6975;
 	border-radius: 5px;
 }
+.mainMenu>li.info>ul.sub{
+	display: none;
+}
+.mainMenu>li.info>ul.sub:hover {
+	background-color: #5E6975;
+	border-radius: 5px;
+	display: block;
+}
 
 .mainMenu>li>a {
 	color: white;

@@ -57,7 +57,7 @@
 	</script>
 </head>
 <body>
-	<h3>우리동네 커뮤니티</h3>
+	<h3>글쓰기</h3>
 	<hr>
 	<table style="width: 750px; margin: auto;">
 		<tr>
@@ -89,9 +89,17 @@
 			<!-- freeboard 테이블에 작성자 또는 다른 컬럼이 member테이블의 유니크 컬럼값중 하나를
 			참조하는 외래키가 잇어야 합니다. 작성자와 로그인 사용자가 같을 때만
 			수정,삭제 버튼이 view에 보이게 합니다. -->
+			<c:choose>
+			<c:when test="${users.user_id == bean.user_id || admin != null}">
 			<a class="button" href="javascript:update()">수정</a> 
 					<a class="button" href="javascript:deleteOk()">삭제</a>
 			</span> <a class="button" href="list?pageNo=${page }&action=${bean.board_cat}">목록</a></td>
+			</c:when>
+			<c:otherwise>
+			</span> <a class="button" href="list?pageNo=${page }&action=${bean.board_cat}">목록</a></td>
+			</c:otherwise>
+			</c:choose>
+			
 			<form action="" method="post">
 				 <input type="hidden" name="idx" value="${bean.board_idx}">
 	             <input type="hidden" name="pageNo" value="${page}">
@@ -125,6 +133,7 @@
 				<td width="25%">${users.user_name }</td>
 				<td width="25%">
 				<input type="hidden" name="comment_mname" class="input1" value="${users.user_name}">
+				<input type="hidden" name="user_id" class="input1" value="${users.user_id}">
 				</td>
 			</tr>
 			<tr>
@@ -145,7 +154,7 @@
 	 <c:forEach var="cmt"  items="${cmtlist }">
 	 	<tr>
 	 		<td colspan="4">
-	 			<div id="comment">
+	 			<div id="comment" style="margin-left:<c:out value='${20*cmt.comment_depth}'/>" >
 		 			<div>
 			 			<span class="name">${cmt.comment_mname }</span>
 			 			<span class="now">
@@ -153,9 +162,11 @@
 			 				pattern="yyyy-MM-dd a hh:mm"/>
 			 			</span>
 			 			<span style="float: right;">
+			 			<c:if test="${users.user_name == cmt.comment_mname || admin != null}">
 			 			<a href="javascript:delete_cmt('${cmt.comment_idx }')">
 			 			<img alt="삭제" src="${image }/delete.png" style="width:20px;">
 			 			</a>
+			 			</c:if>
 			 			</span>
 		 			</div>
 		 			<div style="padding-top: 10px">
@@ -170,7 +181,7 @@
 	 	<script type="text/javascript">
 			function delete_cmt(idx){
 				if(confirm(idx+'번 선택한 댓글 삭제하시겠습니까?') == true)
-					location.href=`comment?idx=`+idx+`&pageNo=${page}&mref=${bean.board_idx}
+					location.href=`comment?idx=`+idx+`&pageNo=${page}&mref=${bean.board_idx}&action=${bean.board_cat}
 					&user_name=${users.user_name}`;
 			}
 </script>

@@ -1,8 +1,4 @@
   @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-#logo{
-	height: 160px;
-	padding: 30px;
-}
 
 * {
   margin: 0;
@@ -80,6 +76,7 @@ h2{
 	font-size: 1em;
 	 background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
 	color: white;
+	cursor: pointer
 }
 
 .signup_pw {
@@ -142,6 +139,7 @@ h2{
 	font-size: 1em;
 	 background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
 	color: white;
+	cursor: pointer
 }
 
 .signup_email {
@@ -175,4 +173,5 @@ h2{
   font-size: 1.2em;
   letter-spacing: 2px;
   margin-left: 135px;
+  cursor: pointer
 }

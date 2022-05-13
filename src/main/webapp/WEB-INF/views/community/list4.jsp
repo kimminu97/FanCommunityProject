@@ -6,18 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
-<script type="text/javascript">
-function insert(){
-    if(${admin == null}){
-    	alert('공지사항은 관리자만 등록할 수 있습니다.')
-    }else{
-    	location.href='insert?pageNo=${page.pageNo }&action=1';
-    }
-    	
-
-}
-</script>
+<title>등업요청</title>
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
 	rel="stylesheet">
@@ -51,7 +40,7 @@ function insert(){
 		</ul>
 	</nav>
 	<div class="subHeader">
-		<h1>공지사항</h1>
+		<h1>등업요청</h1>
 		<!-- js사용해서 카테고리 이름 가져오기 가능? -->
 	</div>
 	<div class="container">
@@ -66,7 +55,7 @@ function insert(){
 			</div>
 			<div class="writeBtn">
 				<!-- 등급에 따라 숨김 -->
-				<a class="button" href="javascript:insert()">글쓰기</a>
+				<a href="insert?pageNo=${page.pageNo }&action=4">글쓰기</a>
 			</div>
 		</div>
 
@@ -84,7 +73,7 @@ function insert(){
 				<tr>
 					<td>${vo.board_idx }</td>
 					<td><a
-						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=1"
+						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=4"
 						class="title">${vo.board_sub }</a> ...<span
 						style="color: orange; font-size: 80%;">(${vo.com_cnt}) </span></td>
 					<td>${vo.board_name }</td>
@@ -99,14 +88,14 @@ function insert(){
 		</table>
 
 		<div class="pageNum">
-			<a href="?pageNo=1&action=1">&lt;&lt;</a> <a
-				href="?pageNo=${page.startPage-1 }&action=1">&lt;</a>
+			<a href="?pageNo=1&action=4">&lt;&lt;</a> <a
+				href="?pageNo=${page.startPage-1 }&action=4">&lt;</a>
 
 			<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
-				<a href="?pageNo=${i }&action=1">${i }</a>
+				<a href="?pageNo=${i }&action=4">${i }</a>
 			</c:forEach>
-			<a href="?pageNo=${page.endPage+1 }&action=1">&gt;</a> 
-			<a href="?pageNo=${page.totalPage }&action=1">&gt;&gt;</a>
+			<a href="?pageNo=${page.endPage+1 }&action=4">&gt;</a> 
+			<a href="?pageNo=${page.totalPage }&action=4">&gt;&gt;</a>
 		</div>
 		<a href="${pageContext.request.contextPath }/community/community"
 			id="homebtn">메인으로</a>

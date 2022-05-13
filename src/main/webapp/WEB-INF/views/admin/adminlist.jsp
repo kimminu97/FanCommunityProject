@@ -9,25 +9,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GIDLE 회원 리스트(관리자)</title>
 </head>
-<link rel="stylesheet" href="./resources/css/userlist.css" />
+<link rel="stylesheet" href="./resources/css/adminlist.css" />
+<body class="bg">
+<h3 class="align-center">GIDLE 회원 리스트(관리자)</h3>
+<div>
 	<a href="home"><img class="logo" alt="logo"
 			src="./resources/image/logo.png" /></a> <br>
-<body>
-<h3 class="align-center">GIDLE 회원 리스트(관리자)</h3>
-<div class="bg">
 	<form name="frmUser" method="post" action="./allupdate.do">
-	<table>
+	<table class="wrap">
 			<tr>
-				<td>아이디</td>
-			 	<td>비밀번호</td>
-			 	<td>팬닉</td>
-			 	<td>가입날짜</td>
-			 	<td>이메일</td>
-			 	<td>등급</td>
-			 	<td>댓글수</td>
-			 	<td>게시글수</td>
-			 	<td>수정</td>
-			 	<td>삭제</td>
+				<th>아이디</th>
+			 	<th>비밀번호</th>
+			 	<th>팬닉</th>
+			 	<th>가입날짜</th>
+			 	<th>이메일</th>
+			 	<th>등급</th>
+			 	<th>댓글수</th>
+			 	<th>게시글수</th>
+			 	<th>수정</th>
+			 	<th>삭제</th>
 			 	
 			</tr>
 		<c:forEach var="vo" items="${list }">
@@ -41,10 +41,10 @@
 			 	<td>${vo.user_replynum }</td>
 			 	<td>${vo.user_articlenum }</td>
 				<td>
-					<a href="adminupdate.do?user_id=${vo.user_id }">수정</a>
+					<a href="adminupdate.do?user_id=${vo.user_id }" class="update">수정</a>
 				</td>
 				<td>
-					<input type="button" onclick="delete_id('${vo.user_id}')" value="삭제">
+					<input type="button" onclick="delete_id('${vo.user_id}')" value="삭제" class="delete">
 				</td>
 			 </tr>
 			 

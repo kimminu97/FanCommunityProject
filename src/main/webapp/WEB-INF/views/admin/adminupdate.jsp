@@ -29,11 +29,11 @@
 						</div>
 						<div class="update_pw">
 							<h3> 비밀번호 </h3>
-							<input type="text" name="user_password" id="userpw" class="pw" value="${users.user_password }">
+							<input type="password" name="user_password" id="userpw" class="pw" value="${users.user_password }">
 						</div>
 						<div class="update_pw1">
 							<h3> 비밀번호 재확인 </h3>
-							<input type="text" name="user_password1" id="userpw1" class="pw" value="${users.user_password }">
+							<input type="password" name="user_password1" id="userpw1" class="pw" value="${users.user_password }">
 						</div>
 							&nbsp;&nbsp;&nbsp;<span id="checkpw" style="color:red" class="text-left"></span>
 						<div class="update_name">

@@ -18,4 +18,7 @@ public class Comment {
 	private Date comment_wdate;
 	private String comment_mname;
 	private int comment_parent;
+	private String user_id;
+	private int comment_depth;
+	private int comment_order;
 }

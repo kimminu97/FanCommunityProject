@@ -12,8 +12,8 @@
 	href="${pageContext.request.contextPath}/resources/css/signup.css">
 	
 </head>
-<body>
-<div class="bg">
+<body class="bg">
+<div>
 		
 	<form name="frmUser" method="post" action="./join.do">
 	<div class="wrap">

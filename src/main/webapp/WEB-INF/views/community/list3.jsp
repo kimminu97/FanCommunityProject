@@ -6,13 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>아이들에게 편지</title>
 <script type="text/javascript">
 function insert(){
-    if(${admin == null}){
-    	alert('공지사항은 관리자만 등록할 수 있습니다.')
+    if(${users.user_grade == '새싹'}){
+    	alert('편지 게시판은 웬디 이상의 등급만 등록할 수 있습니다. ')
     }else{
-    	location.href='insert?pageNo=${page.pageNo }&action=1';
+    	location.href='insert?pageNo=${page.pageNo }&action=3';
     }
     	
 
@@ -51,7 +51,7 @@ function insert(){
 		</ul>
 	</nav>
 	<div class="subHeader">
-		<h1>공지사항</h1>
+		<h1>아이들에게 편지</h1>
 		<!-- js사용해서 카테고리 이름 가져오기 가능? -->
 	</div>
 	<div class="container">
@@ -84,7 +84,7 @@ function insert(){
 				<tr>
 					<td>${vo.board_idx }</td>
 					<td><a
-						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=1"
+						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=3"
 						class="title">${vo.board_sub }</a> ...<span
 						style="color: orange; font-size: 80%;">(${vo.com_cnt}) </span></td>
 					<td>${vo.board_name }</td>
@@ -99,14 +99,14 @@ function insert(){
 		</table>
 
 		<div class="pageNum">
-			<a href="?pageNo=1&action=1">&lt;&lt;</a> <a
-				href="?pageNo=${page.startPage-1 }&action=1">&lt;</a>
+			<a href="?pageNo=1&action=3">&lt;&lt;</a> <a
+				href="?pageNo=${page.startPage-1 }&action=3">&lt;</a>
 
 			<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
-				<a href="?pageNo=${i }&action=1">${i }</a>
+				<a href="?pageNo=${i }&action=3">${i }</a>
 			</c:forEach>
-			<a href="?pageNo=${page.endPage+1 }&action=1">&gt;</a> 
-			<a href="?pageNo=${page.totalPage }&action=1">&gt;&gt;</a>
+			<a href="?pageNo=${page.endPage+1 }&action=3">&gt;</a> 
+			<a href="?pageNo=${page.totalPage }&action=3">&gt;&gt;</a>
 		</div>
 		<a href="${pageContext.request.contextPath }/community/community"
 			id="homebtn">메인으로</a>

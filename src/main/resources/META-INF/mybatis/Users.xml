@@ -47,6 +47,37 @@
 		delete from users_idle where user_id=#{user_id}
 	</delete>
 	
+	<select parameterType="Admin" id="adminlogin" resultType="Admin">
+		select * from admin_idle where adm_id=#{adm_id} and adm_PASSWORD=#{adm_password} 
+	</select>
+
+	<!-- 쓴글 수 추가 -->
+	<update id="boardCountUp">
+		update users_idle set USER_ARTICLENUM=USER_ARTICLENUM+1where USER_NAME=#{user_name} 
+	</update>
+
+	<!-- 쓴 댓글 추가 -->
+	<update id="cmtCountUp">
+		update users_idle set USER_REPLYNUM=USER_REPLYNUM+1where USER_NAME=#{user_name} 
+	</update>
+
+	<!-- 쓴글 수 삭제 -->
+	<update id="boardCountDown">
+		update users_idle set USER_ARTICLENUM=USER_ARTICLENUM-1where USER_NAME=#{user_name} 
+	</update>
+
+	<!-- 쓴 댓글 삭제 -->
+	<update id="cmtCountDown">
+		update users_idle set USER_REPLYNUM=USER_REPLYNUM-1where USER_NAME=#{user_name} 
+	</update>
+
+	<update parameterType="Users" id="board_name_update">
+		update board_idle set board_name=#{user_name} where user_id=#{user_id}
+	</update>
+
+	<update parameterType="Users" id="comment_name_update">
+		update comment_idle set comment_mname=#{user_name} where user_id=#{user_id} 
+	</update>
 	
 </mapper>
 
