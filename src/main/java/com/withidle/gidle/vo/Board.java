@@ -21,4 +21,5 @@ public class Board {
 	private int like_cnt;
 	private int view_cnt;
 	private String board_name;
+	private String user_id;
 }

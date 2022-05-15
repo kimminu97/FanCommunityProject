@@ -28,6 +28,7 @@
 				<value>classpath:META-INF/mybatis/users.xml</value>
 				<value>classpath:META-INF/mybatis/comment.xml</value>
 				<value>classpath:META-INF/mybatis/freeboard.xml</value>
+				<value>classpath:META-INF/mybatis/heart.xml</value>
 			</list>
 		</property>
 		<property name="configLocation" 

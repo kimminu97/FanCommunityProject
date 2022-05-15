@@ -16,4 +16,6 @@ public class Users {
 	private Date joinDate;
 	private String user_email;
 	private String user_grade;
+	private int user_replynum;
+	private int user_articlenum;
 }

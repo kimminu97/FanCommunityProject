@@ -2,38 +2,44 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.withidle.gidle.mapper.CommentMapper"> 
-  	
-  	<insert id="insert" parameterType="Comment">
-  		INSERT INTO COMMENT_IDLE
-(COMMENT_IDX, COMMENT_BOARD, COMMENT_BOARDCAT, COMMENT_CONTENT, COMMENT_MNAME, COMMENT_PARENT)
-VALUES(cmt_idx_seq.nextval, #{comment_board}, #{comment_boardcat},
- #{comment_content}, #{comment_mname}, #{comment_parent})
-  	</insert>
-  	<select id="list" parameterType="Map" resultType="Comment"> <!-- 메인글에 대한 댓글 목록 가져오기 -->
-  	select * from comment_idle where COMMENT_BOARD=#{comment_board}
-  	 and COMMENT_BOARDCAT=#{comment_boardcat}
-  	</select>
-  	<update id="commentCountUp" parameterType="int">
-  	<!-- freeboard테이블의 댓글갯수 컬럼값 증가 : insert의 트랜잭션-->
-  	update Board_IDLE set com_cnt=com_cnt+1
-  	where board_idx=#{comment_board}
-  	</update>
-  	<delete id="delete" parameterType="int">
-  	delete from comment_idle where comment_idx=#{comment_idx}
-  	</delete>
-  	<update id="commentCountDown" parameterType="int">
-  	<!-- freeboard테이블의 댓글갯수 컬럼값 감소 :delete의 트랜잭션-->
-  	update Board_IDLE set com_cnt=com_cnt-1
-  	where board_idx=#{comment_board}
-  	</update>
-  	<!--  댓글 추가/삭제 동시에 적용가능 -->
-  	<update id="updateCmtCount" parameterType="int">
-  	update Board_IDLE set com_cnt=(
-  		select count(*) from comment_idle where COMMENT_BOARD=#{board_idx}
-  	)
-  	where board_idx=#{board_idx}
-  	</update>
-  
-  </mapper>
+<mapper namespace="com.withidle.gidle.mapper.CommentMapper">
+
+	<insert id="insert" parameterType="Comment">
+		INSERT INTO COMMENT_IDLE
+		(COMMENT_IDX, COMMENT_BOARD, COMMENT_BOARDCAT, COMMENT_CONTENT, COMMENT_MNAME,
+		COMMENT_PARENT,user_id)
+		VALUES(cmt_idx_seq.nextval, #{comment_board}, #{comment_boardcat},
+		#{comment_content}, #{comment_mname}, #{comment_parent},#{user_id})
+	</insert>
+
+	<select id="list" parameterType="Map" resultType="Comment"> <!-- 메인글에 대한 댓글 목록 가져오기 -->
+		select * from comment_idle where COMMENT_BOARD=#{comment_board}
+		and COMMENT_BOARDCAT=#{comment_boardcat}
+	</select>
+
+	<update id="commentCountUp" parameterType="int">
+		<!-- freeboard테이블의 댓글갯수 컬럼값 증가 : insert의 트랜잭션 -->
+		update Board_IDLE set com_cnt=com_cnt+1
+		where board_idx=#{comment_board}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from comment_idle where comment_idx=#{comment_idx}
+	</delete>
+
+	<update id="commentCountDown" parameterType="int">
+		<!-- freeboard테이블의 댓글갯수 컬럼값 감소 :delete의 트랜잭션 -->
+		update Board_IDLE set com_cnt=com_cnt-1
+		where board_idx=#{comment_board}
+	</update>
+
+	<!-- 댓글 추가/삭제 동시에 적용가능 -->
+	<update id="updateCmtCount" parameterType="int">
+		update Board_IDLE set com_cnt=(
+		select count(*) from comment_idle where COMMENT_BOARD=#{board_idx}
+		)
+		where board_idx=#{board_idx}
+	</update>
+
+</mapper>
   

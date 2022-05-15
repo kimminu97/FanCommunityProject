@@ -19,7 +19,16 @@
 			<li><a href="community">Dashboard</a></li>
 			<li><a href="profile">Profile</a></li>
 			<li><a href="albumList">Album</a></li>
-			<li><a href="#">My Info</a></li>
+			<li>
+			  <c:choose>
+                  <c:when test="${admin==null }">
+                     <a href="update.do">My Info</a>
+                  </c:when>
+                  <c:when test="${users==null }">
+                   <a href="list.do">Admin</a>
+                  </c:when>
+               </c:choose>
+			</li>
 		</ul>
 	</nav>
 	<nav class="shadow">
@@ -64,8 +73,8 @@
 				<tr>
 					<td>${vo.board_idx }</td>
 					<td><a
-						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=2"
-						class="title">${vo.board_sub }</a> ...<span
+						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=2&userId=${users.user_id}"
+						class="title">${vo.board_sub }</a><span
 						style="color: orange; font-size: 80%;">(${vo.com_cnt}) </span></td>
 					<td>${vo.board_name }</td>
 					<td>${vo.view_cnt }</td>

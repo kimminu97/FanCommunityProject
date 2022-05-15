@@ -14,6 +14,8 @@
 	js 파일로 외부에 있으면 el을 사용하여 값을 가져올수 없습니다.
 	-> detail.jsp에 스크립트를 옮겨 넣어주세요.
 	-->
+<script src="https://kit.fontawesome.com/0269ed496a.js"
+	crossorigin="anonymous"></script>
 <script type="text/javascript">
 	function update(){
 	    document.getElementById('cont').innerHTML=`
@@ -54,14 +56,23 @@
 		}
 	}
 	
+
+	function heart() {
+
+		if (${checkHrt} == 0) {
+		document.forms[1].action='heart';
+		document.forms[1].submit();
+		} else if (${checkHrt} == 1) {
+		document.forms[1].action='removehrt';
+		document.forms[1].submit();
+		}
+	}
 	
-
-
-
-	</script>
+		
+</script>
 </head>
 <body>
-	<h3>글쓰기</h3>
+	<h3>글 상세보기</h3>
 	<hr>
 	<table style="width: 750px; margin: auto;">
 		<tr>
@@ -95,17 +106,43 @@
 					href="javascript:update()">수정</a> <a class="button"
 					href="javascript:deleteOk()">삭제</a>
 			</span> <a class="button"
-				href="list?pageNo=${page }&action=${bean.board_cat}">목록</a></td>
-			<form action="" method="post">
-				<input type="hidden" name="idx" value="${bean.board_idx}"> <input
-					type="hidden" name="pageNo" value="${page}"> <input
-					type="hidden" name="user_name" value="${users.user_name}">
-				<input type="hidden" name="board_cat" value="${bean.board_cat}">
-
-			</form>
+				href="list?pageNo=${page }&action=${bean.board_cat}">목록</a>
+				<form action="" method="post">
+					<input type="hidden" name="idx" value="${bean.board_idx}">
+					<input type="hidden" name="pageNo" value="${page}"> <input
+						type="hidden" name="user_name" value="${users.user_name}">
+					<input type="hidden" name="board_cat" value="${bean.board_cat}">
+				</form></td>
 		</tr>
 	</table>
 	<!-- 메인글 상세보기 끝 -->
+
+	<!-- 좋아요 버튼 -->
+	<form action="" method="post">
+		<input type="hidden" name="heart_memid" value="'${users.user_id }'">
+		<input type="hidden" name="heart_boardid" value="${bean.board_idx }">
+		<input type="hidden" name="heart_boardcat" value="${bean.board_cat }">
+		<input type="hidden" name="checkHrt" value="${checkHrt }"> 
+		<input type="hidden" name="pageNo" value="${page }">
+	</form>
+	<div class="button-container" id="button-container">
+		<c:choose>
+			<c:when test="${checkHrt eq '0' or empty checkHrt}">
+				<!-- likecheck가 0이면 빨간하트에 하얀배경-->
+				<a class="feed-icon-btn" href="javascript:heart()"
+					style="background-color: white;"> <i class="fa-solid fa-heart"
+					style="color: #FF5454"></i> ${heart_num }
+				</a>
+			</c:when>
+			<c:when test ="${checkHrt eq '1'}">
+				<!-- likecheck가 1이면 하얀하트에 빨간배경 -->
+				<a class="feed-icon-btn" href="javascript:heart()"
+					style="background-color: #FF5454; color: white"> <i
+					class="fa-solid fa-heart" style="color: white"></i> ${heart_num }
+				</a>
+			</c:when>
+		</c:choose>
+	</div>
 
 	<!-- 댓글 시작 -->
 	<form action="comment" method="post" name="frmCmt">
@@ -115,16 +152,6 @@
 		<input type="hidden" name="pageNo" value="${page }">
 		<table style="width: 60%; margin: auto;">
 			<tr>
-				<td>
-					<!-- 좋아요 버튼 -->
-					<div class="feeling_div">
-						<div class="button-container like-container">
-							<button class="feeling_a">
-								<i class="fa fa-heart-o"> Like</i>
-								</button>
-						</div>
-					</div>
-				</td>
 				<td colspan="4">댓글 갯수 : ${bean.com_cnt } <input type="button"
 					onclick="window.location.reload()" value="새로고침" class="btn-small">
 				</td>
@@ -136,7 +163,9 @@
 			<tr>
 				<td width="25%">${users.user_name }</td>
 				<td width="25%"><input type="hidden" name="comment_mname"
-					class="input1" value="${users.user_name}"></td>
+					class="input1" value="${users.user_name}"> <input
+					type="hidden" name="user_id" class="input1"
+					value="${users.user_id}"></td>
 			</tr>
 			<tr>
 				<td colspan="3">
@@ -157,15 +186,18 @@
 			<c:forEach var="cmt" items="${cmtlist }">
 				<tr>
 					<td colspan="4">
-						<div id="comment">
+						<div id="comment"
+							style="margin-left:<c:out value='${20*cmt.comment_depth}'/>">
 							<div>
 								<span class="name">${cmt.comment_mname }</span> <span
 									class="now"> <fmt:formatDate
 										value="${cmt.comment_wdate }" pattern="yyyy-MM-dd a hh:mm" />
-								</span> <span style="float: right;"> <a
-									href="javascript:delete_cmt('${cmt.comment_idx }')"> <img
-										alt="삭제" src="${image }/delete.png" style="width: 20px;">
-								</a>
+								</span> <span style="float: right;"> <c:if
+										test="${users.user_name == cmt.comment_mname || admin != null}">
+										<a href="javascript:delete_cmt('${cmt.comment_idx }')"> <img
+											alt="삭제" src="${image }/delete.png" style="width: 20px;">
+										</a>
+									</c:if>
 								</span>
 							</div>
 							<div style="padding-top: 10px">

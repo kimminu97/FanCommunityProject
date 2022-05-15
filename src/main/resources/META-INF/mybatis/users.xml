@@ -2,53 +2,81 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.withidle.gidle.mapper.UsersMapper">
-	<!-- namespace :mybatis-spring에서는 매퍼 인터페이스로 지정합니다. -->
+<mapper namespace="com.withidle.gidle.mapper.UsersMapper"> 
 
-	<select id="login" resultType="Users"
-		parameterType="java.util.HashMap">
-		select * from users_idle where user_id=#{user_id} and
-		USER_PASSWORD=#{USER_PASSWORD}
-	</select>
 
+<!-- namespace :mybatis-spring에서는 매퍼 인터페이스로 지정합니다. -->
+
+<!-- 	<select id="login" resultType="Users" parameterType="java.util.HashMap">
+		select * from users_idle where user_id=#{user_id} and USER_PASSWORD=#{USER_PASSWORD}
+	</select> -->
+	
 	<insert id="addUsers" parameterType="Users">
-		insert into
-		users_idle(user_id,user_password,user_name,user_email)
-		values
-		(#{user_id},#{user_password},#{user_name},#{user_email})
+		insert into users_idle(user_id,user_password,user_name,user_email)
+		values (#{user_id},#{user_password},#{user_name},#{user_email})
 	</insert>
-
-	<select id="idcheck" parameterType="String" resultType="Int">
-		select
-		count(*) from users_idle where user_id=#{user_id}
+	
+	 <select id="login" resultType="Users" parameterType="Users">
+		select * from users_idle where user_id=#{user_id} and USER_PASSWORD=#{USER_PASSWORD}
 	</select>
-
+	 <select id="adminlogin" resultType="Admin" parameterType="Admin">
+		select * from admin_idle where adm_id=#{adm_id} and adm_PASSWORD=#{adm_password}
+	</select>
+	 
+	<select id="idcheck" parameterType="String" resultType="Int">
+		select count(*) from users_idle where user_id=#{user_id}
+	</select>
+	
 	<select id="namecheck" parameterType="String" resultType="Int">
-		select
-		count(*) from users_idle where user_name=#{user_name}
+		select count(*) from users_idle where user_name=#{user_name}
 	</select>
 	<!-- 쓴글 수 추가 -->
 	<update id="boardCountUp">
-		update users_idle set
-		USER_ARTICLENUM=USER_ARTICLENUM+1
+		update users_idle set USER_ARTICLENUM=USER_ARTICLENUM+1 
 		where USER_NAME=#{user_name}
 	</update>
 	<!-- 쓴 댓글 추가 -->
 	<update id="cmtCountUp">
-		update users_idle set USER_REPLYNUM=USER_REPLYNUM+1
+		update users_idle set USER_REPLYNUM=USER_REPLYNUM+1 
 		where USER_NAME=#{user_name}
 	</update>
 	<!-- 쓴글 수 삭제 -->
 	<update id="boardCountDown">
-		update users_idle set
-		USER_ARTICLENUM=USER_ARTICLENUM-1
+		update users_idle set USER_ARTICLENUM=USER_ARTICLENUM-1 
 		where USER_NAME=#{user_name}
 	</update>
 	<!-- 쓴 댓글 삭제 -->
 	<update id="cmtCountDown">
-		update users_idle set USER_REPLYNUM=USER_REPLYNUM-1
+		update users_idle set USER_REPLYNUM=USER_REPLYNUM-1 
 		where USER_NAME=#{user_name}
 	</update>
+	
+	<select id="selectAll" resultType="Users">
+	select * from users_idle
+	</select>
+	
+	<select id="selectByUserid" parameterType="String" resultType="Users">
+	select * from users_idle where user_id=#{user_id}
+	</select>
+	
+	<update id="update" parameterType="Users">
+		update users_idle set 
+		user_password=#{user_password}, user_name=#{user_name}
+		,user_email=#{user_email} where user_id=#{user_id}
+	</update>
+	
+	<update id="allupdate" parameterType="Users">
+		update users_idle set user_password=#{user_password},user_name=#{user_name},user_email=#{user_email},user_grade=#{user_grade} where user_id=#{user_id}
+	</update>
+	<update id="board_name_update" parameterType="Users">
+		update board_idle set board_name=#{user_name} where user_id=#{user_id}
+	</update>
+	<update id="comment_name_update" parameterType="Users">
+		update comment_idle set comment_mname=#{user_name} where user_id=#{user_id}
+	</update>
+	<delete id="delete">
+		delete from users_idle where user_id=#{user_id}
+	</delete>
 </mapper>
 
 

@@ -6,30 +6,31 @@
 	<!-- 새글 쓰기 -->
 	<insert id="insert">
 		INSERT INTO BOARD_IDLE
-		(BOARD_IDX, BOARD_CAT, BOARD_SUB, BOARD_CON,BOARD_NAME)
-		VALUES(board_idx_seq.nextval, #{board_cat},
-		#{board_sub},#{board_con}, #{board_name})
+		(BOARD_IDX, BOARD_CAT, BOARD_SUB, BOARD_CON,BOARD_NAME,user_id)
+		VALUES(board_idx_seq1.nextval, #{board_cat},
+		#{board_sub},#{board_con}, #{board_name},#{user_id})
+
 	</insert>
-	
 	<insert id="insert2">
 		INSERT INTO BOARD_IDLE
-		(BOARD_IDX, BOARD_CAT, BOARD_SUB, BOARD_CON,BOARD_NAME)
+		(BOARD_IDX, BOARD_CAT, BOARD_SUB, BOARD_CON,BOARD_NAME,user_id)
 		VALUES(board2_idx_seq.nextval, #{board_cat},
-		#{board_sub},#{board_con}, #{board_name})
-	</insert>
-	
+		#{board_sub},#{board_con}, #{board_name},#{user_id})
+		</insert>
+
 	<insert id="insert3">
 		INSERT INTO BOARD_IDLE
-		(BOARD_IDX, BOARD_CAT, BOARD_SUB, BOARD_CON,BOARD_NAME)
+		(BOARD_IDX, BOARD_CAT, BOARD_SUB, BOARD_CON,BOARD_NAME,user_id)
 		VALUES(board3_idx_seq.nextval, #{board_cat},
-		#{board_sub},#{board_con}, #{board_name})
+		#{board_sub},#{board_con}, #{board_name},#{user_id})
 	</insert>
-	
+
 	<insert id="insert4">
 		INSERT INTO BOARD_IDLE
-		(BOARD_IDX, BOARD_CAT, BOARD_SUB, BOARD_CON,BOARD_NAME)
+		(BOARD_IDX, BOARD_CAT, BOARD_SUB, BOARD_CON,BOARD_NAME,user_id)
 		VALUES(board4_idx_seq.nextval, #{board_cat},
-		#{board_sub},#{board_con}, #{board_name})
+		#{board_sub},#{board_con}, #{board_name},#{user_id})
+
 	</insert>
 	<!-- 글 수정 -->
 	<update id="update" parameterType="Board">

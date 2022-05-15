@@ -177,5 +177,14 @@ p {
 	margin: auto;
 }
 
+.feed-icon-btn {
+	border-style: none;
+	border-radius: 6px;
+	padding: 10px;
+	width: 70px;
+}
 
-
+.likeBtn {
+	width: 100px;
+	height: 50px;
+}

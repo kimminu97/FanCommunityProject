@@ -27,7 +27,7 @@
 	<c:if test="${success=='n' }">
 		<script type="text/javascript">
 			alert("로그인 정보가 틀립니다.!다시하세요.");
-			location.href = "./login.do"
+			location.href = "./adminlogin.do"
 		</script>
 	</c:if>
 	<c:if test="${re=='y' }">
@@ -40,10 +40,10 @@
 		<img id="logo" alt="logo" src="./resources/image/logo.png" />
 		</a>
 
-		<form action="login.do" method="post">
+		<form action="adminlogin.do" method="post">
 			<div class="wrap">
 				<div class="login">
-					<h2>Log-in</h2>
+					<h2>Admin</h2>
 					<div class="login_sns">
 						<li><a href=""><i class="fab fa-instagram"></i></a></li>
 						<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
@@ -51,11 +51,11 @@
 					</div>
 					<div class="login_id">
 						<h4>E-mail</h4>
-						<input type="text" name="user_id" id="userid" placeholder="id">
+						<input type="text" name="adm_id" id="adm_id" placeholder="id">
 					</div>
 					<div class="login_pw">
 						<h4>Password</h4>
-						<input type="password" name="USER_PASSWORD" id="pwd"
+						<input type="password" name="adm_password" id="adm_password"
 							placeholder="Password">
 					</div>
 					<div class="login_etc">
@@ -63,12 +63,11 @@
 							<input type="checkbox" name="" id=""> Remember Me?
 						</div>
 						<div class="forgot_pw">
-							<a href="adminlogin.do">Admin</a>
+							<a href="login.do">Users</a>
 						</div>
 					</div>
 					<div class="submit">
-						<input type="submit" value="로그인"> <input type="button"
-							value="회원가입" onclick="location.href=''">
+						<input type="submit" value="로그인"> 
 					</div>
 				</div>
 			</div>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withidle.gidle.mapper.HeartMapper">
+
+	<insert id="insert" parameterType="Heart">
+		INSERT INTO IDEV.HEART_IDLE
+		(HEART_MEMID, HEART_BOARDID, HEART_BOARDCAT)
+		VALUES(${heart_memid},
+		${heart_boardid},
+		${heart_boardcat})
+	</insert>
+
+	<delete id="delete" parameterType="Heart">
+		DELETE FROM IDEV.HEART_IDLE
+		WHERE HEART_MEMID=${heart_memid} AND HEART_BOARDID=${heart_boardid}
+		AND HEART_BOARDCAT= ${heart_boardcat}
+	</delete>
+
+	<select id="selectNum" parameterType="Map" resultType="int">
+		SELECT
+		LIKE_CNT from BOARD_IDLE where
+		board_idx=${board_idx} and board_cat=${board_cat}
+	</select>
+
+	<select id="checkLike" parameterType="Map" resultType="int">
+		SELECT
+		count(*) AS heart_check FROM HEART_IDLE hi where
+		heart_boardid=${heart_boardid} AND
+		heart_boardcat=${heart_boardcat} AND
+		heart_memid=${heart_memid}
+	</select>
+
+	<update id="likeCntDown" parameterType="Map">
+		update board_idle set
+		like_cnt = like_cnt-1 where board_idx=${board_idx} and
+		board_cat=#{board_cat}
+	</update>
+
+	<update id="likeCntUp" parameterType="Map">
+		update board_idle set
+		like_cnt = like_cnt+1 where board_idx=${board_idx} and
+		board_cat=#{board_cat}
+	</update>
+	
+	<select id="idCheck" parameterType="String" resultType="String">
+		SELECT user_id FROM USERS_IDLE ui WHERE USER_NAME = ${user_name}
+	</select>
+	
+</mapper>
