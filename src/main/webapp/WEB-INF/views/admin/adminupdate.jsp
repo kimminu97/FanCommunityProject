@@ -37,7 +37,7 @@
 							&nbsp;&nbsp;&nbsp;<span id="checkpw" style="color:red" class="text-left"></span>
 						<div class="update_name">
 							<h3>팬닉</h3>
-							<div style="display: inline-block">
+							<div style="display: inline-block;">
 								<input type="text" name="user_name" id="username" placeholder="예)여자아이들짱" 
 								value="${users.user_name }">
 							</div>

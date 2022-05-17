@@ -20,19 +20,17 @@
   justify-content: center;
   background: rgba(0, 0, 0, 0.1); 
 }
-html{
-	
-}
+
 .adminupdate {
   width: 550px;
-  height: 950px;
+  height: 900px;
   background: white;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 100px;
+  margin-bottom: 170px;
   
 }
 .logo {
@@ -118,7 +116,7 @@ h2{
 }
 
 .update_name {
-  margin-top: 20px;
+  margin-top: 5px;
   width: 80%;
 }
 
@@ -150,7 +148,7 @@ h2{
 }
 
 .update_email {
-  margin-top: 20px;
+  margin-top: 10px;
   width: 80%;
 }
 
@@ -201,10 +199,11 @@ h2{
 .update_replynum {
   margin-top: 20px;
   width: 80%;
+  display : inline-block;
 }
 
 .update_replynum input{
- width: 300px;
+ width: 100px;
   height: 30px;
   border-radius: 30px;
   margin-top: 5px;
@@ -217,10 +216,11 @@ h2{
 .update_articlenum {
   margin-top: 20px;
   width: 80%;
+  display : inline-block;
 }
 
 .update_articlenum input{
-  width: 300px;
+  width: 100px;
   height: 30px;
   border-radius: 30px;
   margin-top: 5px;
@@ -231,7 +231,7 @@ h2{
 }
 
 .update_submit {
-  margin-top: 50px;
+  margin-top: 10px;
   width: 80%;
   
 }

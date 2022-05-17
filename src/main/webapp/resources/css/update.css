@@ -13,7 +13,6 @@ html, body {
 	background-size: cover;
 	background-color: black;
 	min-height: 100%;
-	overflow: auto;
 }
 
 .logo {
@@ -34,24 +33,24 @@ html, body {
 
 .signup {
   width: 550px;
-  height: 850px;
+  height: 900px;
   background: white;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 170px;
   
 }
 
 h2{
-  margin-bottom: 1em;
   color: tomato;
   font-size: 35px;
+  margin-top: 50px;
 }
 
 .signup_id {
-  margin-top: 20px;
   width: 80%;
 }
 
@@ -99,7 +98,6 @@ h2{
 }
 
 .signup_pw1 {
-  margin-top: 20px;
   width: 80%;
 }
 
@@ -114,12 +112,11 @@ h2{
 }
 
 .signup_name {
-  margin-top: 20px;
   width: 80%;
 }
 
 .signup_name input{
-  width: 320px;
+  width: 150px;
   height: 50px;
   border-radius: 30px;
   margin-top: 10px;
@@ -131,7 +128,7 @@ h2{
 .namecheck{
 	width: 100px;
 	height: 50px;
-	margin-left: 5px;
+	margin-left: 50px;
 }
 .namecheck input{
 	width: 100px;
@@ -147,12 +144,11 @@ h2{
 }
 
 .signup_email {
-  margin-top: 20px;
   width: 80%;
 }
 
 .signup_email input{
-  width: 430px;
+  width: 300px;
   height: 50px;
   border-radius: 30px;
   margin-top: 10px;
@@ -162,7 +158,7 @@ h2{
 }
 
 .update_submit {
-  margin-top: 50px;
+  margin-top: 20px;
   width: 80%;
   
 }

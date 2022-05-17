@@ -18,7 +18,6 @@
 			src="${pageContext.request.contextPath}/resources/image/logo.png" /></a> <br>
 	<form name="frmUser" method="post" action="./save.do">
 	<div class="wrap">
-			<div> 
 				<div class="signup">
 					<h2>회원 정보 수정</h2>
 						<div class="signup_id">
@@ -56,7 +55,6 @@
 							<input type="button" value="수정하기" onclick="valid_check()">
 	 					</div>
  				</div>
- 			</div>
  		</div>
 		</form>
 	</div>
