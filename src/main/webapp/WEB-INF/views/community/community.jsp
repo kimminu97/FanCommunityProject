@@ -20,8 +20,16 @@
 			<li><a href="community">Dashboard</a></li>
 			<li><a href="profile">Profile</a></li>
 			<li><a href="albumList">Album</a></li>
-			<li><a href="#">My Info</a>
-
+			<li>
+			  <c:choose>
+                  <c:when test="${admin==null }">
+                     <a href="update.do">My Info</a>
+                  </c:when>
+                  <c:when test="${users==null }">
+                   <a href="list.do">Admin</a>
+                  </c:when>
+               </c:choose>
+			</li>
 		</ul>
 	</nav>
 
@@ -73,99 +81,45 @@
 		<h3>공지사항</h3>
 		<hr style="margin: 0 100px;">
 		<div>
-			<table>
+			<table >
+			<c:forEach var="vo" items="${list1 }">
 				<tr>
 					<td><img class="userIcon"
-						src="${pageContext.request.contextPath}/resources/image/vapp.svg"></td>
-					<td><p>
-							<strong>@닉네임</strong><br> "Some representative placeholder
-							content, with some information about this user. Imagine this
-							being some sort of status update, perhaps?
-						</p></td>
+						src="${pageContext.request.contextPath}/resources/image/captainhook.png"></td>
+					<td style="text-align:left;">
+							<strong>${vo.board_name }</strong><br><a
+						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=2"
+						class="title">${vo.board_sub }</a> 
+						</td>
 				</tr>
+				</c:forEach>
 			</table>
 		</div>
-		<hr style="margin: 0 100px;">
-		<div>
-			<table>
-				<tr>
-					<td><img class="userIcon"
-						src="${pageContext.request.contextPath}/resources/image/vapp.svg"></td>
-					<td><p>
-							<strong>@닉네임</strong><br> "Some representative placeholder
-							content, with some information about this user. Imagine this
-							being some sort of status update, perhaps?
-						</p></td>
-				</tr>
-			</table>
-		</div>
-		<hr style="margin: 0 100px;">
-		<div>
-			<table>
-				<tr>
-					<td><img class="userIcon"
-						src="${pageContext.request.contextPath}/resources/image/vapp.svg"></td>
-					<td><p>
-							<strong>@닉네임</strong><br> "Some representative placeholder
-							content, with some information about this user. Imagine this
-							being some sort of status update, perhaps?
-						</p></td>
-				</tr>
-			</table>
-		</div>
-		<hr style="margin: 0 100px;">
-
+		
 		<small class="seeAllLink"><a href="list?action=1">모든 게시물
 				보기</a> </small>
 	</div>
 
 	<div class="feed shadow">
 		<h3>자유게시판</h3>
-		<hr style="margin: 0 100px;">
 		<div>
+				<hr style="margin: 0 100px;">
 			<table>
+			<c:forEach var="vo" items="${list2 }">
 				<tr>
 					<td><img class="userIcon"
-						src="${pageContext.request.contextPath}/resources/image/vapp.svg"></td>
-					<td><p>
-							<strong>@닉네임</strong><br> "Some representative placeholder
-							content, with some information about this user. Imagine this
-							being some sort of status update, perhaps?
-						</p></td>
+						src="${pageContext.request.contextPath}/resources/image/peterpan.png"></td>
+					<td style="text-align:left;">
+							<strong>${vo.board_name }</strong><br><a
+						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=2"
+						class="title">${vo.board_sub }</a> 
+						</td>
 				</tr>
+				</c:forEach>
 			</table>
 		</div>
-		<hr style="margin: 0 100px;">
-		<div style="padding-top: 1rem !important;">
-			<table>
-				<tr>
-					<td><img class="userIcon"
-						src="${pageContext.request.contextPath}/resources/image/vapp.svg"></td>
-					<td><p>
-							<strong>@닉네임</strong><br> "Some representative placeholder
-							content, with some information about this user. Imagine this
-							being some sort of status update, perhaps?
-						</p></td>
-				</tr>
-			</table>
-		</div>
-		<hr style="margin: 0 100px;">
-		<div style="padding-top: 1rem !important;">
-			<table>
-				<tr>
-					<td><img class="userIcon"
-						src="${pageContext.request.contextPath}/resources/image/vapp.svg"></td>
-					<td><p>
-							<strong>@닉네임</strong><br> "Some representative placeholder
-							content, with some information about this user. Imagine this
-							being some sort of status update, perhaps?
-						</p></td>
-				</tr>
-			</table>
-		</div>
-		<hr style="margin: 0 100px;">
 
-		<small class="seeAllLink"><a href="#">모든 게시물 보기</a> </small>
+		<small class="seeAllLink"><a href="list?action=2">모든 게시물 보기</a> </small>
 	</div>
 </body>
 </html>

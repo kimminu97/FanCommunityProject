@@ -1,0 +1,143 @@
+ @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
+.bg {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+		url('../image/gidle.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: black;
+	min-height: 100%;
+	overflow: auto;
+}
+
+.logo {
+	height: 100px;
+	padding: 30px;
+}
+
+.wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@font-face {
+    font-family: 'Yeongdo-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}@font-face {
+    font-family: 'Yeongdo-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}@font-face {
+    font-family: 'Yeongdo-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}@font-face {
+    font-family: 'Yeongdo-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}@font-face {
+    font-family: 'Yeongdo-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}@font-face {
+    font-family: 'Yeongdo-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}@font-face {
+    font-family: 'Yeongdo-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}@font-face {
+    font-family: 'Yeongdo-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}@font-face { font-family: 'Yeongdo-Rg'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff'); font-weight: normal; font-style: normal; }@font-face { font-family: 'Yeongdo-Rg'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff'); font-weight: normal; font-style: normal; }@font-face { font-family: 'Yeongdo-Rg'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff'); font-weight: normal; font-style: normal; }@font-face { font-family: 'Yeongdo-Rg'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff'); font-weight: normal; font-style: normal; }@font-face { font-family: 'Yeongdo-Rg'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff'); font-weight: normal; font-style: normal; }@font-face { font-family: 'Yeongdo-Rg'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff'); font-weight: normal; font-style: normal; }@font-face { font-family: 'Yeongdo-Rg'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff'); font-weight: normal; font-style: normal; }@font-face { font-family: 'Yeongdo-Rg'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff'); font-weight: normal; font-style: normal; }@font-face { font-family: 'Yeongdo-Rg'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff'); font-weight: normal; font-style: normal; }@font-face {
+    font-family: 'Yeongdo-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}@font-face {
+    font-family: 'Yeongdo-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}@font-face {
+    font-family: 'Yeongdo-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}@font-face {
+    font-family: 'Yeongdo-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}@font-face {
+    font-family: 'Yeongdo-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.welcome{  font-family: 'Yeongdo-Rg'; 
+	background-size: cover;
+	background-color: black;
+	min-height: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  margin: auto;
+  width: 80%;
+  color: white;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){
+	background-color: #ffffff;
+	color: black;
+}
+
+th{
+  height: 50px;
+  background-color: black; 
+}
+
+.delete{		/* ������ư css */
+  display: inline-block;
+  padding: 8px 8px;
+  border: 0;
+  outline: none;
+  background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
+  color: white;
+  cursor: pointer
+}
+
+.update{
+  outline: none;
+  background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 8px;
+  font-size: 13px
+}
+

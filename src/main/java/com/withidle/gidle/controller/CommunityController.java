@@ -2,6 +2,7 @@ package com.withidle.gidle.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,12 +57,12 @@ public class CommunityController {
 		int board_cat = action;
 		PageDto page = new PageDto(pageNo, 10, mapper.getCount(board_cat));
 		model.addAttribute("board_cat", action);
-		logger.info("board_cat:", board_cat);
+		logger.info("board_cat:" + board_cat);
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("startNo", page.getStartNo());
 		map.put("endNo", page.getEndNo());
 		map.put("board_cat", board_cat);
-		logger.info("map:", map);
+		logger.info("map:" + map);
 		List<Board> list = mapper.getPageList(map);
 		logger.info("map:", map);
 		model.addAttribute("page", page);
@@ -84,8 +85,12 @@ public class CommunityController {
 	}
 
 	@GetMapping("community")
-	public void community() {
-
+	public void community(Model model) {
+		List<Board> list1 = mapper.getThree1(1);
+		List<Board> list2 = mapper.getThree1(2);
+		model.addAttribute("list1", list1);
+		model.addAttribute("list2", list2);
+		logger.info("list1:", list1);
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
@@ -126,7 +131,7 @@ public class CommunityController {
 		model.addAttribute("page", pageNo);
 		model.addAttribute("bean", dto);
 		model.addAttribute("board_cat", board_cat);
-		logger.info("bean:", dto.toString());
+		logger.info("bean:" + dto.toString());
 		// 댓글 목록을 detail.jsp에 출력해야합니다.
 		map.put("comment_board", board_idx);
 		map.put("comment_boardcat", board_cat);
@@ -148,11 +153,6 @@ public class CommunityController {
 		model.addAttribute("checkHrt", checkHrt);
 		logger.info("[hrt]" + hrtMap);
 		logger.info("hrtcheck: " + Integer.toString(checkHrt));
-
-		/*
-		 * Heart hrtDto = new Heart(id, board_idx, board_cat); int checkLike =
-		 * hrt_mapper.checkLike(hrtDto); model.addAttribute("checkLike", checkLike);
-		 */
 
 		return "community/detail";
 	}
@@ -289,9 +289,9 @@ public class CommunityController {
 		likecnt.put("board_idx", dto.getHeart_boardid());
 		likecnt.put("board_cat", dto.getHeart_boardcat());
 		HttpSession session = request.getSession();
-        Users userVO = (Users)session.getAttribute("users");
-        logger.info("user: " + userVO.toString());
-        
+		Users userVO = (Users) session.getAttribute("users");
+		logger.info("user: " + userVO.toString());
+
 		hrt_mapper.insert(dto);
 		hrt_mapper.likeCntUp(likecnt);
 		return "redirect:detail?board_idx=" + dto.getHeart_boardid() + "&pageNo=" + pageNo + "&action="
@@ -305,16 +305,15 @@ public class CommunityController {
 		likecnt.put("board_idx", dto.getHeart_boardid());
 		likecnt.put("board_cat", dto.getHeart_boardcat());
 		HttpSession session = request.getSession();
-        Users userVO = (Users)session.getAttribute("users");
-        
+		Users userVO = (Users) session.getAttribute("users");
+
 		hrt_mapper.delete(dto);
 		hrt_mapper.likeCntDown(likecnt);
 		logger.info("id:" + dto.getHeart_memid());
 		return "redirect:detail?board_idx=" + dto.getHeart_boardid() + "&pageNo=" + pageNo + "&action="
-				+ dto.getHeart_boardcat()  + "&userId=" + userVO.getUser_id();
+				+ dto.getHeart_boardcat() + "&userId=" + userVO.getUser_id();
 	}
 
-	
 	@GetMapping("announce")
 	public void announcement() {
 	}

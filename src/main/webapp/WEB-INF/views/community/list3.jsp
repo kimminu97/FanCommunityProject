@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
 <meta charset="UTF-8">
 <title>아이들에게 편지</title>
 <script type="text/javascript">
@@ -14,8 +15,14 @@ function insert(){
     }else{
     	location.href='insert?pageNo=${page.pageNo }&action=3';
     }
-    	
-
+}
+//var idx,user_id;
+function detail(idx, user_id){
+	if('${users.user_id}'== user_id || '${admin.adm_grade}' =='가수'){
+		location.href="detail?board_idx="+idx+"&pageNo=${page.pageNo}&action=3"
+	}else{
+		alert('편지게시물은 작성자 본인만 열람할 수 있습니다.')
+	}
 }
 </script>
 <link
@@ -84,7 +91,7 @@ function insert(){
 				<tr>
 					<td>${vo.board_idx }</td>
 					<td><a
-						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=3&userId=${users.user_id}"
+						href="javascript:detail('${vo.board_idx}', '${vo.user_id}')"
 						class="title">${vo.board_sub }</a> ...<span
 						style="color: orange; font-size: 80%;">(${vo.com_cnt}) </span></td>
 					<td>${vo.board_name }</td>
@@ -112,5 +119,6 @@ function insert(){
 			id="homebtn">메인으로</a>
 
 	</div>
+
 </body>
 </html>

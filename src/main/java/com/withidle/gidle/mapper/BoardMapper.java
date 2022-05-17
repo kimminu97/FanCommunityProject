@@ -16,4 +16,5 @@ public interface BoardMapper {
 	Board getOne(Map<String, Integer> map);
 	void readCount(Map<String, Integer> map);
 	void delete(Map<String, Integer> map);
+	List<Board> getThree1(int board_cat);
 }

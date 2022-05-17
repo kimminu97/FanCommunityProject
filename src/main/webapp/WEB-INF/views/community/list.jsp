@@ -8,20 +8,20 @@
 <meta charset="UTF-8">
 <title>공지사항</title>
 <script type="text/javascript">
-function insert(){
-    if(${admin == null}){
-    	alert('공지사항은 관리자만 등록할 수 있습니다.')
-    }else{
-    	location.href='insert?pageNo=${page.pageNo }&action=1';
-    }
-    	
-
-}
+	function insert(){
+	    if(${admin == null}){
+	    	alert('공지사항은 관리자만 등록할 수 있습니다.')
+	    }else{
+	    	location.href='insert?pageNo=${page.pageNo }&action=1';
+	    }
+	}
+	
 </script>
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/freeboard.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/freeboard.css" />
 </head>
 <body>
 	<nav>
@@ -30,16 +30,14 @@ function insert(){
 			<li><a href="community">Dashboard</a></li>
 			<li><a href="profile">Profile</a></li>
 			<li><a href="albumList">Album</a></li>
-			<li>
-			  <c:choose>
-                  <c:when test="${admin==null }">
-                     <a href="update.do">My Info</a>
-                  </c:when>
-                  <c:when test="${users==null }">
-                   <a href="list.do">Admin</a>
-                  </c:when>
-               </c:choose>
-			</li>
+			<li><c:choose>
+					<c:when test="${admin==null }">
+						<a href="update.do">My Info</a>
+					</c:when>
+					<c:when test="${users==null }">
+						<a href="list.do">Admin</a>
+					</c:when>
+				</c:choose></li>
 		</ul>
 	</nav>
 	<nav class="shadow">
@@ -57,12 +55,11 @@ function insert(){
 	<div class="container">
 		<div style="display: flex">
 			<div class="srchArea">
-				<select>
-					<option value="" selected>제목</option>
-					<option value="">제목+내용</option>
-					<option value="">작성자</option>
+				<select name="cat">
+					<option value="title" selected>제목</option>
+					<option value="writer">작성자</option>
 				</select> <input type="text" placeholder="검색어를 입력하세요">
-				<button type="button">검색</button>
+				<button id="search" type="button">검색</button>
 			</div>
 			<div class="writeBtn">
 				<!-- 등급에 따라 숨김 -->
@@ -86,7 +83,9 @@ function insert(){
 					<td><a
 						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=1&userId=${users.user_id}"
 						class="title">${vo.board_sub }</a><span
-						style="color: orange; font-size: 80%;">(${vo.com_cnt}) </span></td>
+						style="color: orange; font-size: 80%;"></span>
+						<c:if test="${vo.like_cnt > 5}"><i class="fa-solid fa-heart"></i></c:if> 
+						</td>
 					<td>${vo.board_name }</td>
 					<td>${vo.view_cnt }</td>
 					<!-- wdate 타입을 클래스에서 LocalDateTime 으로 했을때 날짜시간을 문자열 yyyy-MM-dd'T'HH:mm 형식이다.
@@ -105,8 +104,8 @@ function insert(){
 			<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
 				<a href="?pageNo=${i }&action=1">${i }</a>
 			</c:forEach>
-			<a href="?pageNo=${page.endPage+1 }&action=1">&gt;</a> 
-			<a href="?pageNo=${page.totalPage }&action=1">&gt;&gt;</a>
+			<a href="?pageNo=${page.endPage+1 }&action=1">&gt;</a> <a
+				href="?pageNo=${page.totalPage }&action=1">&gt;&gt;</a>
 		</div>
 		<a href="${pageContext.request.contextPath }/community/community"
 			id="homebtn">메인으로</a>

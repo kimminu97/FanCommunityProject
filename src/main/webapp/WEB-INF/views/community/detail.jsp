@@ -23,7 +23,7 @@
 	                <input type="hidden" name="board_idx" value="${bean.board_idx}">
 	                <input type="hidden" name="pageNo" value="${page}">
 		             <input type="hidden" name="board_cat" value="${bean.board_cat}">
-	                <textarea  rows="20" name="board_con" class="input1" 
+	                <textarea  rows="20" name="board_con" class="input2" 
 	                style="border:1px solid gray;width:90%" required="required">${bean.board_con}</textarea>
 	    </form>
 	    `;
@@ -72,27 +72,48 @@
 </script>
 </head>
 <body>
-	<h3>글 상세보기</h3>
-	<hr>
-	<table style="width: 750px; margin: auto;">
+	<nav>
+		<ul class="mainMenu">
+			<li><a href="home">G-IDLE</a></li>
+			<li><a href="community">Dashboard</a></li>
+			<li><a href="profile">Profile</a></li>
+			<li><a href="albumList">Album</a></li>
+			<li><c:choose>
+					<c:when test="${admin==null }">
+						<a href="update.do">My Info</a>
+					</c:when>
+					<c:when test="${users==null }">
+						<a href="list.do">Admin</a>
+					</c:when>
+				</c:choose></li>
+		</ul>
+	</nav>
+	<nav class="shadow">
+		<ul class="menu">
+			<li><a href="list?action=1">공지사항</a></li>
+			<li><a href="list?action=2">자유게시판</a></li>
+			<li><a href="list?action=3">아이들에게 편지</a></li>
+			<li><a href="list?action=4">등업요청</a></li>
+		</ul>
+	</nav>
+	<table style="width: 750px; margin: auto;" class="detail">
 		<tr>
-			<td width="20%" class="td1">제목</td>
-			<td width="40%" class="input1">${bean.board_sub}</td>
-			<td width="20%" class="td1">조회수</td>
-			<td class="input1">${bean.view_cnt}</td>
+			<td width="40%" class="input2" colspan="4"><h1>${bean.board_sub}</h1></td>
 		</tr>
 		<tr>
-			<td class="td1">작성자</td>
-			<td class="input1">${bean.board_name}</td>
-			<td class="td1">작성날짜</td>
-			<td class="input1">
+			<td class="td1" width="10%">작성자</td>
+			<td class="input2" width="20%">${bean.board_name}</td>
+			<td class="td1" width="10%">조회수</td>
+			<td class="input2" width="20%">${bean.view_cnt}</td>
+			<td class="td1" width="15%">작성일자</td>
+			<td class="input2" width="25%">
 				<%-- <fmt:parseDate pattern="yyyy-MM-dd'T'HH:mm" value="${bean.wdate }" var="wdate"/> --%>
 				<fmt:formatDate value="${bean.wdate }" pattern="yyyy-MM-dd" />
 			</td>
 		</tr>
 		<tr>
 			<td class="td1">내용</td>
-			<td colspan="3" class="input1" style="text-align: left;">
+			<td colspan="5" class="input2" style="text-align: left;">
 				<div style="height: 300px; box-sizing: border-box;" id="cont">
 					<pre>${bean.board_con }</pre>
 				</div>
@@ -100,7 +121,7 @@
 			<!-- 엔터,탭,기호 등 텍스트 그대로 출력할 때 사용 -->
 		</tr>
 		<tr>
-			<td colspan="4"><span id="func"> <!-- freeboard 테이블에 작성자 또는 다른 컬럼이 member테이블의 유니크 컬럼값중 하나를
+			<td colspan="6"><span id="func"> <!-- freeboard 테이블에 작성자 또는 다른 컬럼이 member테이블의 유니크 컬럼값중 하나를
 			참조하는 외래키가 잇어야 합니다. 작성자와 로그인 사용자가 같을 때만
 			수정,삭제 버튼이 view에 보이게 합니다. --> <a class="button"
 					href="javascript:update()">수정</a> <a class="button"
@@ -122,10 +143,10 @@
 		<input type="hidden" name="heart_memid" value="'${users.user_id }'">
 		<input type="hidden" name="heart_boardid" value="${bean.board_idx }">
 		<input type="hidden" name="heart_boardcat" value="${bean.board_cat }">
-		<input type="hidden" name="checkHrt" value="${checkHrt }"> 
-		<input type="hidden" name="pageNo" value="${page }">
+		<input type="hidden" name="checkHrt" value="${checkHrt }"> <input
+			type="hidden" name="pageNo" value="${page }">
 	</form>
-	<div class="button-container" id="button-container">
+	<div class="button-container">
 		<c:choose>
 			<c:when test="${checkHrt eq '0' or empty checkHrt}">
 				<!-- likecheck가 0이면 빨간하트에 하얀배경-->
@@ -134,7 +155,7 @@
 					style="color: #FF5454"></i> ${heart_num }
 				</a>
 			</c:when>
-			<c:when test ="${checkHrt eq '1'}">
+			<c:when test="${checkHrt eq '1'}">
 				<!-- likecheck가 1이면 하얀하트에 빨간배경 -->
 				<a class="feed-icon-btn" href="javascript:heart()"
 					style="background-color: #FF5454; color: white"> <i
@@ -150,35 +171,27 @@
 		<input type="hidden" name="comment_boardcat" value="${bean.board_cat}">
 		<!-- 메인글의 idx -->
 		<input type="hidden" name="pageNo" value="${page }">
-		<table style="width: 60%; margin: auto;">
-			<tr>
-				<td colspan="4">댓글 갯수 : ${bean.com_cnt } <input type="button"
-					onclick="window.location.reload()" value="새로고침" class="btn-small">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4"><hr></td>
+		<table style="width: 750px; margin: auto;">
+			<tr class="cmt">
+				<td width="60%">댓글 갯수 : ${bean.com_cnt }</td>
+				<td width="60%" colspan="3"><input type="button"
+					onclick="window.location.reload()" value="새로고침" class="btn-small"
+					style=""></td>
 			</tr>
 			<!-- 댓글 입력 -->
-			<tr>
-				<td width="25%">${users.user_name }</td>
-				<td width="25%"><input type="hidden" name="comment_mname"
-					class="input1" value="${users.user_name}"> <input
-					type="hidden" name="user_id" class="input1"
-					value="${users.user_id}"></td>
-			</tr>
-			<tr>
-				<td colspan="3">
-					<!-- 크기조절불가 : style="resize: none;" --> <textarea rows="5"
+			<tr class="cmt">
+				<td colspan="3"><c:if test="${ users==null}">
+						<input type="hidden" name="comment_mname" size="70" class="input1"
+							value="${admin.adm_name }">
+					</c:if> <c:if test="${admin==null }">
+						<input type="hidden" name="comment_mname" size="70" class="input1"
+							value="${users.user_name}">
+					</c:if> <input type="hidden" name="user_id" value="${users.user_id}">
+					<!-- 크기조절불가 : style="resize: none;" --> 
+					<textarea rows="5"
 						cols="80" name="comment_content" style="resize: none;"
-						placeholder="댓글을 작성하세요." class="input1"></textarea>
-				</td>
-				<td width="15%" style="text-align: left;"><input type="submit"
-					value="저장" class="btn-small"> <input type="reset"
-					value="취소" class="btn-small"></td>
-			</tr>
-			<tr>
-				<td colspan="4"><hr></td>
+						placeholder="댓글을 작성하세요." class="input2"></textarea></td>
+				<td width="15%"><input class="btn" type="submit" value="저장"></td>
 			</tr>
 			<!-- 댓글 목록 -->
 			<c:set var="image"
@@ -187,7 +200,7 @@
 				<tr>
 					<td colspan="4">
 						<div id="comment"
-							style="margin-left:<c:out value='${20*cmt.comment_depth}'/>">
+							style="margin-left:<c:out value='${20*cmt.comment_depth}'/>;">
 							<div>
 								<span class="name">${cmt.comment_mname }</span> <span
 									class="now"> <fmt:formatDate
@@ -200,7 +213,7 @@
 									</c:if>
 								</span>
 							</div>
-							<div style="padding-top: 10px">
+							<div style="padding: 10px 5px; border-bottom: 1px solid #a0a0a7;">
 								<pre style="text-align: left">${cmt.comment_content }</pre>
 							</div>
 						</div>

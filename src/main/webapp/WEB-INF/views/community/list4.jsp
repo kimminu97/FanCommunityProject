@@ -46,12 +46,11 @@
 	<div class="container">
 		<div style="display: flex">
 			<div class="srchArea">
-				<select>
-					<option value="" selected>제목</option>
-					<option value="">제목+내용</option>
-					<option value="">작성자</option>
+				<select name="cat">
+					<option value="title" selected>제목</option>
+					<option value="writer">작성자</option>
 				</select> <input type="text" placeholder="검색어를 입력하세요">
-				<button type="button">검색</button>
+				<button id="search" type="button">검색</button>
 			</div>
 			<div class="writeBtn">
 				<!-- 등급에 따라 숨김 -->
@@ -75,7 +74,8 @@
 					<td><a
 						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=4&userId=${users.user_id}"
 						class="title">${vo.board_sub }</a> ...<span
-						style="color: orange; font-size: 80%;">(${vo.com_cnt}) </span></td>
+						style="color: orange; font-size: 80%;">(${vo.com_cnt}) </span>
+						<c:if test="${vo.like_cnt > 5}"><i class="fa-solid fa-heart"></i></c:if> </td>
 					<td>${vo.board_name }</td>
 					<td>${vo.view_cnt }</td>
 					<!-- wdate 타입을 클래스에서 LocalDateTime 으로 했을때 날짜시간을 문자열 yyyy-MM-dd'T'HH:mm 형식이다.

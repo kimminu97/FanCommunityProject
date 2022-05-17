@@ -58,6 +58,18 @@ public class HomeController {
 		return "home";
 	}
 
+	@GetMapping("album")
+	public void album() {
+	}
+	
+	@GetMapping("methods")
+	public void methods() {
+	}
+	
+	@GetMapping("profile")
+	public void profile() {
+	}
+
 	@GetMapping("albumList")
 	public void albumList() {
 	}
@@ -67,14 +79,10 @@ public class HomeController {
 		return "redirect:/";
 	}
 
-	@GetMapping("profile")
-	public void profile() {
-	}
 
 	/*
 	 * @GetMapping("goods") public void goods() { }
 	 */
-
 	@GetMapping("/login.do")
 	public String login(@ModelAttribute("success") String success) {
 		return "login";
@@ -103,8 +111,9 @@ public class HomeController {
 		return "adminlogin";
 	}
 
+	
 	@PostMapping("login.do")
-	public String loginProc(@RequestParam  Map<String,String> map, Model model, HttpServletRequest request) {
+	public String loginProc(@RequestParam  Map<String,String> map, Model model) {
 		logger.info("[my]"+map);
 		Users users= mapper.login(map);	//로그인 성공하면 null 아닌값 반환
 		String url;
@@ -134,6 +143,7 @@ public class HomeController {
 		//서버가 JSESSIONID는 새로 부여해주지만 @SessionAttributes로 설정된 값은 남아있다.
 		return "redirect:/";
 	}
+	
 	@GetMapping("/join.do")
 	public String join() {
 		return "signup";
