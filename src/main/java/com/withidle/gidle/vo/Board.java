@@ -22,4 +22,6 @@ public class Board {
 	private int view_cnt;
 	private String board_name;
 	private String user_id;
+	
+	
 }

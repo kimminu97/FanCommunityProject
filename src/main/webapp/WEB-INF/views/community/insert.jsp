@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,12 @@
  	</tr>
  	<tr><td class="td1">작성자</td>
  		<td class="left">${users.user_name }${admin.adm_name }
+ 		<c:if test="${ users==null}">
+ 		<input type="hidden" name="board_name" size="70" class="input1" value="${admin.adm_name }" >
+ 		</c:if>
+ 		<c:if test="${admin==null }">
  		<input type="hidden" name="board_name" size="70" class="input1" value="${users.user_name}" >
+ 		</c:if>
  		</td>
  	</tr>
  	

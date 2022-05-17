@@ -15,7 +15,7 @@
 <body>
 <div class="bg">
 <a href="home"><img class="logo" alt="logo"
-			src="./resources/image/logo.png" /></a> <br>
+			src="${pageContext.request.contextPath}/resources/image/logo.png" /></a> <br>
 	<form name="frmUser" method="post" action="./save.do">
 	<div class="wrap">
 			<div> 

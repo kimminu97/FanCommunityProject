@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>등업요청</title>
+<script src="https://kit.fontawesome.com/0269ed496a.js"
+	crossorigin="anonymous"></script>
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
 	rel="stylesheet">
@@ -73,9 +75,11 @@
 				<tr>
 					<td>${vo.board_idx }</td>
 					<td><a
-						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=4"
+						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=4
+						&userId=${users.user_id}"
 						class="title">${vo.board_sub }</a> ...<span
-						style="color: orange; font-size: 80%;">(${vo.com_cnt}) </span></td>
+						style="color: orange; font-size: 80%;">(${vo.com_cnt}) </span>
+						<c:if test="${vo.like_cnt > 5}"><i class="fa-solid fa-heart"></i></c:if> </td>
 					<td>${vo.board_name }</td>
 					<td>${vo.view_cnt }</td>
 					<!-- wdate 타입을 클래스에서 LocalDateTime 으로 했을때 날짜시간을 문자열 yyyy-MM-dd'T'HH:mm 형식이다.

@@ -13,24 +13,23 @@
 	
 </head>
 <body>
-<div class="bg">
+	<div class="bg">
+		<a href="home"><img class="logo" alt="logo"
+			src="./resources/image/logo.png" /></a> <br>
 		
 	<form name="frmUser" method="post" action="./join.do">
 	<div class="wrap">
 			<!-- 아이디 -->
-			<div>
 				<div class="signup">
 					<h2>회원가입</h2>
 						<div class="signup_id">
 							<h3>아이디</h3>
-							<div style="display: inline-block">
 								<input type="text" name="user_id" id="userid">
-							</div>
-							<div class="idcheck" style="display: inline-block">
+							<div class="idcheck">
 								<input type="button" name="id_check" id="idcheck" value="중복확인">
 							</div>
-								&nbsp;&nbsp;&nbsp;<span id="checkmsg" style="color:red"></span>
 						</div>
+								&nbsp;&nbsp;&nbsp;<span id="checkmsg" style="color:red"></span>
 						<div class="signup_pw">
 							<h3> 비밀번호 </h3>
 							<input type="password" name="user_password" id="userpw">
@@ -39,28 +38,25 @@
 							<h3> 비밀번호 재확인 </h3>
 							<input type="password" name="user_password1" id="userpw1" class="test">
 						</div>
-						&nbsp;&nbsp;&nbsp;<span id="checkpw" style="color:red"></span>
+							&nbsp;&nbsp;&nbsp;<span id="checkpw" style="color:red"></span>
 						
 						<div class="signup_name">
 							<h3>팬닉</h3>
-							<div style="display: inline-block">
 								<input type="text" name="user_name" id="username" placeholder="예)여자아이들짱">
-							</div>
 							<div class="namecheck" style="display: inline-block">
 								<input type="button" name="name_check" id="namecheck" value="중복확인">
 							</div>
 						</div>
-						&nbsp;&nbsp;&nbsp;<span id="checkmsg1" style="color:red"></span>
+							&nbsp;&nbsp;&nbsp;<span id="checkmsg1" style="color:red"></span>
 						<div class="signup_email">
 							<h3>이메일</h3>
 							<input type="text" name="user_email" id="usereamil" placeholder="예)....@naver.com">
 	                	</div>
 						<div class="signup_submit">
-							<input type="submit" value="가입하기" onclick="valid_check()">
+							<input type="button" value="가입하기" onclick="valid_check()">
 	 					</div>
  				</div>
- 			</div>
- 		</div>
+	 		</div>
 		</form>
 	</div>
 	
@@ -130,7 +126,7 @@
     	 isValid=false;
      }
      if(isValid){
-         alert(${users.user_name} + '님 환영합니다!!!')
+         alert(user_name + '님 환영합니다!!!')
          frm.submit();
      }
     

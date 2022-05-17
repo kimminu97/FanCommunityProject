@@ -59,6 +59,12 @@ public class HomeController {
 		return "home";
 	}
 	
+	@GetMapping("album")
+	public void album() {
+	}
+	@GetMapping("methods")
+	public void methods() {
+	}
 	
 	
 	
@@ -181,6 +187,5 @@ public class HomeController {
 		
 		return json_result;
 	}
- 
 	
 }

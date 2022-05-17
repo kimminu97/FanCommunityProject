@@ -59,16 +59,14 @@
 							placeholder="Password">
 					</div>
 					<div class="login_etc">
-						<div class="checkbox">
-							<input type="checkbox" name="" id=""> Remember Me?
-						</div>
+						
 						<div class="forgot_pw">
 							<a href="adminlogin.do">Admin</a>
 						</div>
 					</div>
 					<div class="submit">
 						<input type="submit" value="로그인"> <input type="button"
-							value="회원가입" onclick="location.href=''">
+							value="회원가입" onclick="location.href='join.do'">
 					</div>
 				</div>
 			</div>

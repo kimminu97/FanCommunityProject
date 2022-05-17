@@ -14,7 +14,79 @@
 	js 파일로 외부에 있으면 el을 사용하여 값을 가져올수 없습니다.
 	-> detail.jsp에 스크립트를 옮겨 넣어주세요.
 	-->
+	<script src="https://kit.fontawesome.com/0269ed496a.js"
+	crossorigin="anonymous"></script>
 <script type="text/javascript">
+var count = 1; 
+var num = 1; 
+function heart(){
+	if (${checkHrt} == 0) {
+		document.forms[1].action='heart';
+		document.forms[1].submit();
+		} else if (${checkHrt} == 1) {
+		document.forms[1].action='removehrt';
+		document.forms[1].submit();
+		}
+	}
+function timeForToday(value) {
+    const today = new Date();
+    const timeValue = new Date(value);
+
+    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+    if (betweenTime < 1) return '방금전';
+    if (betweenTime < 60) {
+        return `${betweenTime}분전`;
+    }
+
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+        return `${betweenTimeHour}시간전`;
+    }
+
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+    if (betweenTimeDay < 365) {
+        return `${betweenTimeDay}일전`;
+    }
+
+    return `${Math.floor(betweenTimeDay / 365)}년전`;
+}
+	
+function addBox (x) {
+	 document.getElementById('reply').innerHTML=`
+		 <form action="recomment" method="post" name="reply">
+		 <input type="hidden" name="comment_board" value="${bean.board_idx}">
+			<input type="hidden" name="comment_boardcat" value="${bean.board_cat}">
+			<!-- 메인글의 idx -->
+			 <input
+				type="hidden" name="pageNo" value="${page }">
+		 <table style="width: 60%; margin: auto;">
+		 <tr>
+			<td width="25%">${users.user_name }${admin.adm_name }</td>
+			<td width="25%">
+			<c:if test="${ users==null}">
+			<input type="hidden" name="comment_mname" size="70" class="input1" value="${admin.adm_name }" >
+			</c:if>
+			<c:if test="${admin==null }">
+			<input type="hidden" name="comment_mname" size="70" class="input1" value="${users.user_name}" >
+			</c:if>
+			<input type="hidden" name="user_id" class="input1" value="${users.user_id}">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<!-- 크기조절불가 : style="resize: none;" --> <textarea rows="5"
+					cols="80" name="comment_content" style="resize: none;"
+					placeholder="답글을 작성하세요." class="input1"></textarea>
+			</td>
+			<td width="15%" style="text-align: left;">
+			<input type="submit" value="저장" class="btn-small">
+			<input type="button"  onclick="window.location.reload()" value="취소" class="btn-small"></td>
+		</tr>
+		<tr>
+		 </table>
+	 </form>`
+}
+
 	function update(){
 	    document.getElementById('cont').innerHTML=`
 	    <form method="post">
@@ -57,7 +129,7 @@
 	</script>
 </head>
 <body>
-	<h3>글쓰기</h3>
+	<h3>글 상세보기</h3>
 	<hr>
 	<table style="width: 750px; margin: auto;">
 		<tr>
@@ -76,10 +148,9 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="td1">내용</td>
 			<td colspan="3" class="input1" style="text-align: left;">
 				<div style="height: 300px; box-sizing: border-box;" id="cont">
-					<pre>${bean.board_con }</pre>
+					<pre style="margin-left:50px">${bean.board_con }</pre>
 				</div>
 			</td>
 			<!-- 엔터,탭,기호 등 텍스트 그대로 출력할 때 사용 -->
@@ -110,7 +181,33 @@
 		</tr>
 	</table>
 	<!-- 메인글 상세보기 끝 -->
-
+	
+	<!-- 좋아요 버튼 -->
+	<form action="" method="post">
+		<input type="hidden" name="heart_memid" value="'${users.user_id }'">
+		<input type="hidden" name="heart_boardid" value="${bean.board_idx }">
+		<input type="hidden" name="heart_boardcat" value="${bean.board_cat }">
+		<input type="hidden" name="checkHrt" value="${checkHrt }"> 
+		<input type="hidden" name="pageNo" value="${page }">
+	</form>
+	<div class="button-container" id="button-container">
+		<c:choose>
+			<c:when test="${checkHrt eq '0' or empty checkHrt}">
+				<!-- likecheck가 0이면 빨간하트에 하얀배경-->
+				<a class="feed-icon-btn" href="javascript:heart()"
+					style="background-color: white;"> <i class="fa-solid fa-heart"
+					style="color: #FF5454"></i> ${heart_num }
+				</a>
+			</c:when>
+			<c:when test ="${checkHrt eq '1'}">
+				<!-- likecheck가 1이면 하얀하트에 빨간배경 -->
+				<a class="feed-icon-btn" href="javascript:heart()"
+					style="background-color: #FF5454; color: white"> <i
+					class="fa-solid fa-heart" style="color: white"></i> ${heart_num }
+				</a>
+			</c:when>
+		</c:choose>
+	</div>
 	<!-- 댓글 시작 -->
 	<form action="comment" method="post" name="frmCmt">
 		<input type="hidden" name="comment_board" value="${bean.board_idx}">
@@ -130,9 +227,14 @@
 			</tr>
 			<!-- 댓글 입력 -->
 			<tr>
-				<td width="25%">${users.user_name }</td>
+				<td width="25%">${users.user_name }${admin.adm_name }</td>
 				<td width="25%">
-				<input type="hidden" name="comment_mname" class="input1" value="${users.user_name}">
+				<c:if test="${ users==null}">
+ 				<input type="hidden" name="comment_mname" size="70" class="input1" value="${admin.adm_name }" >
+ 				</c:if>
+ 				<c:if test="${admin==null }">
+ 				<input type="hidden" name="comment_mname" size="70" class="input1" value="${users.user_name}" >
+ 				</c:if>
 				<input type="hidden" name="user_id" class="input1" value="${users.user_id}">
 				</td>
 			</tr>
@@ -156,12 +258,13 @@
 	 		<td colspan="4">
 	 			<div id="comment" style="margin-left:<c:out value='${20*cmt.comment_depth}'/>" >
 		 			<div>
-			 			<span class="name">${cmt.comment_mname }</span>
+			 			<span class="name" style="float: left;">${cmt.comment_mname }</span>
 			 			<span class="now">
-			 				<fmt:formatDate value="${cmt.comment_wdate }" 
+			 				<fmt:formatDate value="javascript:timeForToday(${cmt.comment_wdate })" 
 			 				pattern="yyyy-MM-dd a hh:mm"/>
 			 			</span>
 			 			<span style="float: right;">
+			 			<a href="javascript:addBox(reply)">답글</a>
 			 			<c:if test="${users.user_name == cmt.comment_mname || admin != null}">
 			 			<a href="javascript:delete_cmt('${cmt.comment_idx }')">
 			 			<img alt="삭제" src="${image }/delete.png" style="width:20px;">
@@ -175,9 +278,13 @@
 	 			</div>
 	 		</td>
 	 	</tr>
+	 
 	 </c:forEach>	
-
+	
 		</table>
+			<div id="reply">
+	 	
+	</div>
 	 	<script type="text/javascript">
 			function delete_cmt(idx){
 				if(confirm(idx+'번 선택한 댓글 삭제하시겠습니까?') == true)
@@ -189,5 +296,6 @@
 	if(${message!=null}) alert('${message}');
 </script>
 	</form>
+	
 </body>
 </html>

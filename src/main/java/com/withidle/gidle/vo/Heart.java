@@ -8,9 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Heart {
-	private int heart_id;
-	private String mem_id;
-	private int heart_num;
-	private int board_id;
-	private int board_cat;
+	private String heart_memid;
+	private int heart_boardid;
+	private int heart_boardcat;
 }

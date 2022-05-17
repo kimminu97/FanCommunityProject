@@ -18,7 +18,6 @@
 			src="${pageContext.request.contextPath}/resources/image/logo.png" /></a> <br>
 	<form name="frmUser" method="post" action="./adminsave.do">
 	<div class="wrap">
-			<div> 
 				<div class="adminupdate">
 					<h2>회원 정보 수정(관리자)</h2>
 						<div class="update_id">
@@ -29,11 +28,11 @@
 						</div>
 						<div class="update_pw">
 							<h3> 비밀번호 </h3>
-							<input type="text" name="user_password" id="userpw" class="pw" value="${users.user_password }">
+							<input type="password" name="user_password" id="userpw" class="pw" value="${users.user_password }">
 						</div>
 						<div class="update_pw1">
 							<h3> 비밀번호 재확인 </h3>
-							<input type="text" name="user_password1" id="userpw1" class="pw" value="${users.user_password }">
+							<input type="password" name="user_password1" id="userpw1" class="pw" value="${users.user_password }">
 						</div>
 							&nbsp;&nbsp;&nbsp;<span id="checkpw" style="color:red" class="text-left"></span>
 						<div class="update_name">
@@ -81,7 +80,6 @@
 	 					</div>
 	 					
  				</div>
- 			</div>
  		</div>
 		</form>
 	</div>

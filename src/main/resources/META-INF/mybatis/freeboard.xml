@@ -58,7 +58,12 @@
 		(SELECT * FROM board_idle WHERE BOARD_CAT = #{board_cat} ORDER BY BOARD_IDX DESC ) T)
 		WHERE R BETWEEN #{startNo} AND #{endNo}
 	</select>
-
+	<select id="getThree1" parameterType="int" resultType="Board">
+		select * from
+		(select rownum AS R ,T.* FROM
+		(select * FROM board_idle WHERE BOARD_CAT = #{board_cat} ORDER BY BOARD_IDX DESC) T)
+		where R between 1 and 3
+	</select>
 	<select id="getCount" parameterType="int" resultType="int">
 		select count(*) from Board_IDLE where board_cat=#{board_cat}
 	</select>

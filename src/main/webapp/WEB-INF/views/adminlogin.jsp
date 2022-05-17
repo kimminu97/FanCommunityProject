@@ -66,7 +66,7 @@
 							<a href="login.do">Users</a>
 						</div>
 					</div>
-					<div class="submit">
+					<div class="submit" style="text-align: center">
 						<input type="submit" value="로그인"> 
 					</div>
 				</div>

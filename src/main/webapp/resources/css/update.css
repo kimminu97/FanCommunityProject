@@ -1,15 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-#logo{
-	height: 160px;
+
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
+.bg {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+		url('../image/gidle.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: black;
+	min-height: 100%;
+	overflow: auto;
+}
+
+.logo {
+	height: 100px;
 	padding: 30px;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Jua', sans-serif;
-}
 
 
 .wrap {
@@ -31,18 +42,6 @@
   align-items: center;
   flex-direction: column;
   
-}
-.logo {
-	height: 160px;
-	padding: 30px;
-}
-.bg {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-		url('../image/gidle.png');
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-color: black;
-	min-height: 100%;
 }
 
 h2{
@@ -81,6 +80,7 @@ h2{
 	font-size: 1em;
 	 background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
 	color: white;
+	cursor: pointer
 }
 
 .signup_pw {
@@ -143,6 +143,7 @@ h2{
 	font-size: 1em;
 	 background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
 	color: white;
+	cursor: pointer
 }
 
 .signup_email {
@@ -176,4 +177,5 @@ h2{
   font-size: 1.2em;
   letter-spacing: 2px;
   margin-left: 135px;
+  cursor: pointer
 }

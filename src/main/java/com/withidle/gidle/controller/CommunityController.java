@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +26,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.withidle.gidle.HomeController;
 import com.withidle.gidle.mapper.BoardMapper;
 import com.withidle.gidle.mapper.CommentMapper;
+import com.withidle.gidle.mapper.HeartMapper;
 import com.withidle.gidle.mapper.UsersMapper;
 import com.withidle.gidle.vo.Board;
 import com.withidle.gidle.vo.Comment;
+import com.withidle.gidle.vo.Heart;
 import com.withidle.gidle.vo.PageDto;
 import com.withidle.gidle.vo.Users;
 
@@ -43,6 +47,9 @@ public class CommunityController {
 
 	@Autowired
 	CommentMapper cmt_mapper;
+
+	@Autowired
+	HeartMapper hrt_mapper;
 
 	@RequestMapping(value = "list")
 	public String list(@RequestParam(required = false, defaultValue = "1") int pageNo, Model model,
@@ -78,11 +85,16 @@ public class CommunityController {
 	}
 
 	@GetMapping("community")
-	public void community() {
+	public void community(Model model) {
+		List<Board> list1 = mapper.getThree1(1);
+		List<Board> list2 = mapper.getThree1(2);
+		model.addAttribute("list1", list1);
+		model.addAttribute("list2", list2);
+		logger.info("list1:", list1);
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
-	public String insert(int pageNo, Model model, @RequestParam(required=true) int action) {
+	public String insert(int pageNo, Model model, @RequestParam(required = true) int action) {
 		model.addAttribute("board_cat", action);
 		model.addAttribute("page", pageNo);
 		return "community/insert";
@@ -102,11 +114,12 @@ public class CommunityController {
 		rda.addFlashAttribute("message", "글 쓰기가 완료되었습니다.");
 		// ->list.jsp로 바로 전달 됩니다. 특징: url에 표시되지 않습니다.(model은 보임)
 		user_mapper.boardCountUp(dto.getBoard_name());
-		return "redirect:list?action="+dto.getBoard_cat(); // 1페이지로 이동
+		return "redirect:list?action=" + dto.getBoard_cat(); // 1페이지로 이동
 	}
 
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String detail(int board_idx, int pageNo, Model model, @RequestParam(required=true) int action) {
+	public String detail(int board_idx, int pageNo, Model model, @RequestParam(required = true) int action,
+			String userId, HttpServletRequest request) {
 		logger.info("idx:{}", board_idx);
 		int board_cat = action;
 		Map<String, Integer> map = new HashMap<String, Integer>();
@@ -124,6 +137,22 @@ public class CommunityController {
 		map.put("comment_boardcat", board_cat);
 		List<Comment> cmtlist = cmt_mapper.list(map);
 		model.addAttribute("cmtlist", cmtlist);
+
+		// 좋아요 개수 확인
+		int heart_num = hrt_mapper.selectNum(map);
+		model.addAttribute("heart_num", heart_num);
+
+		// 회원이 게시물에 좋아요 했는지 확인
+		Map<String, Object> hrtMap = new HashMap<>();
+		hrtMap.put("heart_memid", "'" + userId + "'");
+		hrtMap.put("heart_boardid", board_idx);
+		hrtMap.put("heart_boardcat", action);
+
+		int checkHrt = hrt_mapper.checkLike(hrtMap);
+		model.addAttribute("checkHrt", checkHrt);
+		logger.info("[hrt]" + hrtMap);
+		logger.info("hrtcheck: " + Integer.toString(checkHrt));
+
 		return "community/detail";
 	}
 
@@ -139,7 +168,7 @@ public class CommunityController {
 //		model.addAttribute("message","글수정 완료되었습니다.");
 //		->대신에 사용하는 RedirectAttributes addFlashAttribute()메소드로 값을 저장
 		rda.addFlashAttribute("message", "글수정 완료되었습니다.");
-		return "redirect:detail?action="+vo.getBoard_cat();
+		return "redirect:detail?action=" + vo.getBoard_cat();
 		// -> rda 애트리뷰트는 리다이렉트 url의 view(detail.jsp)까지 바로 전달
 		// 중요: RedirectAttributes는 model과는 충동합니다.
 		// @postMapping이고 redirect 할때만 사용합니다.
@@ -157,7 +186,7 @@ public class CommunityController {
 		user_mapper.boardCountDown(user_name);
 		rda.addAttribute("pageNo", pageNo);
 		rda.addFlashAttribute("message", "글이 삭제 되었습니다.");
-		return "redirect:list?action="+board_cat;
+		return "redirect:list?action=" + board_cat;
 	}
 
 	// 여기서부터는 댓글 처리
@@ -170,7 +199,7 @@ public class CommunityController {
 		user_mapper.cmtCountUp(dto.getComment_mname());
 		model.addAttribute("board_idx", dto.getComment_board());
 		model.addAttribute("pageNo", pageNo);
-		return "redirect:detail?action="+dto.getComment_boardcat();
+		return "redirect:detail?action=" + dto.getComment_boardcat();
 	}
 
 	@Transactional
@@ -181,7 +210,7 @@ public class CommunityController {
 		user_mapper.cmtCountDown(user_name);
 		model.addAttribute("board_idx", mref);
 		model.addAttribute("pageNo", pageNo);
-		return "redirect:detail?action="+action;
+		return "redirect:detail?action=" + action;
 	}
 
 	@GetMapping("/list.do")
@@ -190,38 +219,38 @@ public class CommunityController {
 		model.addAttribute("list", list);
 		return "admin/adminlist";
 	}
-	
-	//회원이 하는 회원정보수정
+
+	// 회원이 하는 회원정보수정
 	@GetMapping("update.do")
 	public String update() {
-		return "update" ;
+		return "update";
 	}
-	
+
 	@GetMapping("/adminupdate.do")
-	public String adminupdate(String user_id,Model model) {
+	public String adminupdate(String user_id, Model model) {
 		Users u = user_mapper.selectByUserid(user_id);
 		model.addAttribute("users", u);
-		return "admin/adminupdate" ;
+		return "admin/adminupdate";
 	}
-	
-	//관리자가 하는 회원정보수정
+
+	// 관리자가 하는 회원정보수정
 	@Transactional
 	@PostMapping("/adminsave.do")
-	public void allupdate(Users users, Model model,HttpServletResponse response) throws IOException {
+	public void allupdate(Users users, Model model, HttpServletResponse response) throws IOException {
 		user_mapper.allupdate(users);
 		user_mapper.board_name_update(users);
 		user_mapper.comment_name_update(users);
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		String url = "list.do"; 
-		String message="회원정보 수정되었습니다.";
-		out.print("<script>alert('" +message +"');location.href='"+url+"'");
+		String url = "list.do";
+		String message = "회원정보 수정되었습니다.";
+		out.print("<script>alert('" + message + "');location.href='" + url + "'");
 		out.print("</script>");
 	}
-	
+
 	@Transactional
 	@PostMapping("/save.do")
-	public void update(Users users, Model model,HttpServletResponse response) throws IOException {
+	public void update(Users users, Model model, HttpServletResponse response) throws IOException {
 		user_mapper.board_name_update(users);
 		user_mapper.update(users);
 		user_mapper.comment_name_update(users);
@@ -229,31 +258,61 @@ public class CommunityController {
 		model.addAttribute("users", users);
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		String url = "home"; 
-		String message="회원정보 수정되었습니다.";
-		out.print("<script>alert('" +message +"');location.href='"+url+"'");
+		String url = "home";
+		String message = "회원정보 수정되었습니다.";
+		out.print("<script>alert('" + message + "');location.href='" + url + "'");
 		out.print("</script>");
 	}
-	
+
 	@GetMapping("/delete.do")
-	public void delete(String user_id, 
-		Users users, HttpServletResponse response) throws IOException {
+	public void delete(String user_id, Users users, HttpServletResponse response) throws IOException {
 		String message;
-		if(users != null) {
-			message="삭제 완료되었습니다.";
+		if (users != null) {
+			message = "삭제 완료되었습니다.";
 			user_mapper.delete(user_id);
-		}else {
-			message="삭제 오류입니다.";
+		} else {
+			message = "삭제 오류입니다.";
 		}
-		
+
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		String url = "./list.do";
-		out.print("<script>alert('" + message +"');location.href='"+url+"'");
+		out.print("<script>alert('" + message + "');location.href='" + url + "'");
 		out.print("</script>");
 	}
-	
-	
+
+	@PostMapping("heart")
+	public String hrtInsert(Heart dto, int checkHrt, int pageNo, HttpServletRequest request) {
+
+		Map<String, Integer> likecnt = new HashMap<>();
+		likecnt.put("board_idx", dto.getHeart_boardid());
+		likecnt.put("board_cat", dto.getHeart_boardcat());
+		HttpSession session = request.getSession();
+		Users userVO = (Users) session.getAttribute("users");
+		logger.info("user: " + userVO.toString());
+
+		hrt_mapper.insert(dto);
+		hrt_mapper.likeCntUp(likecnt);
+		return "redirect:detail?board_idx=" + dto.getHeart_boardid() + "&pageNo=" + pageNo + "&action="
+				+ dto.getHeart_boardcat() + "&userId=" + userVO.getUser_id();
+
+	}
+
+	@PostMapping("removehrt")
+	public String removehrt(Heart dto, int checkHrt, int pageNo, HttpServletRequest request) {
+		Map<String, Integer> likecnt = new HashMap<>();
+		likecnt.put("board_idx", dto.getHeart_boardid());
+		likecnt.put("board_cat", dto.getHeart_boardcat());
+		HttpSession session = request.getSession();
+		Users userVO = (Users) session.getAttribute("users");
+
+		hrt_mapper.delete(dto);
+		hrt_mapper.likeCntDown(likecnt);
+		logger.info("id:" + dto.getHeart_memid());
+		return "redirect:detail?board_idx=" + dto.getHeart_boardid() + "&pageNo=" + pageNo + "&action="
+				+ dto.getHeart_boardcat() + "&userId=" + userVO.getUser_id();
+	}
+
 	@GetMapping("announce")
 	public void announcement() {
 	}

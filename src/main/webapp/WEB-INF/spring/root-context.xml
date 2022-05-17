@@ -9,6 +9,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!--1. db.properties 위치 설정하기  -->
 	<context:property-placeholder location="classpath:META-INF/mybatis/db.properties"/>
@@ -28,6 +29,7 @@
 				<value>classpath:META-INF/mybatis/users.xml</value>
 				<value>classpath:META-INF/mybatis/comment.xml</value>
 				<value>classpath:META-INF/mybatis/freeboard.xml</value>
+				<value>classpath:META-INF/mybatis/heart.xml</value>
 			</list>
 		</property>
 		<property name="configLocation" 
