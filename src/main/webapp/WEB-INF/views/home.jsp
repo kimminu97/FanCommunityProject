@@ -42,15 +42,27 @@ img {
 #wel{
 	right: 10%;
 }
+
+
+@font-face {
+    font-family: 'Donoun-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Donoun-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+.welcome{
+	font-family:'Donoun-Medium';
+}
+
 </style>
 </head>
 <body>
 	<div class="bg">
 		<a href="home"><img alt="logo" src="./resources/image/logo.png"/></a>
 		<c:if test="${users != null}">
-		<a href="" id="wel">${users.user_name}&nbsp;님 어서오세요</a>
+		<a href="" id="wel" class="welcome">${users.user_name}&nbsp;님 어서오세요</a>
 		</c:if>
-			${admin.adm_name}&nbsp;님 어서오세요
+			${admin.adm_name}&nbsp;
 		<ul class="menus">
 			<li><a href="profile"><b>Profile</b></a></li>
 			<li><a href="albumList"><b>Album</b></a></li>

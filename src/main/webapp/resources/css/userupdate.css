@@ -1,15 +1,25 @@
   @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-.logo{
-	height: 160px;
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
+.bg {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+		url('../image/gidle.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: black;
+	min-height: 100%;
+	overflow: auto;
+}
+
+.logo {
+	height: 100px;
 	padding: 30px;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Jua', sans-serif;
-}
 
 
 .wrap {
@@ -33,18 +43,7 @@
   margin-bottom: 100px;
 }
 
-.logo {
-	height: 160px;
-	padding: 30px;
-}
-.bg {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-		url('../image/gidle.png');
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-color: black;
-	min-height: 100%;
-}
+
 
 h2{
   margin-top: 0.5em;

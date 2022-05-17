@@ -1,11 +1,29 @@
   @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Jua', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
+
+.bg {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+		url('../image/gidle.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: black;
+	min-height: 100%;
+	overflow: auto;
+}
+
+.logo {
+	height: 160px;
+	padding: 30px;
+}
+
 
 .wrap {
   width: 100%;
@@ -17,7 +35,7 @@
 }
 
 .signup {
-  width: 550px;
+  width: 30%;
   height: 850px;
   background: white;
   border-radius: 20px;
@@ -27,56 +45,52 @@
   flex-direction: column;
   
 }
-.logo {
-	height: 160px;
-	padding: 30px;
-}
-.bg {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-		url('../image/gidle.png');
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-color: black;
-	min-height: 100%;
-}
 
 h2{
-  margin-bottom: 1em;
   color: tomato;
   font-size: 35px;
+}
+
+h3{
+	margin-left: 10px;
+	text-align: left;
 }
 
 .signup_id {
   margin-top: 20px;
   width: 80%;
+  display: inline-block;
 }
 
 .signup_id input{
-  width: 320px;
+   width: 60%;
   height: 50px;
   border-radius: 30px;
   margin-top: 10px;
   padding: 0px 20px;
   border: 1px solid lightgray;
   outline: none;
+  
 }
 
 .idcheck{
-	width: 100px;
+	width: 80%;
 	height: 50px;
 	margin-left: 5px;
 }
+
 .idcheck input{
-	width: 100px;
+	width: 30%;
 	height: 50px;
 	border-radius: 15px;
 	padding: 0px 15px;
 	border: 1px solid lightgray;
 	outline: none;
 	font-size: 1em;
-	 background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
+	background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
 	color: white;
-	cursor: pointer
+	cursor: pointer;
+	
 }
 
 .signup_pw {
@@ -85,7 +99,7 @@ h2{
 }
 
 .signup_pw input{
-  width: 320px;
+  width: 90%;
   height: 50px;
   border-radius: 30px;
   margin-top: 10px;
@@ -100,7 +114,7 @@ h2{
 }
 
 .signup_pw1 input{
-  width: 320px;
+   width: 90%;
   height: 50px;
   border-radius: 30px;
   margin-top: 10px;
@@ -115,7 +129,7 @@ h2{
 }
 
 .signup_name input{
-  width: 320px;
+ width: 90%;
   height: 50px;
   border-radius: 30px;
   margin-top: 10px;
@@ -130,16 +144,16 @@ h2{
 	margin-left: 5px;
 }
 .namecheck input{
-	width: 100px;
+	width: 30%;
 	height: 50px;
 	border-radius: 15px;
 	padding: 0px 15px;
 	border: 1px solid lightgray;
 	outline: none;
 	font-size: 1em;
-	 background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
+	background: linear-gradient(to left, rgb(235, 0, 41), rgb(94, 13, 139)); 
 	color: white;
-	cursor: pointer
+	cursor: pointer;
 }
 
 .signup_email {
@@ -148,7 +162,7 @@ h2{
 }
 
 .signup_email input{
-  width: 430px;
+  width: 90%;
   height: 50px;
   border-radius: 30px;
   margin-top: 10px;
@@ -159,11 +173,12 @@ h2{
 
 .signup_submit {
   margin-top: 50px;
+  margin: auto;
   width: 80%;
   
 }
 .signup_submit input{
-  width: 200px;
+  width: 50%;
   height: 50px;
   border: 0;
   outline: none;
@@ -172,6 +187,6 @@ h2{
   color: white;
   font-size: 1.2em;
   letter-spacing: 2px;
-  margin-left: 135px;
-  cursor: pointer
+  cursor: pointer;
+  margin-left: 25%;
 }
