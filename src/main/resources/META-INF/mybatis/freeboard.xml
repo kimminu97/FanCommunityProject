@@ -50,34 +50,6 @@
 		Board_IDLE where BOARD_IDX=#{board_idx} and BOARD_CAT=#{board_cat}
 	</select>
 
-	<select id="getByTitle" parameterType="Map" resultType="Board">
-		SELECT * FROM BOARD_IDLE bi WHERE board_sub LIKE '%${keyword}%'
-		AND	board_cat=${board_cat} ORDER BY board_idx DESC
-		<!-- SELECT * FROM (SELECT rownum AS R ,T.* FROM (SELECT * FROM board_idle 
-			WHERE board_sub LIKE '%${keyword}%' AND BOARD_CAT = ${board_cat} ORDER BY 
-			BOARD_IDX DESC ) T) WHERE R BETWEEN ${startNo} AND ${endNo} -->
-	</select>
-
-	<select id="getByWriter" parameterType="Map" resultType="Board">
-		SELECT * FROM BOARD_IDLE bi WHERE board_name LIKE '%${keyword}%'
-		AND	board_cat=${board_cat} ORDER BY board_idx DESC
-
-		<!-- SELECT * FROM (SELECT rownum AS R ,T.* FROM (SELECT * FROM board_idle 
-			WHERE board_name LIKE '%${keyword}%' AND BOARD_CAT = ${board_cat} ORDER BY 
-			BOARD_IDX DESC ) T) WHERE R BETWEEN ${startNo} AND ${endNo} -->
-	</select>
-
-	<!-- <select id="getNumByTitle" parameterType="Map" resultType="int">
-		SELECT count(*) FROM BOARD_IDLE bi
-		WHERE board_sub LIKE '%${keyword}%'
-		AND board_cat = ${board_cat}
-	</select>
-
-	<select id="getNumByWriter" parameterType="Map" resultType="int">
-		SELECT count(*) FROM BOARD_IDLE bi
-		WHERE board_name LIKE '%${keyword}%'
-		AND board_cat = ${board_cat}
-	</select> -->
 	<!-- 조회수 증가 -->
 	<update id="readCount" parameterType="Map">
 		update Board_IDLE set
@@ -114,4 +86,34 @@
 		WHERE
 		BOARD_IDX=#{board_idx} and BOARD_CAT=#{board_cat}
 	</delete>
+	
+	
+	<select id="getByTitle" parameterType="Map" resultType="Board">
+		SELECT * FROM BOARD_IDLE bi WHERE board_sub LIKE '%${keyword}%'
+		AND	board_cat=${board_cat} ORDER BY board_idx DESC
+		<!-- SELECT * FROM (SELECT rownum AS R ,T.* FROM (SELECT * FROM board_idle 
+			WHERE board_sub LIKE '%${keyword}%' AND BOARD_CAT = ${board_cat} ORDER BY 
+			BOARD_IDX DESC ) T) WHERE R BETWEEN ${startNo} AND ${endNo} -->
+	</select>
+
+	<select id="getByWriter" parameterType="Map" resultType="Board">
+		SELECT * FROM BOARD_IDLE bi WHERE board_name LIKE '%${keyword}%'
+		AND	board_cat=${board_cat} ORDER BY board_idx DESC
+
+		<!-- SELECT * FROM (SELECT rownum AS R ,T.* FROM (SELECT * FROM board_idle 
+			WHERE board_name LIKE '%${keyword}%' AND BOARD_CAT = ${board_cat} ORDER BY 
+			BOARD_IDX DESC ) T) WHERE R BETWEEN ${startNo} AND ${endNo} -->
+	</select>
+
+	<select id="getNumByTitle" parameterType="Map" resultType="int">
+		SELECT count(*) FROM BOARD_IDLE bi
+		WHERE board_sub LIKE '%${keyword}%'
+		AND board_cat = ${board_cat}
+	</select>
+
+	<select id="getNumByWriter" parameterType="Map" resultType="int">
+		SELECT count(*) FROM BOARD_IDLE bi
+		WHERE board_name LIKE '%${keyword}%'
+		AND board_cat = ${board_cat}
+	</select>
 </mapper>
