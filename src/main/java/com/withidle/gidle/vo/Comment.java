@@ -1,6 +1,7 @@
 package com.withidle.gidle.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,7 @@ public class Comment {
 	private int comment_boardcat;
 	private String comment_content;
 	private int comment_like;
-	private Date comment_wdate;
+	private Timestamp comment_wdate;
 	private String comment_mname;
 	private int comment_parent;
 	private String user_id;

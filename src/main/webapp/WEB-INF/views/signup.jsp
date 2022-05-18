@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여자아이들 회원가입 </title>
+<title>회원가입 </title>
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/signup.css">
@@ -126,7 +126,7 @@
     	 isValid=false;
      }
      if(isValid){
-         alert(user_name + '님 환영합니다!!!')
+         alert('가입되었습니다. 환영합니다!!!')
          frm.submit();
      }
     

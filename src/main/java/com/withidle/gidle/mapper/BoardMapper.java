@@ -17,4 +17,8 @@ public interface BoardMapper {
 	void readCount(Map<String, Integer> map);
 	void delete(Map<String, Integer> map);
 	List<Board> getThree1(int board_cat);
+	List<Board> getByTitle(Map<String, Object> map);
+	List<Board> getByWriter(Map<String, Object> map);
+	int getNumByTitle(Map<String, Object> map);
+	int getNumByWriter(Map<String, Object> map);
 }

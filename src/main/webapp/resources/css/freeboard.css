@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-
-
 html, body {
 	margin: 0;
 	text-align: center;
@@ -99,16 +97,17 @@ p {
 	text-align: left;
 	padding: 40px 0 15px 0;
 	width: 50%;
+	display: inline;
 }
 
-.srchArea>select {
+.srchArea > select {
 	width: 80px;
 	height: 30px;
 	box-sizing: border-box;
 	border: 1px solid #9a9a9a;
 }
 
-.srchArea>input {
+.srchArea> input {
 	margin-left: -5px;
 	padding: 0 10px;
 	width: 220px;
@@ -118,9 +117,9 @@ p {
 	padding: 0 10px;
 }
 
-.srchArea>button {
+.srchArea> #search {
 	margin-left: -5px;
-	width: 40px;
+	width: 50px;
 	height: 30px;
 	border-radius: 5px;
 	box-sizing: border-box;
@@ -132,7 +131,7 @@ p {
 
 .writeBtn {
 	text-align: right;
-	padding: 40px 0 15px 0;
+	padding: 0 0 15px 0;
 	width: 50%;
 }
 
@@ -153,7 +152,7 @@ p {
 	background: #D0D0D0;
 }
 
-.list th, td {
+.list > tbody > tr > th, .list > tbody > tr > td {
 	border-bottom: 1px solid #C7C7C7;
 	padding: 10px;
 }
@@ -162,7 +161,6 @@ p {
 	background-color: #7e00bf;
 	color: white;
 } */
-
 .pageNum {
 	padding: 20px 0 25px 0;
 }
@@ -178,4 +176,114 @@ p {
 	color: white;
 	padding: 5px 10px;
 	margin: auto;
+}
+
+.feed-icon-btn {
+	border-style: none;
+	border-radius: 6px;
+	padding: 10px;
+	width: 70px;
+}
+
+.likeBtn {
+	width: 100px;
+	height: 50px;
+}
+
+.input1 {
+	border: none;
+	background-color: #c5c5c9;
+	width: 90%;
+}
+
+.input1:focus {
+	outline: none;
+}
+
+.btn {
+	background-color: #343a40;
+	border-radius: 5px;
+	color: white;
+	padding: 5px 15px;
+	margin: auto;
+	border: none;
+	font-size: 15px;
+}
+
+.btn:hover {
+	background-color: white;
+	color: black;
+}
+
+.detail {
+	border-collapse: collapse;
+	padding-top: 50px;
+}
+
+.detail > tbody > tr > td {
+	padding: 10px;
+	border-top: 0.3px solid #c0c0c0;
+}
+
+.detail > tbody > tr > .td1 {
+	background-color: #5E6975;
+	color: white;
+}
+
+.button-container {
+	line-height: 70px;
+	border-bottom: 1px solid #c0c0c0;
+	width: 750px;
+	margin: auto;
+	border-top: 1px solid #c0c0c0;
+}
+
+.input2 {
+	border: none;
+	background-color: #E4E3E3;
+	text-align: left;
+}
+
+.button {
+	background-color: #343a40;
+	padding: 5px 15px;
+	border-radius: 5px;
+	color: white;
+}
+
+.button:hover {
+	background-color: white;
+	color: black;
+}
+
+.btn-small {
+	background-color: white;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 5px;
+}
+
+.cmt > td {
+	border-bottom: 1px solid #c0c0c0;
+}
+
+.cmt {
+	height: 50px;
+}
+
+.now {
+	color: gray;
+	padding-top: 5px;
+	
+}
+
+.name {
+	padding-left: 5px;
+	padding-top: 5px;
+	float: left;
+}
+
+#comment {
+	padding-bottom: 30px;
+	background-color: #c5c5c9;
 }

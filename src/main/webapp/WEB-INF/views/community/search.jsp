@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>검색</title>
 <script type="text/javascript">
 	function insert(){
 	    if(${admin == null}){
@@ -49,20 +49,30 @@
 		</ul>
 	</nav>
 	<div class="subHeader">
-		<h1>공지사항</h1>
+		<c:if test="${board_cat == 1}">
+			<h1>공지사항</h1>
+		</c:if>
+		<c:if test="${board_cat == 2 }">
+			<h1>자유게시판</h1>
+		</c:if>
+		<c:if test="${board_cat == 3 }">
+			<h1>아이들에게 편지</h1>
+		</c:if>
+		<c:if test="${board_cat == 3 }">
+			<h1>등업요청</h1>
+		</c:if>
 		<!-- js사용해서 카테고리 이름 가져오기 가능? -->
 	</div>
 	<div class="container">
-		<div style="display: flex; line-height: 50px;">
-			<div >
+		<div style="display: flex">
+			<div>
 				<form action="search" name="search" class="srchArea" method="get">
 					<select name="cat">
 						<option value="title" selected>제목</option>
 						<option value="writer">작성자</option>
-					</select> 
-					<input name="keyword" type="text" placeholder="검색어를 입력하세요"> 
-					<input type="hidden" name="action" value="1">
-					<input id="search" type="submit" value="검색">
+					</select> <input name="keyword" type="text" placeholder="검색어를 입력하세요">
+					<input type="hidden" name="action" value="${board_cat }"> <input
+						id="search" type="submit" value="검색">
 				</form>
 			</div>
 			<div class="writeBtn">
@@ -85,11 +95,12 @@
 				<tr>
 					<td>${vo.board_idx }</td>
 					<td><a
-						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=1&userId=${users.user_id}"
+						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=${board_cat }&userId=${users.user_id}"
 						class="title">${vo.board_sub }</a><span
-						style="color: orange; font-size: 80%;"></span>
-						<c:if test="${vo.like_cnt > 5}"><i class="fa-solid fa-heart"></i></c:if> 
-						</td>
+						style="color: orange; font-size: 80%;"></span> <c:if
+							test="${vo.like_cnt > 5}">
+							<i class="fa-solid fa-heart"></i>
+						</c:if></td>
 					<td>${vo.board_name }</td>
 					<td>${vo.view_cnt }</td>
 					<!-- wdate 타입을 클래스에서 LocalDateTime 으로 했을때 날짜시간을 문자열 yyyy-MM-dd'T'HH:mm 형식이다.
@@ -100,18 +111,9 @@
 				</tr>
 			</c:forEach>
 		</table>
-
-		<div class="pageNum">
-			<a href="?pageNo=1&action=1">&lt;&lt;</a> <a
-				href="?pageNo=${page.startPage-1 }&action=1">&lt;</a>
-
-			<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
-				<a href="?pageNo=${i }&action=1">${i }</a>
-			</c:forEach>
-			<a href="?pageNo=${page.endPage+1 }&action=1">&gt;</a> <a
-				href="?pageNo=${page.totalPage }&action=1">&gt;&gt;</a>
-		</div>
-		<a href="${pageContext.request.contextPath }/community/community"
+		
+		<br> <a
+			href="${pageContext.request.contextPath }/community/community"
 			id="homebtn">메인으로</a>
 
 	</div>

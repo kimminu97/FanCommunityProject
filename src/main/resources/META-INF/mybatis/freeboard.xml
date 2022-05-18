@@ -6,28 +6,32 @@
 	<!-- 새글 쓰기 -->
 	<insert id="insert">
 		INSERT INTO BOARD_IDLE
-		(BOARD_IDX, BOARD_CAT, BOARD_SUB, BOARD_CON,BOARD_NAME,user_id)
+		(BOARD_IDX, BOARD_CAT,
+		BOARD_SUB, BOARD_CON,BOARD_NAME,user_id)
 		VALUES(board_idx_seq1.nextval, #{board_cat},
 		#{board_sub},#{board_con}, #{board_name},#{user_id})
 
 	</insert>
 	<insert id="insert2">
 		INSERT INTO BOARD_IDLE
-		(BOARD_IDX, BOARD_CAT, BOARD_SUB, BOARD_CON,BOARD_NAME,user_id)
+		(BOARD_IDX, BOARD_CAT,
+		BOARD_SUB, BOARD_CON,BOARD_NAME,user_id)
 		VALUES(board_idx_seq2.nextval, #{board_cat},
 		#{board_sub},#{board_con}, #{board_name},#{user_id})
-		</insert>
+	</insert>
 
 	<insert id="insert3">
 		INSERT INTO BOARD_IDLE
-		(BOARD_IDX, BOARD_CAT, BOARD_SUB, BOARD_CON,BOARD_NAME,user_id)
+		(BOARD_IDX, BOARD_CAT,
+		BOARD_SUB, BOARD_CON,BOARD_NAME,user_id)
 		VALUES(board3_idx_seq.nextval, #{board_cat},
 		#{board_sub},#{board_con}, #{board_name},#{user_id})
 	</insert>
 
 	<insert id="insert4">
 		INSERT INTO BOARD_IDLE
-		(BOARD_IDX, BOARD_CAT, BOARD_SUB, BOARD_CON,BOARD_NAME,user_id)
+		(BOARD_IDX, BOARD_CAT,
+		BOARD_SUB, BOARD_CON,BOARD_NAME,user_id)
 		VALUES(board4_idx_seq.nextval, #{board_cat},
 		#{board_sub},#{board_con}, #{board_name},#{user_id})
 
@@ -45,6 +49,7 @@
 		select * from
 		Board_IDLE where BOARD_IDX=#{board_idx} and BOARD_CAT=#{board_cat}
 	</select>
+
 	<!-- 조회수 증가 -->
 	<update id="readCount" parameterType="Map">
 		update Board_IDLE set
@@ -55,17 +60,25 @@
 		SELECT *
 		FROM (
 		SELECT rownum AS R ,T.* FROM
-		(SELECT * FROM board_idle WHERE BOARD_CAT = #{board_cat} ORDER BY BOARD_IDX DESC ) T)
-		WHERE R BETWEEN #{startNo} AND #{endNo}
+		(SELECT * FROM board_idle WHERE
+		BOARD_CAT = #{board_cat} ORDER BY BOARD_IDX DESC ) T)
+		WHERE R BETWEEN
+		#{startNo} AND #{endNo}
 	</select>
+
 	<select id="getThree1" parameterType="int" resultType="Board">
-		select * from
+		select *
+		from
 		(select rownum AS R ,T.* FROM
-		(select * FROM board_idle WHERE BOARD_CAT = #{board_cat} ORDER BY BOARD_IDX DESC) T)
-		where R between 1 and 3
+		(select * FROM board_idle WHERE
+		BOARD_CAT = #{board_cat} ORDER BY BOARD_IDX DESC) T)
+		where R between 1
+		and 3
 	</select>
+
 	<select id="getCount" parameterType="int" resultType="int">
-		select count(*) from Board_IDLE where board_cat=#{board_cat}
+		select
+		count(*) from Board_IDLE where board_cat=#{board_cat}
 	</select>
 
 	<delete id="delete" parameterType="Map">
@@ -73,4 +86,34 @@
 		WHERE
 		BOARD_IDX=#{board_idx} and BOARD_CAT=#{board_cat}
 	</delete>
+	
+	
+	<select id="getByTitle" parameterType="Map" resultType="Board">
+		SELECT * FROM BOARD_IDLE bi WHERE board_sub LIKE '%${keyword}%'
+		AND	board_cat=${board_cat} ORDER BY board_idx DESC
+		<!-- SELECT * FROM (SELECT rownum AS R ,T.* FROM (SELECT * FROM board_idle 
+			WHERE board_sub LIKE '%${keyword}%' AND BOARD_CAT = ${board_cat} ORDER BY 
+			BOARD_IDX DESC ) T) WHERE R BETWEEN ${startNo} AND ${endNo} -->
+	</select>
+
+	<select id="getByWriter" parameterType="Map" resultType="Board">
+		SELECT * FROM BOARD_IDLE bi WHERE board_name LIKE '%${keyword}%'
+		AND	board_cat=${board_cat} ORDER BY board_idx DESC
+
+		<!-- SELECT * FROM (SELECT rownum AS R ,T.* FROM (SELECT * FROM board_idle 
+			WHERE board_name LIKE '%${keyword}%' AND BOARD_CAT = ${board_cat} ORDER BY 
+			BOARD_IDX DESC ) T) WHERE R BETWEEN ${startNo} AND ${endNo} -->
+	</select>
+
+	<select id="getNumByTitle" parameterType="Map" resultType="int">
+		SELECT count(*) FROM BOARD_IDLE bi
+		WHERE board_sub LIKE '%${keyword}%'
+		AND board_cat = ${board_cat}
+	</select>
+
+	<select id="getNumByWriter" parameterType="Map" resultType="int">
+		SELECT count(*) FROM BOARD_IDLE bi
+		WHERE board_name LIKE '%${keyword}%'
+		AND board_cat = ${board_cat}
+	</select>
 </mapper>

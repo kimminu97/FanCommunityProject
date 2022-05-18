@@ -2,6 +2,7 @@ package com.withidle.gidle.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,7 +84,8 @@ public class CommunityController {
 		}
 //		return "community/list2";	//pageNo 를 form data로 전달하는 예시
 	}
-
+	
+	
 	@GetMapping("community")
 	public void community(Model model) {
 		List<Board> list1 = mapper.getThree1(1);
@@ -92,7 +94,36 @@ public class CommunityController {
 		model.addAttribute("list2", list2);
 		logger.info("list1:", list1);
 	}
-
+	@GetMapping(value="search")
+	public void search(@RequestParam(required = false, defaultValue = "1") int pageNo, Model model,
+			@RequestParam(required = true) int action, String cat, String keyword) {
+		logger.info("cat: " + cat + ", keyword: " + keyword);
+		int board_cat = action;
+		model.addAttribute("board_cat", action);
+		logger.info("board_cat:" + board_cat);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("board_cat", board_cat);
+		map.put("keyword", keyword);
+		PageDto page;
+				
+		logger.info("map:" + map);
+		List<Board> list = new ArrayList<>();
+		
+		if (cat.equals("title")) {
+			list = mapper.getByTitle(map);
+			page = new PageDto(pageNo, mapper.getNumByTitle(map), mapper.getNumByTitle(map));
+			logger.info("제목검색");
+		} else {
+			list = mapper.getByWriter(map);
+			page = new PageDto(pageNo, mapper.getNumByWriter(map), mapper.getNumByWriter(map));
+			logger.info("글쓴이검색");
+		}
+		
+		logger.info("list:" + list.toString());
+		model.addAttribute("page", page);
+		model.addAttribute("list", list);
+//		return "community/list2";	//pageNo 를 form data로 전달하는 예시
+	}
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public String insert(int pageNo, Model model, @RequestParam(required = true) int action) {
 		model.addAttribute("board_cat", action);

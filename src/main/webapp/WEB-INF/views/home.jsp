@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아이들과 함께해조</title>
+<title>Fandom</title>
 <style>
 html, body {
 	padding: 0;
