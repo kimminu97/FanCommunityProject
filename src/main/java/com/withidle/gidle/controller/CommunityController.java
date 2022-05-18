@@ -83,7 +83,32 @@ public class CommunityController {
 		}
 //		return "community/list2";	//pageNo 를 form data로 전달하는 예시
 	}
-
+	
+	@GetMapping(value="search")
+	public void search(@RequestParam(required = false, defaultValue = "1") int pageNo, Model model,
+			@RequestParam(required = true) int action, String cat, String keyword) {
+		logger.info("cat: " + cat + ", keyword: " + keyword);
+		int board_cat = action;
+		model.addAttribute("board_cat", action);
+		logger.info("board_cat:" + board_cat);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("board_cat", board_cat);
+		map.put("keyword", keyword);
+		logger.info("map:" + map);
+		List<Board> list;
+		
+		if (cat.equals("title")) {
+			list = mapper.getByTitle(map);
+			logger.info("제목검색");
+		} else {
+			list = mapper.getByWriter(map);
+			logger.info("글쓴이검색");
+		}
+		
+		logger.info("list:" + list.toString());
+		model.addAttribute("list", list);
+//		return "community/list2";	//pageNo 를 form data로 전달하는 예시
+	}
 	@GetMapping("community")
 	public void community(Model model) {
 		List<Board> list1 = mapper.getThree1(1);

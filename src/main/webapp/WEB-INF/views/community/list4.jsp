@@ -44,13 +44,17 @@
 		<!-- js사용해서 카테고리 이름 가져오기 가능? -->
 	</div>
 	<div class="container">
-		<div style="display: flex">
-			<div class="srchArea">
-				<select name="cat">
-					<option value="title" selected>제목</option>
-					<option value="writer">작성자</option>
-				</select> <input type="text" placeholder="검색어를 입력하세요">
-				<button id="search" type="button">검색</button>
+		<div style="display: flex; line-height: 50px;">
+			<div >
+				<form action="search" name="search" class="srchArea" method="get">
+					<select name="cat">
+						<option value="title" selected>제목</option>
+						<option value="writer">작성자</option>
+					</select> 
+					<input name="keyword" type="text" placeholder="검색어를 입력하세요"> 
+					<input type="hidden" name="action" value="4">
+					<input id="search" type="submit" value="검색">
+				</form>
 			</div>
 			<div class="writeBtn">
 				<!-- 등급에 따라 숨김 -->

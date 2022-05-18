@@ -12,7 +12,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/freeboard.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/freeboard.css" />
 </head>
 <body>
 	<nav>
@@ -21,16 +22,14 @@
 			<li><a href="community">Dashboard</a></li>
 			<li><a href="profile">Profile</a></li>
 			<li><a href="albumList">Album</a></li>
-			<li>
-			  <c:choose>
-                  <c:when test="${admin==null }">
-                     <a href="update.do">My Info</a>
-                  </c:when>
-                  <c:when test="${users==null }">
-                   <a href="list.do">Admin</a>
-                  </c:when>
-               </c:choose>
-			</li>
+			<li><c:choose>
+					<c:when test="${admin==null }">
+						<a href="update.do">My Info</a>
+					</c:when>
+					<c:when test="${users==null }">
+						<a href="list.do">Admin</a>
+					</c:when>
+				</c:choose></li>
 		</ul>
 	</nav>
 	<nav class="shadow">
@@ -46,14 +45,17 @@
 		<!-- js사용해서 카테고리 이름 가져오기 가능? -->
 	</div>
 	<div class="container">
-		<div style="display: flex">
-			<div class="srchArea">
-				<select>
-					<option value="" selected>제목</option>
-					<option value="">제목+내용</option>
-					<option value="">작성자</option>
-				</select> <input type="text" placeholder="검색어를 입력하세요">
-				<button type="button">검색</button>
+		<div style="display: flex; line-height: 50px;">
+			<div >
+				<form action="search" name="search" class="srchArea" method="get">
+					<select name="cat">
+						<option value="title" selected>제목</option>
+						<option value="writer">작성자</option>
+					</select> 
+					<input name="keyword" type="text" placeholder="검색어를 입력하세요"> 
+					<input type="hidden" name="action" value="2">
+					<input id="search" type="submit" value="검색">
+				</form>
 			</div>
 			<div class="writeBtn">
 				<!-- 등급에 따라 숨김 -->
@@ -78,9 +80,10 @@
 						href="detail?board_idx=${vo.board_idx }&pageNo=${page.pageNo}&action=2
 						&userId=${users.user_id}"
 						class="title">${vo.board_sub }</a> ...<span
-						style="color: orange; font-size: 80%;">(${vo.com_cnt}) </span>
-						<c:if test="${vo.like_cnt > 5}"><i class="fa-solid fa-heart"></i></c:if> 
-						</td>
+						style="color: orange; font-size: 80%;">(${vo.com_cnt}) </span> <c:if
+							test="${vo.like_cnt > 5}">
+							<i class="fa-solid fa-heart"></i>
+						</c:if></td>
 					<td>${vo.board_name }</td>
 					<td>${vo.view_cnt }</td>
 					<!-- wdate 타입을 클래스에서 LocalDateTime 으로 했을때 날짜시간을 문자열 yyyy-MM-dd'T'HH:mm 형식이다.
@@ -99,8 +102,8 @@
 			<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
 				<a href="?pageNo=${i }&action=2">${i }</a>
 			</c:forEach>
-			<a href="?pageNo=${page.endPage+1 }&action=2">&gt;</a> 
-			<a href="?pageNo=${page.totalPage }&action=2">&gt;&gt;</a>
+			<a href="?pageNo=${page.endPage+1 }&action=2">&gt;</a> <a
+				href="?pageNo=${page.totalPage }&action=2">&gt;&gt;</a>
 		</div>
 		<a href="${pageContext.request.contextPath }/community/community"
 			id="homebtn">메인으로</a>
